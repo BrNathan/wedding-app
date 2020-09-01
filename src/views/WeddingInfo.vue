@@ -7,32 +7,7 @@
 
     <navbar-page></navbar-page>
 
-    <section id="home" class="video-hero js-fullheight"
-      style="height: 700px; background-image: url(images/bg_1.jpg); background-size:cover; background-position: top center;"
-      data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <a class="player"
-        data-property="{videoURL:'https://www.youtube.com/watch?v=Mjjw19B7rMk',containment:'#home', showControls:false, autoPlay:true, loop:true, mute:true, startAt:0, opacity:1, quality:'default',optimizeDisplay:true}"></a>
-      <div class="container">
-        <div class="row js-fullheight justify-content-center d-flex align-items-center">
-          <div class="col-md-12">
-            <div class="text text-center">
-              <div class="icon">
-                <span class="flaticon-rose-outline-variant-with-vines-and-leaves"></span>
-              </div>
-              <span class="subheading">The Wedding of</span>
-              <h1>Francisco &amp; Laura</h1>
-              <div id="timer" class="d-flex">
-                <div class="time" id="days"></div>
-                <div class="time pl-3" id="hours"></div>
-                <div class="time pl-3" id="minutes"></div>
-                <div class="time pl-3" id="seconds"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section-home></section-home>
 
     <section class="ftco-section ftco-about ftco-no-pt ftco-no-pb" id="groom-bride-section">
       <div class="container">
@@ -565,12 +540,14 @@ import { Component, Vue } from 'vue-property-decorator';
 import GlobalLoader from '@/components/GlobalLoader.vue';
 import Footer from '@/components/Footer.vue';
 import Navbar from '@/components/Navbar.vue';
+import SectionHome from '@/components/SectionHome.vue';
 
 @Component({
   components: {
     'global-loader': GlobalLoader,
     'footer-page': Footer,
-    'navbar-page': Navbar
+    'navbar-page': Navbar,
+    'section-home': SectionHome
   }
 })
 export default class WeddingInfo extends Vue {}
