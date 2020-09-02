@@ -2,7 +2,7 @@
   <section
     id="home"
     class="video-hero js-fullheight"
-    style="height: 700px; background-image: url(images/bg_1.jpg); background-size:cover; background-position: top center;"
+    style="background-image: url(images/bg_1.jpg); background-size:cover; background-position: top center;"
     data-stellar-background-ratio="0.5"
   >
     <link rel="stylesheet" href="/css/flaticon.css" />
