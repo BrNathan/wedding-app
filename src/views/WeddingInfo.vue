@@ -7,88 +7,13 @@
 
     <navbar-page></navbar-page>
 
-    <section-home></section-home>
+    <home-section></home-section>
 
     <wedding-date-section></wedding-date-section>
 
     <bride-groom-section></bride-groom-section>
 
-    <section class="ftco-section" id="lovestory-section">
-      <div class="container">
-        <div class="row justify-content-center pb-5">
-          <div class="col-md-12 text-center heading-section ftco-animate">
-            <span class="clone">Love Story</span>
-            <h2 class="mb-3">Love Story</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <ul class="timeline animate-box">
-              <li class="animate-box">
-                <div class="timeline-badge" style="background-image:url(images/couple-1.jpg);"></div>
-                <div class="timeline-panel ftco-animate text-md-right">
-                  <div class="overlay"></div>
-                  <div class="timeline-heading">
-                    <span class="date">June 10, 2017</span>
-                    <h3 class="timeline-title">First We Meet</h3>
-                  </div>
-                  <div class="timeline-body">
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                      live
-                      the blind texts. Separated they live in .</p>
-                  </div>
-                </div>
-              </li>
-              <li class="timeline-inverted animate-box">
-                <div class="timeline-badge" style="background-image:url(images/couple-2.jpg);"></div>
-                <div class="timeline-panel ftco-animate">
-                  <div class="overlay overlay-2"></div>
-                  <div class="timeline-heading">
-                    <span class="date">June 10, 2017</span>
-                    <h3 class="timeline-title">First Date</h3>
-                  </div>
-                  <div class="timeline-body">
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                      live
-                      the blind texts. Separated they live in .</p>
-                  </div>
-                </div>
-              </li>
-              <li class="animate-box">
-                <div class="timeline-badge" style="background-image:url(images/couple-3.jpg);"></div>
-                <div class="timeline-panel ftco-animate text-md-right">
-                  <div class="overlay"></div>
-                  <div class="timeline-heading">
-                    <span class="date">June 14, 2017</span>
-                    <h3 class="timeline-title">In A Relationship</h3>
-                  </div>
-                  <div class="timeline-body">
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                      live
-                      the blind texts. Separated they live in .</p>
-                  </div>
-                </div>
-              </li>
-              <li class="timeline-inverted animate-box">
-                <div class="timeline-badge" style="background-image:url(images/couple-4.jpg);"></div>
-                <div class="timeline-panel ftco-animate">
-                  <div class="overlay overlay-2"></div>
-                  <div class="timeline-heading">
-                    <span class="date">May. 10, 2019</span>
-                    <h3 class="timeline-title">We're Engaged</h3>
-                  </div>
-                  <div class="timeline-body">
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                      live
-                      the blind texts. Separated they live in .</p>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+    <lovestory-section></lovestory-section>
 
     <section class="ftco-section bg-light" id="greeting-section">
       <div class="container">
@@ -469,20 +394,33 @@ import Navbar from '@/components/Navbar.vue';
 import SectionHome from '@/components/SectionHome.vue';
 import BrideGroomSection from '@/components/BrideGroomSection.vue';
 import WeddingDateSection from '@/components/WeddingDateSection.vue';
+import LovestorySection from '@/components/LovestorySection.vue';
 
 @Component({
   components: {
     'global-loader': GlobalLoader,
     'footer-page': Footer,
     'navbar-page': Navbar,
-    'section-home': SectionHome,
+    'home-section': SectionHome,
     'wedding-date-section': WeddingDateSection,
-    'bride-groom-section': BrideGroomSection
+    'bride-groom-section': BrideGroomSection,
+    'lovestory-section': LovestorySection
   }
 })
-export default class WeddingInfo extends Vue {}
+export default class WeddingInfo extends Vue {
+
+}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.ftco-section {
+  padding: 7em 0;
+  position: relative;
+}
+@media (max-width: 767.98px) {
+  .ftco-section {
+    padding: 6em 0;
+  }
+}
 
 </style>
