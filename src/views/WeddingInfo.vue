@@ -9,83 +9,9 @@
 
     <section-home></section-home>
 
-    <section class="ftco-section ftco-about ftco-no-pt ftco-no-pb" id="groom-bride-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="wrap">
-              <div class="row d-flex">
-                <div class="col-md-6 d-flex">
-                  <div class="img d-flex align-self-stretch align-items-center"
-                    style="background-image:url(images/about.jpg);">
-                  </div>
-                </div>
-                <div class="col-md-6 py-md-5 text">
-                  <div class="py-md-4">
-                    <div class="row justify-content-start pb-3">
-                      <div class="col-md-12 ftco-animate p-4 p-lg-5 text-center">
-                        <span class="subheading mb-4">Join us to celebrate <br>the wedding day of</span>
-                        <h2 class="mb-4">Francisco <span>&amp;</span> Laura</h2>
-                        <span class="icon flaticon-rose-variant-outline-with-vines"></span>
-                        <span class="subheading">Which is celebration on</span>
-                        <p class="time mb-4"><span>Dec | 28 | 2019</span></p>
-                        <span class="subheading mb-5">Starting at 2:00 <br> in the afternoon</span>
-                        <span class="subheading mb-5">Saint John Paul Church <br> in YorkNew.in</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <wedding-date-section></wedding-date-section>
 
-    <section class="ftco-section bg-section">
-      <div class="overlay-top" style="background-image: url(images/top-bg.jpg);"></div>
-      <div class="overlay-bottom" style="background-image: url(images/bottom-bg.jpg);"></div>
-      <div class="container">
-        <div class="row justify-content-center pb-5">
-          <div class="col-md-12 text-center heading-section ftco-animate">
-            <span class="clone">Bride &amp; Groom</span>
-            <h2 class="mb-3">Bride &amp; Groom</h2>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-md-10">
-            <div class="row">
-              <div class="col-md-6 text-center d-flex align-items-stretch">
-                <div class="bride-groom ftco-animate">
-                  <div class="img" style="background-image: url(images/groom.jpg);"></div>
-                  <div class="text mt-4 px-4">
-                    <h2>Francisco Fredricksen</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                      live
-                      the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a
-                      large
-                      language ocean.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 text-center d-flex align-items-stretch">
-                <div class="bride-groom ftco-animate">
-                  <div class="img" style="background-image: url(images/bride.jpg);"></div>
-                  <div class="text mt-4 px-4">
-                    <h2>Laura Moorey</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                      live
-                      the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a
-                      large
-                      language ocean.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <bride-groom-section></bride-groom-section>
 
     <section class="ftco-section" id="lovestory-section">
       <div class="container">
@@ -541,13 +467,17 @@ import GlobalLoader from '@/components/GlobalLoader.vue';
 import Footer from '@/components/Footer.vue';
 import Navbar from '@/components/Navbar.vue';
 import SectionHome from '@/components/SectionHome.vue';
+import BrideGroomSection from '@/components/BrideGroomSection.vue';
+import WeddingDateSection from '@/components/WeddingDateSection.vue';
 
 @Component({
   components: {
     'global-loader': GlobalLoader,
     'footer-page': Footer,
     'navbar-page': Navbar,
-    'section-home': SectionHome
+    'section-home': SectionHome,
+    'wedding-date-section': WeddingDateSection,
+    'bride-groom-section': BrideGroomSection
   }
 })
 export default class WeddingInfo extends Vue {}
