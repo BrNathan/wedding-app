@@ -5,250 +5,21 @@
     <link href="https://fonts.googleapis.com/css?family=Libre+Caslon+Text:400,400i,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/styleModified.css">
 
-    <navbar-page></navbar-page>
+    <navbar-page />
 
-    <home-section></home-section>
+    <home-section />
 
-    <wedding-date-section></wedding-date-section>
+    <wedding-date-section />
 
-    <bride-groom-section></bride-groom-section>
+    <bride-groom-section />
 
-    <lovestory-section></lovestory-section>
+    <lovestory-section />
 
-    <section class="ftco-section bg-light" id="greeting-section">
-      <div class="container">
-        <div class="row justify-content-center pb-5">
-          <div class="col-md-12 text-center heading-section ftco-animate">
-            <span class="clone">Testimony</span>
-            <h2 class="mb-3">Sweet Messages</h2>
-          </div>
-        </div>
-        <div class="row ftco-animate">
-          <div class="col-md-12">
-            <div class="carousel-testimony owl-carousel ftco-owl">
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and
-                      Consonantia,
-                      there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                      <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-                      <div class="pl-3">
-                        <p class="name">Roger Scott</p>
-                        <span class="position">Marketing Manager</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and
-                      Consonantia,
-                      there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                      <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-                      <div class="pl-3">
-                        <p class="name">Roger Scott</p>
-                        <span class="position">Marketing Manager</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and
-                      Consonantia,
-                      there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                      <div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
-                      <div class="pl-3">
-                        <p class="name">Roger Scott</p>
-                        <span class="position">Marketing Manager</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and
-                      Consonantia,
-                      there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                      <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-                      <div class="pl-3">
-                        <p class="name">Roger Scott</p>
-                        <span class="position">Marketing Manager</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and
-                      Consonantia,
-                      there live the blind texts.</p>
-                    <div class="d-flex align-items-center">
-                      <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-                      <div class="pl-3">
-                        <p class="name">Roger Scott</p>
-                        <span class="position">Marketing Manager</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <greeting-section />
 
-    <section class="ftco-section" id="people-section">
-      <div class="container-fluid px-md-5">
-        <div class="row justify-content-center pb-5">
-          <div class="col-md-12 text-center heading-section ftco-animate">
-            <span class="clone">People</span>
-            <h2 class="mb-3">Family &amp; Friends</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="carousel-friends owl-carousel ftco-owl ftco-animate">
-              <div class="item">
-                <div class="people text-center">
-                  <div class="img" style="background-image: url(images/groom-men-1.jpg);"></div>
-                  <div class="text">
-                    <h3>Mark Tomy</h3>
-                    <span>Groomsmen</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="people text-center">
-                  <div class="img" style="background-image: url(images/groom-men-2.jpg);"></div>
-                  <div class="text">
-                    <h3>John Henceworth</h3>
-                    <span>Groomsmen</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="people text-center">
-                  <div class="img" style="background-image: url(images/groom-men-3.jpg);"></div>
-                  <div class="text">
-                    <h3>Rey Cooper</h3>
-                    <span>Groomsmen</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="people text-center">
-                  <div class="img" style="background-image: url(images/groom-men-4.jpg);"></div>
-                  <div class="text">
-                    <h3>Robert Chan</h3>
-                    <span>Groomsmen</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="people text-center">
-                  <div class="img" style="background-image: url(images/bridesmaid-1.jpg);"></div>
-                  <div class="text">
-                    <h3>Rose Jones</h3>
-                    <span>Bridesmaid</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="people text-center">
-                  <div class="img" style="background-image: url(images/bridesmaid-2.jpg);"></div>
-                  <div class="text">
-                    <h3>Mary Dell</h3>
-                    <span>Bridesmaid</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="people text-center">
-                  <div class="img" style="background-image: url(images/bridesmaid-3.jpg);"></div>
-                  <div class="text">
-                    <h3>Alicia Brean</h3>
-                    <span>Bridesmaid</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="people text-center">
-                  <div class="img" style="background-image: url(images/bridesmaid-4.jpg);"></div>
-                  <div class="text">
-                    <h3>Angel Worth</h3>
-                    <span>Bridesmaid</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <people-section />
 
-    <section class="ftco-section bg-light" id="when-where-section">
-      <div class="container">
-        <div class="row justify-content-center pb-5">
-          <div class="col-md-12 text-center heading-section ftco-animate">
-            <span class="clone">Place</span>
-            <h2 class="mb-3">Place &amp; Time</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 ftco-animate">
-            <div class="place img" style="background-image: url(images/place-1.jpg);">
-              <div class="text text-center">
-                <span class="icon flaticon-reception-bell"></span>
-                <h3>The Reception</h3>
-                <p><span>Saturday, 28, 2019</span><br><span>02:00 pm-10:00 pm</span></p>
-                <p><span>203 Fake St. Mountain View, San Francisco, California, USA</span></p>
-                <p><a href="#">+0 (123) 456 78 910</a></p>
-                <p><a href="#" class="btn-custom">See Map</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 ftco-animate">
-            <div class="place img" style="background-image: url(images/place-2.jpg);">
-              <div class="text text-center">
-                <span class="icon flaticon-wedding-kiss"></span>
-                <h3>The Ceremony</h3>
-                <p><span>Saturday, 28, 2019</span><br><span>02:00 pm-10:00 pm</span></p>
-                <p><span>203 Fake St. Mountain View, San Francisco, California, USA</span></p>
-                <p><a href="#">+0 (123) 456 78 910</a></p>
-                <p><a href="#" class="btn-custom">See Map</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 ftco-animate">
-            <div class="place img" style="background-image: url(images/place-3.jpg);">
-              <div class="text text-center">
-                <span class="icon flaticon-cake"></span>
-                <h3>The Party</h3>
-                <p><span>Saturday, 28, 2019</span><br><span>02:00 pm-10:00 pm</span></p>
-                <p><span>203 Fake St. Mountain View, San Francisco, California, USA</span></p>
-                <p><a href="#">+0 (123) 456 78 910</a></p>
-                <p><a href="#" class="btn-custom">See Map</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <when-where-section />
 
     <section class="ftco-section bg-secondary" id="rsvp-section">
       <div class="container">
@@ -395,6 +166,9 @@ import SectionHome from '@/components/SectionHome.vue';
 import BrideGroomSection from '@/components/BrideGroomSection.vue';
 import WeddingDateSection from '@/components/WeddingDateSection.vue';
 import LovestorySection from '@/components/LovestorySection.vue';
+import GreetingSection from '@/components/GreetingSection.vue';
+import PeopleSection from '@/components/PeopleSection.vue';
+import WhenWhereSection from '@/components/WhenWhereSection.vue';
 
 @Component({
   components: {
@@ -404,7 +178,10 @@ import LovestorySection from '@/components/LovestorySection.vue';
     'home-section': SectionHome,
     'wedding-date-section': WeddingDateSection,
     'bride-groom-section': BrideGroomSection,
-    'lovestory-section': LovestorySection
+    'lovestory-section': LovestorySection,
+    'greeting-section': GreetingSection,
+    'people-section': PeopleSection,
+    'when-where-section': WhenWhereSection
   }
 })
 export default class WeddingInfo extends Vue {
