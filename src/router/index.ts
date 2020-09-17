@@ -10,8 +10,13 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "wedding-info" */ '../views/WeddingInfo.vue')
   },
   {
+    path: '/login',
+    name: 'LoginPage',
+    component: () => import('../views/LoginPage.vue')
+  },
+  {
     path: '*',
-    redirect: { name: 'WeddingInfo' }
+    redirect: { name: 'LoginPage' }
   }
 ];
 
