@@ -27,7 +27,7 @@
 
     <footer-page />
 
-    <!-- <global-loader></global-loader> -->
+    <!-- <global-loader /> -->
   </div>
 </template>
 
