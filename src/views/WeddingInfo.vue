@@ -25,10 +25,8 @@
 
     <gallery-section />
 
-    <!-- footer -->
-    <footer-page></footer-page>
+    <footer-page />
 
-    <!-- loader -->
     <!-- <global-loader></global-loader> -->
   </div>
 </template>

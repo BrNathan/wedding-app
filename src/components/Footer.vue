@@ -8,19 +8,19 @@
             <h2 class="ftco-heading-2">Hookup</h2>
             <p>Far far away, behind the word mountains, far from the countries.</p>
             <ul class="ftco-footer-social list-unstyled mt-5">
-              <li class="ftco-animate">
+              <li class="">
                 <a href="#">
-                  <span class="icon-twitter"></span>
+                  <span class="icon-twitter">T</span>
                 </a>
               </li>
-              <li class="ftco-animate">
+              <li class="">
                 <a href="#">
-                  <span class="icon-facebook"></span>
+                  <span class="icon-facebook">F</span>
                 </a>
               </li>
-              <li class="ftco-animate">
+              <li class="">
                 <a href="#">
-                  <span class="icon-instagram"></span>
+                  <span class="icon-instagram">I</span>
                 </a>
               </li>
             </ul>
@@ -32,32 +32,32 @@
             <ul class="list-unstyled">
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Wellness
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Wellness
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Vintge stores
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Vintge stores
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Trekking
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Trekking
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Tour
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Tour
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Sightseeing
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Sightseeing
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Many more..
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Many more..
                 </a>
               </li>
             </ul>
@@ -69,42 +69,42 @@
             <ul class="list-unstyled">
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Home
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Home
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Groom &amp; Bride
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Groom &amp; Bride
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Story
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Story
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Greetings
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Greetings
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>People
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>People
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Where &amp; When
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Where &amp; When
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>RSVP
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>RSVP
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Gallery
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Gallery
                 </a>
               </li>
             </ul>
@@ -116,22 +116,22 @@
             <ul class="list-unstyled">
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Organizer
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Organizer
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Venue
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Venue
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Wedding Ceremony
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Wedding Ceremony
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon-long-arrow-right mr-2"></span>Accomodation
+                  <b-icon-arrow-right class="mr-2"></b-icon-arrow-right>Accomodation
                 </a>
               </li>
             </ul>
@@ -143,7 +143,8 @@
             <div class="block-23 mb-3">
               <ul>
                 <li>
-                  <span class="icon icon-map-marker"></span>
+                  <!-- <span class="icon icon-map-marker"></span> -->
+                  <span><b-icon-map class="icon pr-4"></b-icon-map></span>
                   <span class="text">
                     203 Fake St. Mountain View, San
                     Francisco, California, USA
@@ -151,14 +152,14 @@
                 </li>
                 <li>
                   <a href="#">
-                    <span class="icon icon-phone"></span>
-                    <b-icon icon="telephone-fill"></b-icon>
+                    <!-- <span class="icon icon-phone"></span> -->
+                    <span><b-icon-telephone-fill class="icon pr-4"></b-icon-telephone-fill></span>
                     <span class="text">+2 392 3929 210</span>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <span class="icon icon-envelope pr-4"></span>
+                    <span><b-icon-envelope-fill class="icon pr-4"></b-icon-envelope-fill></span>
                     <span class="text">info@yourdomain.com</span>
                   </a>
                 </li>
@@ -172,7 +173,8 @@
           <p>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             Copyright &copy;{{fullYear}} All rights reserved | This template is made with
-            <i class="icon-heart color-danger" aria-hidden="true"></i> by
+            <!-- <i class="icon-heart color-danger" aria-hidden="true"></i> -->
+            <b-icon-suit-heart-fill></b-icon-suit-heart-fill> by
             <a href="https://colorlib.com" target="_blank">Colorlib</a>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
           </p>
