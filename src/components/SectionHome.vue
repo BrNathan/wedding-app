@@ -61,7 +61,7 @@ export default class SectionHome extends Vue {
   public minutesLeft: number | null = null;
   public secondsLeft: number | null = null;
 
-  public get displaydaysLeft (): string {
+  public get displaydaysLeft(): string {
     let text = '-';
     if (this.daysLeft != null) {
       text = SectionHome.displayNumber(this.daysLeft);
@@ -69,7 +69,7 @@ export default class SectionHome extends Vue {
     return text;
   }
 
-  public get displayhoursLeft (): string {
+  public get displayhoursLeft(): string {
     let text = '-';
     if (this.hoursLeft != null) {
       text = SectionHome.displayNumber(this.hoursLeft);
@@ -77,7 +77,7 @@ export default class SectionHome extends Vue {
     return text;
   }
 
-  public get displayminutesLeft (): string {
+  public get displayminutesLeft(): string {
     let text = '-';
     if (this.minutesLeft != null) {
       text = SectionHome.displayNumber(this.minutesLeft);
@@ -85,7 +85,7 @@ export default class SectionHome extends Vue {
     return text;
   }
 
-  public get displaysecondsLeft (): string {
+  public get displaysecondsLeft(): string {
     let text = '-';
     if (this.secondsLeft != null) {
       text = SectionHome.displayNumber(this.secondsLeft);
@@ -93,7 +93,7 @@ export default class SectionHome extends Vue {
     return text;
   }
 
-  private static displayNumber (num: number): string {
+  private static displayNumber(num: number): string {
     if (num < 10) {
       return `0${num.toString()}`;
     } else {
@@ -101,7 +101,7 @@ export default class SectionHome extends Vue {
     }
   }
 
-  private dateDiff (date1: Date, date2: Date) {
+  private dateDiff(date1: Date, date2: Date) {
     const diff: { sec: number; min: number; hour: number; day: number } = {
       sec: 0,
       min: 0,
@@ -128,22 +128,21 @@ export default class SectionHome extends Vue {
   /**
    * mounted
    */
-  public mounted () {
+  public mounted() {
     this.startTimer();
   }
 
   /**
    * destroyed
    */
-  public destroyed () {
+  public destroyed() {
     clearInterval(this.timerInterval);
-    console.log('clear intervalle');
   }
 
   /**
    * startTimer
    */
-  public startTimer () {
+  public startTimer() {
     this.timerInterval = setInterval(() => {
       this.timePassed += 1;
       const diff = this.dateDiff(new Date(), this.weddingDate);

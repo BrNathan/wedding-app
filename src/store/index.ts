@@ -1,11 +1,9 @@
 import Vue from 'vue';
 import Vuex, { StoreOptions } from 'vuex';
+import { RootState } from './types';
+import { authentication } from './authentication';
 
 Vue.use(Vuex);
-
-interface RootState {
-  isLoading: boolean;
-}
 
 const store: StoreOptions<RootState> = {
   state: {
@@ -16,6 +14,7 @@ const store: StoreOptions<RootState> = {
   actions: {
   },
   modules: {
+    authentication
   }
 };
 

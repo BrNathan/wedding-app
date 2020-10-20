@@ -44,7 +44,19 @@
                 </b-form-row>
                 <b-form-row>
                   <b-col cols="12">
-                    <b-button type="submit" variant="primary">Connexion</b-button>
+                    <template v-if="!isLoggedIn">
+                      <b-button type="submit" variant="primary" :disabled="isButtonDisabled">
+                        Connexion
+                        <template v-if="isLoginLoading">
+                          <b-spinner small type="grow" label="Loading..."></b-spinner>
+                        </template>
+                      </b-button>
+                    </template>
+                    <template v-else>
+                      <div class="d-flex justify-content-center mb-3">
+                        <spinner-component />
+                      </div>
+                    </template>
                   </b-col>
                 </b-form-row>
               </b-form>
@@ -57,18 +69,48 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Action, Mutation, State } from 'vuex-class';
+import { STORE_AUTHENTICATION } from '@/store/namespace';
+import { Credential } from '@/utils/types/authentication';
+import SpinnerComponent from '@/components/Spinner.vue';
+import { ROUTES_NAMES } from '@/router/router-names';
 
 @Component({
   components: {
+    'spinner-component': SpinnerComponent
   }
 })
 export default class LoginPage extends Vue {
-  public stateUsername: boolean | null = null;
-  public statePassword: boolean | null = null;
   public username = '';
   public password = '';
   public showPassword = false;
+  public timerInterval: number | undefined = undefined;
+  public isLoginLoading = false;
+
+  @Action('login', { namespace: STORE_AUTHENTICATION })
+  AUTH_login!: (credential: Credential) => void;
+
+  @Mutation('resetState', { namespace: STORE_AUTHENTICATION })
+  private AUTH_resetState!: () => void;
+
+  @Watch('isLoggedIn')
+  private onIsLoggedInChange(): void {
+    if (this.isLoggedIn) {
+      this.timerInterval = setInterval(() => {
+        this.$router.push({ name: ROUTES_NAMES.WEDDING_INFO });
+      }, 1000);
+    }
+  }
+
+  public get isButtonDisabled(): boolean {
+    return this.AUTH_isLoginRequested && this.isLoginLoading;
+  }
+
+  public destroyed() {
+    clearInterval(this.timerInterval);
+    this.AUTH_resetState && this.AUTH_resetState();
+  }
 
   public get passwordInputType(): string {
     return this.showPassword ? 'text' : 'password';
@@ -77,10 +119,40 @@ export default class LoginPage extends Vue {
   /**
    * onSubmit
    */
-  public onSubmit(e: Event) {
+  public async onSubmit(e: Event) {
+    this.isLoginLoading = true;
     e.preventDefault();
-    console.log('username : ' + this.username);
-    console.log('password : ' + this.password);
+    if (this.AUTH_login) {
+      await this.AUTH_login({ email: this.username, password: this.password });
+      this.isLoginLoading = false;
+    }
+  }
+
+  @State('isLoginRequested', { namespace: STORE_AUTHENTICATION })
+  private AUTH_isLoginRequested!: boolean;
+
+  @State('isAuthenticate', { namespace: STORE_AUTHENTICATION })
+  private AUTH_isAuthenticate!: boolean;
+
+  @State('token', { namespace: STORE_AUTHENTICATION })
+  private AUTH_token!: boolean;
+
+  public get stateUsername(): boolean | null {
+    if (this.AUTH_isLoginRequested) {
+      return this.AUTH_isLoginRequested && this.AUTH_isAuthenticate;
+    }
+    return null;
+  }
+
+  public get statePassword(): boolean | null {
+    if (this.AUTH_isLoginRequested) {
+      return this.AUTH_isLoginRequested && this.AUTH_isAuthenticate;
+    }
+    return null;
+  }
+
+  public get isLoggedIn(): boolean {
+    return this.AUTH_isLoginRequested && this.AUTH_isAuthenticate && this.AUTH_token;
   }
 }
 </script>
