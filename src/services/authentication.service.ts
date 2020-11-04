@@ -10,6 +10,7 @@ declare interface JWTTokenPayload {
   id: string;
   exp: number;
   iat: number;
+  userInvitations: string[];
 }
 
 class AuthenticationService {

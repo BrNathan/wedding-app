@@ -10,11 +10,17 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: '/wedding',
-    name: ROUTES_NAMES.WEDDING_INFO,
-    component: () => import(/* webpackChunkName: "wedding-info" */ '../views/WeddingInfo.vue'),
+    component: () => import(/* webpackChunkName: "wedding-info" */ '../layout/WeddingLayout.vue'),
     meta: {
       isPublic: false
-    }
+    },
+    children: [
+      {
+        path: '',
+        name: ROUTES_NAMES.WEDDING_INFO,
+        component: () => import(/* webpackChunkName: "wedding-info" */ '../views/WeddingInfo.vue')
+      }
+    ]
   },
   {
     path: '/login',
