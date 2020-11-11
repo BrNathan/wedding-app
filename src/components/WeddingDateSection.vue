@@ -14,11 +14,11 @@
                 <div class="py-md-4">
                   <div class="row justify-content-start pb-3">
                     <div class="col-md-12 p-4 p-lg-5 text-center">
-                      <span class="subheading mb-4">Join us to celebrate <br>the wedding day of</span>
+                      <span class="subheading mb-4">Vous êtes invités à célébrer <br>le mariage de</span>
                       <h2 class="mb-4">Amélie <span>&amp;</span> Nathan</h2>
                       <span class="icon flaticon-rose-variant-outline-with-vines"></span>
-                      <span class="subheading">Which is celebration on</span>
-                      <p class="time mb-4"><span>Dec | 28 | 2019</span></p>
+                      <span class="subheading">Il aura lieu le</span>
+                      <p class="time mb-4"><span>21 | Août | 2021</span></p>
                       <span class="subheading mb-5">Starting at 2:00 <br> in the afternoon</span>
                       <span class="subheading mb-5">Saint John Paul Church <br> in YorkNew.in</span>
                     </div>
