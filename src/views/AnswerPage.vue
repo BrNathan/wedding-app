@@ -60,6 +60,28 @@
         <b-col>Moi</b-col>
       </b-row>
       <b-form-row>
+        <b-col>
+          <b-form-group
+            description="Nom"
+            label="Nom"
+            label-for="input-user-lastName"
+            :state="stateUserLastName"
+          >
+            <b-form-input id="input-user-lastName" v-model="userLastName" :state="stateUserLastName" trim></b-form-input>
+          </b-form-group>
+        </b-col>
+        <b-col>
+          <b-form-group
+            description="Prénom"
+            label="Prénom"
+            label-for="input-user-firstName"
+            :state="stateUserFirstName"
+          >
+            <b-form-input id="input-user-firstName" v-model="userFirstName" :state="stateUserFirstName" trim></b-form-input>
+          </b-form-group>
+        </b-col>
+      </b-form-row>
+      <b-form-row>
         <b-col>Conjoint/Conjointe</b-col>
         <b-col>
           <b-form-checkbox
@@ -93,32 +115,122 @@
           </b-form-group>
         </b-col>
       </b-form-row>
-      <b-row>
-        <b-col>Enfants ? Nom|Prenom|Age</b-col>
-        <b-col></b-col>
-        <b-col> Ajouter un autre enfants ?</b-col>
-      </b-row>
-      <b-row>
-        <b-col>Autre ? Nom|Prenom</b-col>
-      </b-row>
+      <b-form-row>
+        <b-col>Enfants</b-col>
+        <b-col>
+          <b-form-checkbox
+            v-model="isChildrenGuest"
+            name="check-button-spouse"
+            switch
+          >
+            Oui
+          </b-form-checkbox>
+        </b-col>
+      </b-form-row>
+      <template v-if="isChildrenGuest">
+        <b-form-row v-for="(item, index) in childrenGuest" :key="index">
+          <b-col>
+            <b-form-group
+              description="Nom de l'enfant"
+              label="Nom"
+              :label-for="'input-child-lastName'+index"
+            >
+              <b-form-input :id="'input-child-lastName'+index" v-model="item.lastName" trim></b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col>
+            <b-form-group
+              description="Prénom de l'enfant"
+              label="Prénom"
+              :label-for="'input-child-firstName'+index"
+            >
+              <b-form-input :id="'input-child-firstName'+index" v-model="item.firstName" trim></b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col>
+            <b-form-group
+              description="Age de l'enfant"
+              label="Age"
+              :label-for="'input-child-age'+index"
+            >
+              <b-form-input :id="'input-child-age'+index" v-model="item.age" type="number" trim></b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col>
+            <b-button @click="removeChild(item.id)">Remove</b-button>
+          </b-col>
+        </b-form-row>
+        <b-row>
+          <b-col @click="addChild"> Ajouter un autre enfants ?</b-col>
+        </b-row>
+      </template>
+      <b-form-row>
+        <b-col>Autre</b-col>
+        <b-col>
+          <b-form-checkbox
+            v-model="isOtherGuest"
+            name="check-button-other"
+            switch
+          >
+            Oui
+          </b-form-checkbox>
+        </b-col>
+      </b-form-row>
+      <template v-if="isOtherGuest">
+        <b-form-row v-for="(item, index) in otherGuest" :key="index">
+          <b-col>
+            <b-form-group
+              description="Nom de l'invité"
+              label="Nom"
+              :label-for="'input-other-lastName'+index"
+            >
+              <b-form-input :id="'input-other-lastName'+index" v-model="item.lastName" trim></b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col>
+            <b-form-group
+              description="Prénom de l'invité"
+              label="Prénom"
+              :label-for="'input-other-firstName'+index"
+            >
+              <b-form-input :id="'input-other-firstName'+index" v-model="item.firstName" trim></b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col>
+            <b-button @click="removeOther(item.id)">Remove</b-button>
+          </b-col>
+        </b-form-row>
+        <b-row>
+          <b-col @click="addOther"> Ajouter un autre enfants ?</b-col>
+        </b-row>
+      </template>
     </b-container>
   </div>
 </template>
 
 <script lang="ts">
-import { STORE_AUTHENTICATION } from '@/store/namespace';
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import { Getter } from 'vuex-class';
+import { authenticationStore } from '@/store/authentication';
+import { GenerateGuid } from '@/utils/extensions';
+
+export interface ChildGuest {
+  id: string;
+  firstName: string;
+  lastName: string;
+  age?: number;
+}
+export interface OtherGuest {
+  id: string;
+  firstName: string;
+  lastName: string;
+}
 
 @Component({
   components: {}
 })
 export default class AnswerPage extends Vue {
-  @Getter('getUserInvitations', { namespace: STORE_AUTHENTICATION })
-  private AUTH_getUserInvitations!: string[] | undefined;
-
   public get userInvitations(): string[] {
-    return this.AUTH_getUserInvitations ?? [];
+    return authenticationStore.getUserInvitations ?? [];
   }
 
   public isPresentMairie: boolean | null = null;
@@ -128,11 +240,30 @@ export default class AnswerPage extends Vue {
   public isPresentRepas: boolean | null = null;
   private isRepasCheckoxAlreadyChange = false;
 
+  public stateUserLastName: boolean | null = null;
+  public userLastName = '';
+  public stateUserFirstName: boolean | null = null;
+  public userFirstName = '';
+
   public isSpouseGuest: boolean | null = null;
   public stateSpouseFirstName: boolean | null = null;
   public spouseFirstName = '';
   public stateSpouseLastName: boolean | null = null;
   public spouseLastName = '';
+
+  public isChildrenGuest: boolean | null = null;
+  public childrenGuest: ChildGuest[] = [{
+    id: GenerateGuid(),
+    firstName: '',
+    lastName: ''
+  }];
+
+  public isOtherGuest: boolean | null = null;
+  public otherGuest: OtherGuest[] = [{
+    id: GenerateGuid(),
+    firstName: '',
+    lastName: ''
+  }];
 
   @Watch('isPresentMairie')
   private onIsPresentMairieChange() {
@@ -192,6 +323,30 @@ export default class AnswerPage extends Vue {
 
   public onSubmit(e: Event): void {
     e.preventDefault();
+  }
+
+  public addChild() {
+    this.childrenGuest.push({
+      id: GenerateGuid(),
+      firstName: '',
+      lastName: ''
+    });
+  }
+
+  public removeChild(id: string) {
+    this.childrenGuest = this.childrenGuest.filter(c => c.id !== id);
+  }
+
+  public addOther() {
+    this.otherGuest.push({
+      id: GenerateGuid(),
+      firstName: '',
+      lastName: ''
+    });
+  }
+
+  public removeOther(id: string) {
+    this.otherGuest = this.otherGuest.filter(c => c.id !== id);
   }
 }
 </script>

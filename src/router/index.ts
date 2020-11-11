@@ -57,7 +57,6 @@ const router = new VueRouter({
 
 router.beforeResolve((to, from, next) => {
   let isUserLogged: boolean = authenticationStore?.isAuthenticate && authenticationStore?.token !== null;
-  console.log(isUserLogged);
   if (!isUserLogged) {
     isUserLogged = AuthenticationService.isAuthenticate();
   }
