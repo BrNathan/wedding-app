@@ -15,7 +15,7 @@
                   <div class="row justify-content-start pb-3">
                     <div class="col-md-12 p-4 p-lg-5 text-center">
                       <span class="subheading mb-4">Join us to celebrate <br>the wedding day of</span>
-                      <h2 class="mb-4">Francisco <span>&amp;</span> Laura</h2>
+                      <h2 class="mb-4">Amélie <span>&amp;</span> Nathan</h2>
                       <span class="icon flaticon-rose-variant-outline-with-vines"></span>
                       <span class="subheading">Which is celebration on</span>
                       <p class="time mb-4"><span>Dec | 28 | 2019</span></p>

@@ -57,12 +57,15 @@ const router = new VueRouter({
 
 router.beforeResolve((to, from, next) => {
   let isUserLogged: boolean = authenticationStore?.isAuthenticate && authenticationStore?.token !== null;
+  console.log(isUserLogged);
   if (!isUserLogged) {
     isUserLogged = AuthenticationService.isAuthenticate();
   }
 
   if (!to.meta.isPublic && !isUserLogged) {
     next({ name: ROUTES_NAMES.LOGIN_PAGE });
+  } else if (isUserLogged && to.name === ROUTES_NAMES.LOGIN_PAGE) {
+    next({ name: ROUTES_NAMES.WEDDING_INFO });
   } else {
     next();
   }

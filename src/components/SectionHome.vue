@@ -19,15 +19,15 @@
               <span class="flaticon-rose-outline-variant-with-vines-and-leaves"></span>
             </div>
             <span class="subheading">The Wedding of</span>
-            <h1>Francisco &amp; Laura</h1>
+            <h1>Amélie &amp; Nathan</h1>
             <div id="timer" class="d-flex">
               <div class="time" id="days">
                 {{displaydaysLeft}}
-                <span>Days</span>
+                <span>Jours</span>
               </div>
               <div class="time pl-3" id="hours">
                 {{displayhoursLeft}}
-                <span>Hours</span>
+                <span>Heures</span>
               </div>
               <div class="time pl-3" id="minutes">
                 {{displayminutesLeft}}
@@ -35,7 +35,7 @@
               </div>
               <div class="time pl-3" id="seconds">
                 {{displaysecondsLeft}}
-                <span>Seconds</span>
+                <span>Secondes</span>
               </div>
             </div>
           </div>
