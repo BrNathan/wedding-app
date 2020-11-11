@@ -1,9 +1,10 @@
 import passwordHasher from '@/services/password-hasher.service';
-import ApiService from '@/services/api.service';
+import apiService from '@/services/api.service';
 import API_ENDPOINTS from '@/utils/constants/api-endpoints';
 import { IsNullOrUndefined, IsNullOrWhiteSpace } from '@/utils/extensions';
+import localStorageService from './local-storage.service';
 
-declare interface JWTTokenPayload {
+export interface JWTTokenPayload {
   email: string;
   username: string;
   userGroup: string;
@@ -19,8 +20,15 @@ class AuthenticationService {
    */
   public async login(credential: {username: string; password: string}) {
     const passwordHashed: string = passwordHasher.hash(credential.password);
-    const tokenResult = await ApiService.doPostRequest<{ email: string; password: string }, {token: string}>(API_ENDPOINTS.login, { email: credential.username, password: passwordHashed });
+    const tokenResult = await apiService.doPostRequest<{ email: string; password: string }, {token: string}>(API_ENDPOINTS.login, { email: credential.username, password: passwordHashed });
     return tokenResult.token;
+  }
+
+  /**
+   * logout
+   */
+  public logout() {
+    localStorageService.resetAuthToken();
   }
 
   public isTokenValid(token: string | null): boolean {
@@ -73,6 +81,21 @@ class AuthenticationService {
       }
     }
     return isTokenExpiredLessThanTime;
+  }
+
+  public isAuthenticate(): boolean {
+    let isAuthenticate = false;
+    const token = localStorageService.getAuthToken();
+    if (!IsNullOrWhiteSpace(token)) {
+      if (this.isTokenValid(token)) {
+        isAuthenticate = true;
+      }
+    }
+    return isAuthenticate;
+  }
+
+  public getJwtTokenData(token: string): JWTTokenPayload {
+    return this.readJWTToken<JWTTokenPayload>(token);
   }
 }
 

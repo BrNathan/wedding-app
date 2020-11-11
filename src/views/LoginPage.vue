@@ -14,7 +14,12 @@
                       label-for="input-username"
                       :state="stateUsername"
                     >
-                      <b-form-input id="input-username" v-model="username" :state="stateUsername" trim></b-form-input>
+                      <b-form-input
+                        id="input-username"
+                        v-model="username"
+                        :state="stateUsername"
+                        trim
+                      ></b-form-input>
                     </b-form-group>
                   </b-col>
                 </b-form-row>
@@ -27,9 +32,18 @@
                       :state="statePassword"
                     >
                       <b-input-group>
-                        <b-form-input :type="passwordInputType" id="input-password" v-model="password" :state="statePassword" trim></b-form-input>
+                        <b-form-input
+                          :type="passwordInputType"
+                          id="input-password"
+                          v-model="password"
+                          :state="statePassword"
+                          trim
+                        ></b-form-input>
                         <b-input-group-append>
-                          <b-input-group-text variant="outline-secondary" @click="showPassword = !showPassword">
+                          <b-input-group-text
+                            variant="outline-secondary"
+                            @click="showPassword = !showPassword"
+                          >
                             <template v-if="showPassword">
                               <b-icon-eye-slash-fill></b-icon-eye-slash-fill>
                             </template>
@@ -45,10 +59,18 @@
                 <b-form-row>
                   <b-col cols="12">
                     <template v-if="!isLoggedIn">
-                      <b-button type="submit" variant="primary" :disabled="isButtonDisabled">
+                      <b-button
+                        type="submit"
+                        variant="primary"
+                        :disabled="isButtonDisabled"
+                      >
                         Connexion
                         <template v-if="isLoginLoading">
-                          <b-spinner small type="grow" label="Loading..."></b-spinner>
+                          <b-spinner
+                            small
+                            type="grow"
+                            label="Loading..."
+                          ></b-spinner>
                         </template>
                       </b-button>
                     </template>
@@ -70,11 +92,10 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import { Action, Mutation, State } from 'vuex-class';
-import { STORE_AUTHENTICATION } from '@/store/namespace';
-import { Credential } from '@/utils/types/authentication';
 import SpinnerComponent from '@/components/Spinner.vue';
 import { ROUTES_NAMES } from '@/router/router-names';
+import { authenticationStore } from '@/store/authentication';
+import { IsNullOrWhiteSpace } from '@/utils/extensions';
 
 @Component({
   components: {
@@ -88,12 +109,6 @@ export default class LoginPage extends Vue {
   public timerInterval: number | undefined = undefined;
   public isLoginLoading = false;
 
-  @Action('login', { namespace: STORE_AUTHENTICATION })
-  AUTH_login!: (credential: Credential) => void;
-
-  @Mutation('resetState', { namespace: STORE_AUTHENTICATION })
-  private AUTH_resetState!: () => void;
-
   @Watch('isLoggedIn')
   private onIsLoggedInChange(): void {
     if (this.isLoggedIn) {
@@ -104,12 +119,12 @@ export default class LoginPage extends Vue {
   }
 
   public get isButtonDisabled(): boolean {
-    return this.AUTH_isLoginRequested && this.isLoginLoading;
+    return authenticationStore.isLoginRequested && this.isLoginLoading;
   }
 
   public destroyed() {
     clearInterval(this.timerInterval);
-    this.AUTH_resetState && this.AUTH_resetState();
+    authenticationStore.resetState();
   }
 
   public get passwordInputType(): string {
@@ -122,41 +137,32 @@ export default class LoginPage extends Vue {
   public async onSubmit(e: Event) {
     this.isLoginLoading = true;
     e.preventDefault();
-    if (this.AUTH_login) {
-      await this.AUTH_login({ email: this.username, password: this.password });
-      this.isLoginLoading = false;
-    }
+    await authenticationStore.login({
+      email: this.username,
+      password: this.password
+    });
+    this.isLoginLoading = false;
   }
 
-  @State('isLoginRequested', { namespace: STORE_AUTHENTICATION })
-  private AUTH_isLoginRequested!: boolean;
-
-  @State('isAuthenticate', { namespace: STORE_AUTHENTICATION })
-  private AUTH_isAuthenticate!: boolean;
-
-  @State('token', { namespace: STORE_AUTHENTICATION })
-  private AUTH_token!: boolean;
-
-  public get stateUsername(): boolean | null {
-    if (this.AUTH_isLoginRequested) {
-      return this.AUTH_isLoginRequested && this.AUTH_isAuthenticate;
+  public get stateUsername() {
+    if (!authenticationStore.isLoginRequested) {
+      return null;
     }
-    return null;
+    return authenticationStore.isLoginRequested && authenticationStore.isAuthenticate;
   }
 
-  public get statePassword(): boolean | null {
-    if (this.AUTH_isLoginRequested) {
-      return this.AUTH_isLoginRequested && this.AUTH_isAuthenticate;
+  public get statePassword() {
+    if (!authenticationStore.isLoginRequested) {
+      return null;
     }
-    return null;
+    return authenticationStore.isLoginRequested && authenticationStore.isAuthenticate;
   }
 
   public get isLoggedIn(): boolean {
-    return this.AUTH_isLoginRequested && this.AUTH_isAuthenticate && this.AUTH_token;
+    return authenticationStore.isLoginRequested && authenticationStore.isAuthenticate && !IsNullOrWhiteSpace(authenticationStore.token);
   }
 }
 </script>
 
 <style lang="scss">
-
 </style>

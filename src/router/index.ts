@@ -1,16 +1,18 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import { ROUTES_NAMES } from './router-names';
+import { authenticationStore } from '@/store/authentication';
+import WeddingLayout from '../layout/WeddingLayout.vue';
+import WeddingInfo from '../views/WeddingInfo.vue';
 
-import { authentication } from '@/store/authentication';
-import { AuthenticationState } from '@/store/authentication/types';
+import AuthenticationService from '@/services/authentication.service';
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
     path: '/wedding',
-    component: () => import(/* webpackChunkName: "wedding-info" */ '../layout/WeddingLayout.vue'),
+    component: WeddingLayout,
     meta: {
       isPublic: false
     },
@@ -18,7 +20,18 @@ const routes: Array<RouteConfig> = [
       {
         path: '',
         name: ROUTES_NAMES.WEDDING_INFO,
-        component: () => import(/* webpackChunkName: "wedding-info" */ '../views/WeddingInfo.vue')
+        component: WeddingInfo,
+        meta: {
+          isPublic: false
+        }
+      },
+      {
+        path: 'answer',
+        name: ROUTES_NAMES.WEDDING_ANSWER,
+        component: () => import('../views/AnswerPage.vue'),
+        meta: {
+          isPublic: false
+        }
       }
     ]
   },
@@ -32,7 +45,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '*',
-    redirect: { name: 'LoginPage' }
+    redirect: { name: ROUTES_NAMES.LOGIN_PAGE }
   }
 ];
 
@@ -43,7 +56,11 @@ const router = new VueRouter({
 });
 
 router.beforeResolve((to, from, next) => {
-  const isUserLogged: boolean = (authentication.state as AuthenticationState).isAuthenticate && (authentication.state as AuthenticationState).token !== null;
+  let isUserLogged: boolean = authenticationStore?.isAuthenticate && authenticationStore?.token !== null;
+  if (!isUserLogged) {
+    isUserLogged = AuthenticationService.isAuthenticate();
+  }
+
   if (!to.meta.isPublic && !isUserLogged) {
     next({ name: ROUTES_NAMES.LOGIN_PAGE });
   } else {

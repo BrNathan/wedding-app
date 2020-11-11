@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex, { StoreOptions } from 'vuex';
 import { RootState } from './types';
-import { authentication } from './authentication';
+// import { authentication } from './authentication';
 
 Vue.use(Vuex);
 
@@ -14,7 +14,7 @@ const store: StoreOptions<RootState> = {
   actions: {
   },
   modules: {
-    authentication
+    // authentication
   }
 };
 
