@@ -4,12 +4,12 @@ export function IsNullOrUndefined(obj: any): boolean {
   return obj === null || obj === undefined;
 }
 
-export function IsNullOrEmpty(value: string | null): boolean {
+export function IsNullOrEmpty(value: string | null | undefined): boolean {
   return IsNullOrUndefined(value) || value === '';
 }
 
-export function IsNullOrWhiteSpace(value: string | null): boolean {
-  return value === null || IsNullOrEmpty(value.trim());
+export function IsNullOrWhiteSpace(value: string | null | undefined): boolean {
+  return IsNullOrUndefined(value) || IsNullOrEmpty((value as string).trim());
 }
 
 export function GenerateGuid(): string {

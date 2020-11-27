@@ -11031,7 +11031,7 @@ h5,
   box-shadow: none !important;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
-.form-control:focus,
+
 .form-control:active {
   border-color: #000000;
 }
@@ -11053,7 +11053,7 @@ h5,
 }
 .form-control:focus,
 .form-control:active {
-  border-color: #fff;
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
 textarea.form-control {

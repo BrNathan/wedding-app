@@ -8,7 +8,7 @@ export interface JWTTokenPayload {
   email: string;
   username: string;
   userGroup: string;
-  id: string;
+  id: number;
   exp: number;
   iat: number;
   userInvitations: string[];
