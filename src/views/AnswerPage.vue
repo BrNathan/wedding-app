@@ -145,50 +145,63 @@
           </b-col>
         </b-form-row>
         <template v-if="isChildrenGuest">
-          <b-form-row v-for="(item, index) in childrenGuest" :key="'child-'+index">
-            <b-col>
-              <b-form-group
-                label="Prénom"
-                :label-for="'input-child-firstName' + index"
-              >
-                <b-form-input
-                  :id="'input-child-firstName' + index"
-                  v-model="item.firstName"
-                  trim
-                ></b-form-input>
-              </b-form-group>
-            </b-col>
-            <b-col>
-              <b-form-group
-                label="Nom"
-                :label-for="'input-child-lastName' + index"
-              >
-                <b-form-input
-                  :id="'input-child-lastName' + index"
-                  v-model="item.lastName"
-                  trim
-                ></b-form-input>
-              </b-form-group>
-            </b-col>
-            <b-col>
-              <b-form-group
-                label="Age"
-                :label-for="'input-child-age' + index"
-              >
-                <b-form-input
-                  :id="'input-child-age' + index"
-                  v-model="item.age"
-                  type="number"
-                  trim
-                ></b-form-input>
-              </b-form-group>
-            </b-col>
-            <b-col>
-              <b-button @click="removeChild(index)">Remove</b-button>
-            </b-col>
-          </b-form-row>
           <b-row>
-            <b-col @click="addChild"> Ajouter un autre enfants ?</b-col>
+            <b-col
+              cols="12"
+              sm="6"
+              md="4"
+              lg="4"
+              xl="4"
+              v-for="(item, index) in childrenGuest"
+              :key="'child-' + index"
+            >
+              <b-card border-variant="primary" class="mt-3 mb-3">
+                <b-form-group
+                  label="Prénom"
+                  :label-for="'input-child-firstName' + index"
+                >
+                  <b-form-input
+                    :id="'input-child-firstName' + index"
+                    v-model="item.firstName"
+                    trim
+                  ></b-form-input>
+                </b-form-group>
+                <b-form-group
+                  label="Nom"
+                  :label-for="'input-child-lastName' + index"
+                >
+                  <b-form-input
+                    :id="'input-child-lastName' + index"
+                    v-model="item.lastName"
+                    trim
+                  ></b-form-input> </b-form-group
+                ><b-form-group
+                  label="Age"
+                  :label-for="'input-child-age' + index"
+                >
+                  <b-form-input
+                    :id="'input-child-age' + index"
+                    v-model="item.age"
+                    type="number"
+                    trim
+                  ></b-form-input>
+                </b-form-group>
+                <b-button
+                  @click="removeChild(index)"
+                  variant="primary"
+                  class="mb-2"
+                >
+                  <b-icon icon="trash" aria-label="Remove"></b-icon>
+                </b-button>
+              </b-card>
+            </b-col>
+            <b-col cols="12" sm="6" md="4" lg="4" xl="4">
+              <b-card border-variant="primary" class="mt-3 mb-3 text-center">
+                <b-button variant="primary" @click="addChild">
+                  Ajouter un autre enfant
+                </b-button>
+              </b-card>
+            </b-col>
           </b-row>
         </template>
         <b-form-row>
@@ -204,39 +217,53 @@
           </b-col>
         </b-form-row>
         <template v-if="isOtherGuest">
-          <b-form-row v-for="(item, index) in otherGuest" :key="'other-' + index">
-            <b-col>
-              <b-form-group
-                label="Prénom"
-                :label-for="'input-other-firstName' + index"
-              >
-                <b-form-input
-                  :id="'input-other-firstName' + index"
-                  v-model="item.firstName"
-                  trim
-                ></b-form-input>
-              </b-form-group>
-            </b-col>
-            <b-col>
-              <b-form-group
-                label="Nom"
-                :label-for="'input-other-lastName' + index"
-              >
-                <b-form-input
-                  :id="'input-other-lastName' + index"
-                  v-model="item.lastName"
-                  trim
-                ></b-form-input>
-              </b-form-group>
-            </b-col>
-            <b-col>
-              <b-button @click="removeOther(index)" variant="primary" class="mb-2">
-                <b-icon icon="trash" aria-label="Remove"></b-icon>
-              </b-button>
-            </b-col>
-          </b-form-row>
           <b-row>
-            <b-col @click="addOther"> Ajouter une autre personne ?</b-col>
+            <b-col
+              cols="12"
+              sm="6"
+              md="4"
+              lg="4"
+              xl="4"
+              v-for="(item, index) in otherGuest"
+              :key="'other-' + index"
+            >
+              <b-card border-variant="primary" class="mt-3 mb-3">
+                <b-form-group
+                  label="Prénom"
+                  :label-for="'input-other-firstName' + index"
+                >
+                  <b-form-input
+                    :id="'input-other-firstName' + index"
+                    v-model="item.firstName"
+                    trim
+                  ></b-form-input>
+                </b-form-group>
+                <b-form-group
+                  label="Nom"
+                  :label-for="'input-other-lastName' + index"
+                >
+                  <b-form-input
+                    :id="'input-other-lastName' + index"
+                    v-model="item.lastName"
+                    trim
+                  ></b-form-input>
+                </b-form-group>
+                <b-button
+                  @click="removeOther(index)"
+                  variant="primary"
+                  class="mb-2"
+                >
+                  <b-icon icon="trash" aria-label="Remove"></b-icon>
+                </b-button>
+              </b-card>
+            </b-col>
+            <b-col cols="12" sm="6" md="4" lg="4" xl="4">
+              <b-card border-variant="primary" class="mt-3 mb-3 text-center">
+                <b-button variant="primary" @click="addOther">
+                  Ajouter un autre personne
+                </b-button>
+              </b-card>
+            </b-col>
           </b-row>
         </template>
         <b-form-row>
