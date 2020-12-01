@@ -25,6 +25,7 @@
               >
                 Oui
               </b-form-checkbox>
+              <toggle-button color="#f67e7d" v-model="item.answer"/>
             </b-col>
           </template>
           <template v-if="isInvitedToCeremonie(item)">

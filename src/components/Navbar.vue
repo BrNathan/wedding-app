@@ -12,6 +12,7 @@
           <b-nav-item :to="{name: homePageName}">Informations</b-nav-item>
           <b-nav-item :to="{name: answerPageName}">Mon Invitation</b-nav-item>
           <b-nav-item :to="{name: sleepPageName}">Où dormir ?</b-nav-item>
+          <b-nav-item :to="{name: contactPageName}">Nous contacter</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item @click="logout">Déconnexion</b-nav-item>
@@ -34,6 +35,7 @@ export default class Navbar extends Vue {
   public readonly answerPageName: string = ROUTES_NAMES.WEDDING_ANSWER;
   public readonly sleepPageName: string = ROUTES_NAMES.SLEEPING_LOCATION;
   public readonly loginPageName: string = ROUTES_NAMES.LOGIN_PAGE;
+  public readonly contactPageName: string = ROUTES_NAMES.CONTACT_PAGE;
 
   public logout() {
     authenticationStore.logout();
