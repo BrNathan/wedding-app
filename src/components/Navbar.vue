@@ -25,7 +25,6 @@
 <script lang="ts">
 import { ROUTES_NAMES } from '@/router/router-names';
 import { Component, Vue } from 'vue-property-decorator';
-import { authenticationStore } from '@/store/authentication';
 
 @Component({
   components: {}
@@ -34,12 +33,11 @@ export default class Navbar extends Vue {
   public readonly homePageName: string = ROUTES_NAMES.WEDDING_INFO;
   public readonly answerPageName: string = ROUTES_NAMES.WEDDING_ANSWER;
   public readonly sleepPageName: string = ROUTES_NAMES.SLEEPING_LOCATION;
-  public readonly loginPageName: string = ROUTES_NAMES.LOGIN_PAGE;
+  public readonly logoutPageName: string = ROUTES_NAMES.LOGOUT_PAGE;
   public readonly contactPageName: string = ROUTES_NAMES.CONTACT_PAGE;
 
   public logout() {
-    authenticationStore.logout();
-    this.$router.push({ name: this.loginPageName });
+    this.$router.push({ name: this.logoutPageName });
   }
 }
 </script>

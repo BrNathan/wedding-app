@@ -44,6 +44,22 @@ const routes: Array<RouteConfig> = [
     }
   },
   {
+    path: '/first-connection',
+    name: ROUTES_NAMES.FIRST_CONNECTION_PAGE,
+    component: () => import('../views/FirstConnectionPage.vue'),
+    meta: {
+      isPublic: false
+    }
+  },
+  {
+    path: '/logout',
+    name: ROUTES_NAMES.LOGOUT_PAGE,
+    component: () => import('../views/LogoutPage.vue'),
+    meta: {
+      isPublic: true
+    }
+  },
+  {
     path: '*',
     redirect: { name: ROUTES_NAMES.LOGIN_PAGE }
   }

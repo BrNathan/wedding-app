@@ -12,15 +12,26 @@ export interface JWTTokenPayload {
   exp: number;
   iat: number;
   userInvitations: string[];
+  isAlreadyConnected: boolean;
+  firstName: string;
+  lastName: string;
 }
 
 class AuthenticationService {
   /**
    * login
    */
-  public async login(credential: {username: string; password: string}) {
+  public async login(credential: {username: string; password: string}): Promise<string> {
     const passwordHashed: string = passwordHasher.hash(credential.password);
     const tokenResult = await apiService.doPostRequest<{ email: string; password: string }, {token: string}>(API_ENDPOINTS.login, { email: credential.username, password: passwordHashed });
+    return tokenResult.token;
+  }
+
+  /**
+   * refreshToken
+   */
+  public async refreshToken(): Promise<string> {
+    const tokenResult = await apiService.doGetRequest<{token: string}>(API_ENDPOINTS.refreshToken);
     return tokenResult.token;
   }
 

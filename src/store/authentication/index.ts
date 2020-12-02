@@ -3,6 +3,7 @@ import store from '@/store';
 import authenticationService, { JWTTokenPayload } from '@/services/authentication.service';
 import localStorageService from '@/services/local-storage.service';
 import { Credentials } from '@/utils/types/authentication';
+import { IsNullOrWhiteSpace } from '@/utils/extensions';
 
 @Module({
   dynamic: true,
@@ -15,9 +16,15 @@ export default class AuthenticationStore extends VuexModule {
   public isLoginRequested = false;
   public token: string | null = null;
   public tokenData: JWTTokenPayload | null = null;
+  public isRefreshTokenRequested = false;
+  public isRefreshTokenSuccessfull = false;
 
   public get getUserInvitations(): string[] | undefined {
     return this.tokenData?.userInvitations;
+  }
+
+  public get getIsUserAlreadyConnected(): boolean {
+    return this.tokenData?.isAlreadyConnected ?? false;
   }
 
   @Mutation
@@ -51,8 +58,14 @@ export default class AuthenticationStore extends VuexModule {
 
   @Mutation
   public resetState() {
-    this.isAuthenticate = true;
+    // this.isAuthenticate = true;
     this.isLoginRequested = false;
+  }
+
+  @Mutation
+  public resetStateRefresh() {
+    // this.isAuthenticate = true;
+    this.isRefreshTokenRequested = false;
   }
 
   @Action
@@ -67,6 +80,38 @@ export default class AuthenticationStore extends VuexModule {
       }
     } catch (error) {
       this.loginFailure();
+    }
+  }
+
+  @Mutation
+  public refreshTokenSuccess(refreshedToken: string) {
+    this.token = refreshedToken;
+    this.tokenData = authenticationService.getJwtTokenData(refreshedToken);
+    localStorageService.setAuthToken(refreshedToken);
+    this.isRefreshTokenSuccessfull = true;
+  }
+
+  @Mutation
+  public refreshTokenFailed() {
+    this.isRefreshTokenSuccessfull = false;
+  }
+
+  @Mutation
+  public refreshTokenRequest() {
+    this.isRefreshTokenRequested = true;
+  }
+
+  @Action
+  public async refreshToken() {
+    try {
+      this.refreshTokenRequest();
+      const refreshedToken = await authenticationService.refreshToken();
+      if (!IsNullOrWhiteSpace(refreshedToken)) {
+        this.refreshTokenSuccess(refreshedToken);
+      } else {
+      }
+    } catch (error) {
+      this.refreshTokenFailed();
     }
   }
 }

@@ -112,8 +112,13 @@ export default class LoginPage extends Vue {
   @Watch('isLoggedIn')
   private onIsLoggedInChange(): void {
     if (this.isLoggedIn) {
+      const alreadyConnected: boolean = authenticationStore.getIsUserAlreadyConnected;
       this.timerInterval = setInterval(() => {
-        this.$router.push({ name: ROUTES_NAMES.WEDDING_INFO });
+        if (alreadyConnected) {
+          this.$router.push({ name: ROUTES_NAMES.WEDDING_INFO });
+        } else {
+          this.$router.push({ name: ROUTES_NAMES.FIRST_CONNECTION_PAGE });
+        }
       }, 1000);
     }
   }

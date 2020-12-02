@@ -3,5 +3,7 @@ export const ROUTES_NAMES = {
   WEDDING_ANSWER: 'WeddingAnswer',
   LOGIN_PAGE: 'LoginPage',
   SLEEPING_LOCATION: 'SleepingLocation',
-  CONTACT_PAGE: 'ContactPage'
+  CONTACT_PAGE: 'ContactPage',
+  FIRST_CONNECTION_PAGE: 'FirstConnectionPage',
+  LOGOUT_PAGE: 'LogoutPage'
 };
