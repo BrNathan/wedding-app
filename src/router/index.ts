@@ -77,16 +77,35 @@ const router = new VueRouter({
 
 router.beforeResolve((to, from, next) => {
   let isUserLogged: boolean = authenticationStore?.isAuthenticate && authenticationStore?.token !== null;
+  const isUserAlreadyConnected: boolean | null = authenticationStore?.tokenData?.isAlreadyConnected ?? false;
   if (!isUserLogged) {
     isUserLogged = AuthenticationService.isAuthenticate();
   }
 
-  if (!to.meta.isPublic && !isUserLogged) {
-    next({ name: ROUTES_NAMES.LOGIN_PAGE });
-  } else if (isUserLogged && to.name === ROUTES_NAMES.LOGIN_PAGE) {
-    next({ name: ROUTES_NAMES.WEDDING_INFO });
-  } else {
+  if (to.name === ROUTES_NAMES.LOGOUT_PAGE) {
     next();
+  } else if (!isUserLogged) {
+    if (to.meta.isPublic) {
+      next();
+    } else {
+      next({ name: ROUTES_NAMES.LOGIN_PAGE });
+    }
+  } else if (isUserLogged) {
+    if (isUserAlreadyConnected) {
+      if ([ROUTES_NAMES.LOGIN_PAGE, ROUTES_NAMES.FIRST_CONNECTION_PAGE].includes(to.name ?? '')) {
+        next({ name: ROUTES_NAMES.WEDDING_INFO });
+      } else {
+        next();
+      }
+    } else {
+      if (to.name === ROUTES_NAMES.FIRST_CONNECTION_PAGE) {
+        next();
+      } else {
+        next({ name: ROUTES_NAMES.FIRST_CONNECTION_PAGE });
+      }
+    }
+  } else {
+    next({ name: ROUTES_NAMES.LOGIN_PAGE });
   }
 });
 
