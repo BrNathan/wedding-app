@@ -8,8 +8,8 @@
               <b-row>
                 <b-col>
                   <h2>Bienvenue !</h2>
-                  <p>C'est ta première connection !</p>
-                  <p>Voici quelques informations à compléter/vérifier :</p>
+                  <p>C'est votre première connection !</p>
+                  <p>Voici quelques informations à compléter/vérifier avant d'accéder au site</p>
                 </b-col>
               </b-row>
               <b-form @submit="onSubmit">
@@ -19,6 +19,7 @@
                       label="Prénom"
                       label-for="input-firstName"
                       :state="stateFirstName"
+                      :invalid-feedback="feedbackFirstName"
                     >
                       <b-input-group>
                         <b-form-input
@@ -47,6 +48,7 @@
                       label="Nom"
                       label-for="input-lastName"
                       :state="stateLastName"
+                      :invalid-feedback="feedbackLastName"
                     >
                       <b-input-group>
                         <b-form-input
@@ -72,10 +74,11 @@
                 <b-form-row>
                   <b-col cols="12">
                     <b-form-group
-                      description="Entre ton email"
+                      description="Entrez votre email"
                       label="Email"
                       label-for="input-email"
                       :state="stateEmail"
+                      :invalid-feedback="feedbackEmail"
                     >
                       <b-form-input
                         id="input-email"
@@ -91,10 +94,11 @@
                 <b-form-row>
                   <b-col cols="12">
                     <b-form-group
-                      description="Entre ton nouveau mot de passe"
+                      description="Choisissez votre nouveau mot de passe"
                       label="Nouveau mot de passe"
                       label-for="input-password"
                       :state="statePassword"
+                      :invalid-feedback="feedbackPassword"
                     >
                       <b-input-group>
                         <b-form-input
@@ -125,10 +129,11 @@
                 <b-form-row>
                   <b-col cols="12">
                     <b-form-group
-                      description="Rentre à nouveau ton mot de passe"
-                      label="Mot de passe"
+                      description="Confirmez à nouveau votre nouveau mot de passe"
+                      label="Confirmation mot de passe"
                       label-for="input-again-password"
                       :state="stateAgainPassword"
+                      :invalid-feedback="feedbackAgainPassword"
                     >
                       <b-form-input
                         id="input-again-password"
@@ -191,23 +196,32 @@ export default class FirstConnectionPage extends Vue {
   public firstName = '';
   public editFirstName = false;
   public stateFirstName: boolean | null = null;
+  public feedbackFirstName = '';
+
   public lastName = '';
   public editLastName = false;
   public stateLastName: boolean | null = null;
+  public feedbackLastName = '';
 
   public email = '';
   public stateEmail: boolean | null = null;
+  public feedbackEmail = '';
 
   public password = '';
   public statePassword: boolean | null = null;
+  public feedbackPassword = '';
 
   public againPassword = '';
   public stateAgainPassword: boolean | null = null;
+  public feedbackAgainPassword = '';
 
   public showPassword = false;
   public timerInterval: number | undefined = undefined;
 
   public isSubmitLoading = false;
+
+  private FEEDBACK_EMPTY_FIELD = 'Ce champs ne doit pas être vide';
+  private FEEDBACK_NOT_SAME_PASSWORD = 'Les deux mots de passe ne correspondent pas';
 
   public mounted() {
     const alreadyConnected: boolean = authenticationStore.getIsUserAlreadyConnected;
@@ -266,6 +280,7 @@ export default class FirstConnectionPage extends Vue {
     if (IsNullOrWhiteSpace(this.firstName)) {
       isValid = false;
       this.stateFirstName = false;
+      this.feedbackFirstName = this.FEEDBACK_EMPTY_FIELD;
     } else {
       this.stateFirstName = true;
     }
@@ -273,6 +288,7 @@ export default class FirstConnectionPage extends Vue {
     if (IsNullOrWhiteSpace(this.lastName)) {
       isValid = false;
       this.stateLastName = false;
+      this.feedbackLastName = this.FEEDBACK_EMPTY_FIELD;
     } else {
       this.stateLastName = true;
     }
@@ -280,6 +296,8 @@ export default class FirstConnectionPage extends Vue {
     if (IsNullOrWhiteSpace(this.email)) {
       isValid = false;
       this.stateEmail = false;
+      this.feedbackEmail = this.FEEDBACK_EMPTY_FIELD;
+      // TODO VALID EMAIL
     } else {
       this.stateEmail = true;
     }
@@ -287,13 +305,19 @@ export default class FirstConnectionPage extends Vue {
     if (IsNullOrWhiteSpace(this.password)) {
       isValid = false;
       this.statePassword = false;
+      this.feedbackPassword = this.FEEDBACK_EMPTY_FIELD;
     } else {
       this.statePassword = true;
     }
 
-    if (IsNullOrWhiteSpace(this.againPassword)) {
+    if (IsNullOrWhiteSpace(this.againPassword) || this.againPassword !== this.password) {
       isValid = false;
       this.stateAgainPassword = false;
+      if (IsNullOrWhiteSpace(this.againPassword)) {
+        this.feedbackAgainPassword = this.FEEDBACK_EMPTY_FIELD;
+      } else if (this.againPassword !== this.password) {
+        this.feedbackAgainPassword = this.FEEDBACK_NOT_SAME_PASSWORD;
+      }
     } else {
       this.stateAgainPassword = true;
     }
