@@ -139,6 +139,7 @@
                         id="input-again-password"
                         v-model="againPassword"
                         :state="stateAgainPassword"
+                        autocomplete="new-password"
                         type="password"
                         trim
                       ></b-form-input>

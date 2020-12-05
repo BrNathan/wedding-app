@@ -17,6 +17,7 @@
                       <b-form-input
                         id="input-username"
                         v-model="username"
+                        autocomplete="username"
                         :state="stateUsername"
                         trim
                       ></b-form-input>
@@ -35,6 +36,7 @@
                         <b-form-input
                           :type="passwordInputType"
                           id="input-password"
+                          autocomplete="password"
                           v-model="password"
                           :state="statePassword"
                           trim
