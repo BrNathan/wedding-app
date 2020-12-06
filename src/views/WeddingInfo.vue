@@ -1,28 +1,35 @@
 <template>
   <div id="wedding-info">
-    <home-section />
+    <template v-if="isLoading">
+      <div class="d-flex justify-content-center mb-3">
+        <spinner-component />
+      </div>
+    </template>
+    <template v-else>
+      <home-section />
 
-    <wedding-date-section />
+      <wedding-date-section />
 
-    <bride-groom-section />
+      <bride-groom-section />
 
-    <lovestory-section />
+      <lovestory-section />
 
-    <greeting-section />
+      <greeting-section />
 
-    <people-section />
+      <people-section />
 
-    <when-where-section />
+      <when-where-section />
 
-    <rsvp-section />
+      <rsvp-section />
 
-    <gallery-section />
+      <gallery-section />
+    </template>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import SectionHome from '@/components/SectionHome.vue';
+import HomeSection from '@/components/HomeSection.vue';
 import BrideGroomSection from '@/components/BrideGroomSection.vue';
 import WeddingDateSection from '@/components/WeddingDateSection.vue';
 import LovestorySection from '@/components/LovestorySection.vue';
@@ -31,10 +38,11 @@ import PeopleSection from '@/components/PeopleSection.vue';
 import WhenWhereSection from '@/components/WhenWhereSection.vue';
 import RsvpSection from '@/components/RsvpSection.vue';
 import GallerySection from '@/components/GallerySection.vue';
+import SpinnerComponent from '@/components/Spinner.vue';
 
 @Component({
   components: {
-    'home-section': SectionHome,
+    'home-section': HomeSection,
     'wedding-date-section': WeddingDateSection,
     'bride-groom-section': BrideGroomSection,
     'lovestory-section': LovestorySection,
@@ -42,14 +50,20 @@ import GallerySection from '@/components/GallerySection.vue';
     'people-section': PeopleSection,
     'when-where-section': WhenWhereSection,
     'rsvp-section': RsvpSection,
-    'gallery-section': GallerySection
+    'gallery-section': GallerySection,
+    'spinner-component': SpinnerComponent
   }
 })
 export default class WeddingInfo extends Vue {
+  public isLoading = true;
 
+  public mounted() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
+  }
 }
 </script>
 
 <style lang="scss">
-
 </style>

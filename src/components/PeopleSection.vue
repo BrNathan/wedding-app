@@ -126,7 +126,6 @@ import { Carousel, Slide } from 'vue-carousel';
   }
 })
 export default class PeopleSection extends Vue {
-
 }
 </script>
 

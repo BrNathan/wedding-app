@@ -60,7 +60,6 @@ import { Component, Vue } from 'vue-property-decorator';
   }
 })
 export default class RsvpSection extends Vue {
-
 }
 </script>
 

@@ -123,7 +123,8 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component({
   components: {}
 })
-export default class LovestorySection extends Vue {}
+export default class LovestorySection extends Vue {
+}
 </script>
 
 <style lang="scss" scoped>

@@ -128,7 +128,6 @@ import { Carousel, Slide } from 'vue-carousel';
   }
 })
 export default class GreetingSection extends Vue {
-
 }
 </script>
 

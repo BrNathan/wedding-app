@@ -51,10 +51,10 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component({
   components: {}
 })
-export default class SectionHome extends Vue {
+export default class HomeSection extends Vue {
   public timePassed = 0;
   public timerInterval: number | undefined = undefined;
-  public weddingDate: Date = new Date(2021, 8, 21);
+  public weddingDate: Date = new Date(2021, 8, 21, 16, 30);
 
   public daysLeft: number | null = null;
   public hoursLeft: number | null = null;
@@ -64,7 +64,7 @@ export default class SectionHome extends Vue {
   public get displaydaysLeft(): string {
     let text = '-';
     if (this.daysLeft != null) {
-      text = SectionHome.displayNumber(this.daysLeft);
+      text = HomeSection.displayNumber(this.daysLeft);
     }
     return text;
   }
@@ -72,7 +72,7 @@ export default class SectionHome extends Vue {
   public get displayhoursLeft(): string {
     let text = '-';
     if (this.hoursLeft != null) {
-      text = SectionHome.displayNumber(this.hoursLeft);
+      text = HomeSection.displayNumber(this.hoursLeft);
     }
     return text;
   }
@@ -80,7 +80,7 @@ export default class SectionHome extends Vue {
   public get displayminutesLeft(): string {
     let text = '-';
     if (this.minutesLeft != null) {
-      text = SectionHome.displayNumber(this.minutesLeft);
+      text = HomeSection.displayNumber(this.minutesLeft);
     }
     return text;
   }
@@ -88,7 +88,7 @@ export default class SectionHome extends Vue {
   public get displaysecondsLeft(): string {
     let text = '-';
     if (this.secondsLeft != null) {
-      text = SectionHome.displayNumber(this.secondsLeft);
+      text = HomeSection.displayNumber(this.secondsLeft);
     }
     return text;
   }
@@ -143,14 +143,20 @@ export default class SectionHome extends Vue {
    * startTimer
    */
   public startTimer() {
+    this.displayTimer();
+
     this.timerInterval = setInterval(() => {
       this.timePassed += 1;
-      const diff = this.dateDiff(new Date(), this.weddingDate);
-      this.daysLeft = diff.day;
-      this.hoursLeft = diff.hour;
-      this.minutesLeft = diff.min;
-      this.secondsLeft = diff.sec;
+      this.displayTimer();
     }, 1000);
+  }
+
+  private displayTimer() {
+    const diff = this.dateDiff(new Date(), this.weddingDate);
+    this.daysLeft = diff.day;
+    this.hoursLeft = diff.hour;
+    this.minutesLeft = diff.min;
+    this.secondsLeft = diff.sec;
   }
 }
 </script>

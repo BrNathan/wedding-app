@@ -57,7 +57,6 @@ import { Component, Vue } from 'vue-property-decorator';
   }
 })
 export default class WhenWhereSection extends Vue {
-
 }
 </script>
 
