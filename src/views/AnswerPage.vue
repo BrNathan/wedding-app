@@ -1,148 +1,156 @@
 <template>
   <div id="answer-page">
-    <b-container>
+    <b-container class="mb-5">
       <b-row>
         <b-col>
-          <p>Vous êtes invité à notre mariage</p>
+          <h1>Mon invitation</h1>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
+          <p>Vous êtes invité à célébrer notre mariage !</p>
         </b-col>
       </b-row>
     </b-container>
     <b-form @submit="onSubmit">
-      <b-container>
-        <b-row>
-          <b-col>
-            <p>Je serais présent :</p>
-          </b-col>
-        </b-row>
+      <!-- INVITATIONS -->
+      <b-container class="mt-5 mb-5">
         <b-form-row v-for="(item, index) in userInvitations" :key="index">
           <template v-if="isInvitedToMairie(item)">
-            <b-col> A la mairie </b-col>
             <b-col>
-              <b-form-checkbox
-                v-model="item.answer"
-                name="check-button-mairie"
-                switch
-              >
-                Oui
-              </b-form-checkbox>
-              <toggle-button color="#f67e7d" v-model="item.answer"/>
+              <b-form-group>
+                <template #label> A la <strong>mairie</strong>, je serais :  </template>
+                <b-form-radio-group v-model="item.answer">
+                  <b-form-radio :value="true"> Présent(e) </b-form-radio>
+                  <b-form-radio :value="false"> Absent(e) </b-form-radio>
+                </b-form-radio-group>
+              </b-form-group>
             </b-col>
           </template>
           <template v-if="isInvitedToCeremonie(item)">
-            <b-col> A la cérémonie laîque </b-col>
             <b-col>
-              <b-form-checkbox
-                v-model="item.answer"
-                name="check-button-ceremonie"
-                switch
-              >
-                Oui
-              </b-form-checkbox>
+              <b-form-group>
+                <template #label> A la <strong>cérémonie laïque</strong>, je serais : </template>
+                <b-form-radio-group v-model="item.answer">
+                  <b-form-radio :value="true"> Présent(e) </b-form-radio>
+                  <b-form-radio :value="false"> Absent(e) </b-form-radio>
+                </b-form-radio-group>
+              </b-form-group>
             </b-col>
           </template>
           <template v-if="isInvitedToRepas(item)">
-            <b-col> Au repas </b-col>
             <b-col>
-              <b-form-checkbox
-                v-model="item.answer"
-                name="check-button-repas"
-                switch
-              >
-                Oui
-              </b-form-checkbox>
+              <b-form-group>
+                <template #label> Au <strong>repas</strong>, je serais : </template>
+                <b-form-radio-group v-model="item.answer">
+                  <b-form-radio :value="true"> Présent(e) </b-form-radio>
+                  <b-form-radio :value="false"> Absent(e) </b-form-radio>
+                </b-form-radio-group>
+              </b-form-group>
             </b-col>
           </template>
         </b-form-row>
       </b-container>
-      <b-container v-if="isUserPresentAtLeastOnce">
+      <!-- GUESTS -->
+      <b-container class="mt-5 mb-5" v-if="isAllInvitationAnswered && isUserPresentAtLeastOnce">
         <b-row>
-          <b-col> Voici les personnes présentes : </b-col>
+          <b-col>
+            <h2>Ma liste d'accompagnant</h2>
+          </b-col>
         </b-row>
         <b-row>
-          <b-col>Moi</b-col>
+          <b-col cols="12" sm="6" md="6" lg="4" xl="4">
+            <b-row>
+              <b-col>Moi-même</b-col>
+            </b-row>
+            <b-row>
+              <b-col>
+                <b-card border-variant="primary" class="mt-3 mb-3">
+                  <b-form-group
+                    label="Prénom"
+                    label-for="input-user-firstName"
+                    :state="stateUserFirstName"
+                  >
+                    <b-form-input
+                      id="input-user-firstName"
+                      v-model="selfUserGuest.firstName"
+                      :state="stateUserFirstName"
+                      trim
+                    ></b-form-input>
+                  </b-form-group>
+                  <b-form-group
+                    label="Nom"
+                    label-for="input-user-lastName"
+                    :state="stateUserLastName"
+                  >
+                    <b-form-input
+                      id="input-user-lastName"
+                      v-model="selfUserGuest.lastName"
+                      :state="stateUserLastName"
+                      trim
+                    ></b-form-input>
+                  </b-form-group> </b-card
+              ></b-col>
+            </b-row>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col cols="12" sm="6" md="6" lg="4" xl="4">
+            <b-form-row>
+              <b-col>
+                <b-form-group label="Conjoint(e) ?">
+                  <b-form-checkbox
+                    v-model="isSpouseGuest"
+                    name="check-button-spouse"
+                    switch
+                  >
+                    Oui
+                  </b-form-checkbox>
+                </b-form-group>
+              </b-col>
+            </b-form-row>
+            <b-row v-if="isSpouseGuest">
+              <b-col>
+                <b-card border-variant="primary" class="mt-3 mb-3">
+                  <b-form-group
+                    label="Prénom"
+                    label-for="input-spouse-firstName"
+                    :state="stateSpouseFirstName"
+                  >
+                    <b-form-input
+                      id="input-spouse-firstName"
+                      v-model="spouseGuest.firstName"
+                      :state="stateSpouseFirstName"
+                      trim
+                    ></b-form-input>
+                  </b-form-group>
+                  <b-form-group
+                    label="Nom"
+                    label-for="input-spouse-lastName"
+                    :state="stateSpouseLastName"
+                  >
+                    <b-form-input
+                      id="input-spouse-lastName"
+                      v-model="spouseGuest.lastName"
+                      :state="stateSpouseLastName"
+                      trim
+                    ></b-form-input>
+                  </b-form-group> </b-card
+              ></b-col>
+            </b-row>
+          </b-col>
         </b-row>
         <b-form-row>
           <b-col>
-            <b-form-group
-              label="Prénom"
-              label-for="input-user-firstName"
-              :state="stateUserFirstName"
-            >
-              <b-form-input
-                id="input-user-firstName"
-                v-model="selfUserGuest.firstName"
-                :state="stateUserFirstName"
-                trim
-              ></b-form-input>
+            <b-form-group label="Enfant(s) ? ">
+              <b-form-checkbox
+                v-model="isChildrenGuest"
+                name="check-button-spouse"
+                switch
+              >
+                Oui
+              </b-form-checkbox>
             </b-form-group>
-          </b-col>
-          <b-col>
-            <b-form-group
-              label="Nom"
-              label-for="input-user-lastName"
-              :state="stateUserLastName"
-            >
-              <b-form-input
-                id="input-user-lastName"
-                v-model="selfUserGuest.lastName"
-                :state="stateUserLastName"
-                trim
-              ></b-form-input>
-            </b-form-group>
-          </b-col>
-        </b-form-row>
-        <b-form-row>
-          <b-col>Conjoint/Conjointe</b-col>
-          <b-col>
-            <b-form-checkbox
-              v-model="isSpouseGuest"
-              name="check-button-spouse"
-              switch
-            >
-              Oui
-            </b-form-checkbox>
-          </b-col>
-        </b-form-row>
-        <b-form-row v-if="isSpouseGuest">
-          <b-col>
-            <b-form-group
-              label="Prénom"
-              label-for="input-spouse-firstName"
-              :state="stateSpouseFirstName"
-            >
-              <b-form-input
-                id="input-spouse-firstName"
-                v-model="spouseGuest.firstName"
-                :state="stateSpouseFirstName"
-                trim
-              ></b-form-input>
-            </b-form-group>
-          </b-col>
-          <b-col>
-            <b-form-group
-              label="Nom"
-              label-for="input-spouse-lastName"
-              :state="stateSpouseLastName"
-            >
-              <b-form-input
-                id="input-spouse-lastName"
-                v-model="spouseGuest.lastName"
-                :state="stateSpouseLastName"
-                trim
-              ></b-form-input>
-            </b-form-group>
-          </b-col>
-        </b-form-row>
-        <b-form-row>
-          <b-col>Enfants</b-col>
-          <b-col>
-            <b-form-checkbox
-              v-model="isChildrenGuest"
-              name="check-button-spouse"
-              switch
-            >
-              Oui
-            </b-form-checkbox>
           </b-col>
         </b-form-row>
         <template v-if="isChildrenGuest">
@@ -150,7 +158,7 @@
             <b-col
               cols="12"
               sm="6"
-              md="4"
+              md="6"
               lg="4"
               xl="4"
               v-for="(item, index) in childrenGuest"
@@ -206,8 +214,8 @@
           </b-row>
         </template>
         <b-form-row>
-          <b-col>Autre</b-col>
           <b-col>
+            <b-form-group label="Autre(s) personne(s) ? ">
             <b-form-checkbox
               v-model="isOtherGuest"
               name="check-button-other"
@@ -215,6 +223,7 @@
             >
               Oui
             </b-form-checkbox>
+            </b-form-group>
           </b-col>
         </b-form-row>
         <template v-if="isOtherGuest">
@@ -222,7 +231,7 @@
             <b-col
               cols="12"
               sm="6"
-              md="4"
+              md="6"
               lg="4"
               xl="4"
               v-for="(item, index) in otherGuest"
@@ -267,6 +276,8 @@
             </b-col>
           </b-row>
         </template>
+      </b-container>
+      <b-container class="mt-5 mb-5">
         <b-form-row>
           <b-col>
             <b-button
@@ -346,7 +357,11 @@ export default class AnswerPage extends Vue {
   public isSaveLoading = false;
 
   public get isUserPresentAtLeastOnce(): boolean {
-    return this.userInvitations.some((i) => i.answer);
+    return this.userInvitations.some(i => i.answer);
+  }
+
+  public get isAllInvitationAnswered(): boolean {
+    return !this.userInvitations.some(i => i.answer === null);
   }
 
   public isInvitedToMairie(userInvitation: UserInvitation): boolean {
@@ -388,17 +403,18 @@ export default class AnswerPage extends Vue {
   }
 
   public async saveGuest() {
+    // TODO : Check if all data are correct
     this.isSaveButtonDisabled = true;
     this.isSaveLoading = true;
+    const userId: number = authenticationStore?.tokenData?.id ?? 0;
+    if (userId === 0) {
+      throw Error('User not found');
+    }
     try {
-      const resultInvitation = await answerService.updateUserInvitationResponse(authenticationStore?.tokenData?.id.toString() ?? '', this.userInvitations);
+      const resultInvitation = await answerService.updateUserInvitationResponse(userId.toString(), this.userInvitations);
       console.log(resultInvitation);
 
       if (this.isUserPresentAtLeastOnce) {
-        const userId: number = authenticationStore?.tokenData?.id ?? 0;
-        if (userId === 0) {
-          throw Error('User not found');
-        }
         const userGuestList: UserGuest[] = [];
 
         userGuestList.push({
@@ -452,8 +468,10 @@ export default class AnswerPage extends Vue {
           });
         }
 
-        console.log('userGuestList', userGuestList);
-        const resultGuests = await answerService.updateUserGuest(authenticationStore?.tokenData?.id.toString() ?? '', userGuestList);
+        const resultGuests = await answerService.updateUserGuest(userId.toString(), userGuestList);
+        console.log(resultGuests);
+      } else {
+        const resultGuests = await answerService.updateUserGuest(userId.toString(), []);
         console.log(resultGuests);
       }
     } catch (error) {
@@ -557,4 +575,22 @@ export default class AnswerPage extends Vue {
 </script>
 
 <style lang="scss">
+#answer-page {
+  h1 {
+    font-size: 4em !important;
+    font-family: "Great Vibes", cursive !important;
+    color: #f67e7d !important;
+  }
+
+  h2 {
+    font-family: "Great Vibes", cursive !important;
+    color: #f67e7d !important;
+  }
+  .custom-switch {
+    line-height: 1.4rem;
+  }
+  .custom-control-inline {
+    line-height: 1.4rem;
+  }
+}
 </style>

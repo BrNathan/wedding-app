@@ -60,7 +60,7 @@ export default class WeddingInfo extends Vue {
   public mounted() {
     setTimeout(() => {
       this.isLoading = false;
-    }, 2000);
+    }, 1000);
   }
 }
 </script>

@@ -1,13 +1,12 @@
 <template>
   <b-navbar sticky toggleable="lg" class="ftco-navbar-light scrolled awake">
     <div class="container">
-      <b-navbar-brand :to="{name: homePageName}">
+      <b-navbar-brand class="title-navbar-custom" :to="{name: homePageName}">
         Amélie & Nathan
       </b-navbar-brand>
       <b-navbar-toggle target="navbar-toggle-collapse" label="Menu"></b-navbar-toggle>
 
       <b-collapse id="navbar-toggle-collapse" is-nav>
-        <!-- <b-navbar-nav align="end" class="ml-auto"> -->
         <b-navbar-nav>
           <b-nav-item :to="{name: homePageName}">Informations</b-nav-item>
           <b-nav-item :to="{name: answerPageName}">Mon Invitation</b-nav-item>
@@ -43,5 +42,7 @@ export default class Navbar extends Vue {
 </script>
 
 <style lang="scss" scoped>
-
+.title-navbar-custom {
+  font-family: "Great Vibes", cursive;
+}
 </style>

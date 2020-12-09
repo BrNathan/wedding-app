@@ -283,7 +283,7 @@ export default class FirstConnectionPage extends Vue {
       this.stateFirstName = false;
       this.feedbackFirstName = this.FEEDBACK_EMPTY_FIELD;
     } else {
-      this.stateFirstName = true;
+      this.stateFirstName = null;
     }
 
     if (IsNullOrWhiteSpace(this.lastName)) {
@@ -291,7 +291,7 @@ export default class FirstConnectionPage extends Vue {
       this.stateLastName = false;
       this.feedbackLastName = this.FEEDBACK_EMPTY_FIELD;
     } else {
-      this.stateLastName = true;
+      this.stateLastName = null;
     }
 
     if (IsNullOrWhiteSpace(this.email)) {
@@ -300,7 +300,7 @@ export default class FirstConnectionPage extends Vue {
       this.feedbackEmail = this.FEEDBACK_EMPTY_FIELD;
       // TODO VALID EMAIL
     } else {
-      this.stateEmail = true;
+      this.stateEmail = null;
     }
 
     if (IsNullOrWhiteSpace(this.password)) {
@@ -308,7 +308,7 @@ export default class FirstConnectionPage extends Vue {
       this.statePassword = false;
       this.feedbackPassword = this.FEEDBACK_EMPTY_FIELD;
     } else {
-      this.statePassword = true;
+      this.statePassword = null;
     }
 
     if (IsNullOrWhiteSpace(this.againPassword) || this.againPassword !== this.password) {
@@ -320,7 +320,7 @@ export default class FirstConnectionPage extends Vue {
         this.feedbackAgainPassword = this.FEEDBACK_NOT_SAME_PASSWORD;
       }
     } else {
-      this.stateAgainPassword = true;
+      this.stateAgainPassword = null;
     }
 
     return isValid;
