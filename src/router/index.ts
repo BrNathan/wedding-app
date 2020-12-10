@@ -32,6 +32,14 @@ const routes: Array<RouteConfig> = [
         meta: {
           isPublic: false
         }
+      },
+      {
+        path: 'sleeping-location',
+        name: ROUTES_NAMES.SLEEPING_LOCATION,
+        component: () => import('../views/SleepingLocationPage.vue'),
+        meta: {
+          isPublic: false
+        }
       }
     ]
   },

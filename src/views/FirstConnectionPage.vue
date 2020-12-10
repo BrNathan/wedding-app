@@ -9,7 +9,10 @@
                 <b-col>
                   <h2>Bienvenue !</h2>
                   <p>C'est votre première connection !</p>
-                  <p>Voici quelques informations à compléter/vérifier avant d'accéder au site</p>
+                  <p>
+                    Voici quelques informations à compléter/vérifier avant
+                    d'accéder au site
+                  </p>
                 </b-col>
               </b-row>
               <b-form @submit="onSubmit">
@@ -147,22 +150,34 @@
                   </b-col>
                 </b-form-row>
                 <b-form-row>
-                  <b-col cols="12">
+                  <b-col>
                     <template v-if="!isRefreshTokenSuccessfull">
-                      <b-button
-                        type="submit"
-                        variant="primary"
-                        :disabled="isButtonDisabled"
-                      >
-                        Enregistrer
-                        <template v-if="isSubmitLoading">
-                          <b-spinner
-                            small
-                            type="grow"
-                            label="Loading..."
-                          ></b-spinner>
-                        </template>
-                      </b-button>
+                      <b-row>
+                        <b-col>
+                          <b-button
+                            type="submit"
+                            variant="primary"
+                            :disabled="isButtonDisabled"
+                          >
+                            Enregistrer
+                            <template v-if="isSubmitLoading">
+                              <b-spinner
+                                small
+                                type="grow"
+                                label="Loading..."
+                              ></b-spinner>
+                            </template>
+                          </b-button>
+                        </b-col>
+                        <b-col class="text-right">
+                          <b-button
+                            variant="outline-secondary"
+                            :to="{name: logoutRouteName}"
+                          >
+                            Retour
+                          </b-button>
+                        </b-col>
+                      </b-row>
                     </template>
                     <template v-else>
                       <div class="d-flex justify-content-center mb-3">
@@ -337,6 +352,10 @@ export default class FirstConnectionPage extends Vue {
 
   public get isRefreshTokenSuccessfull(): boolean {
     return authenticationStore.isRefreshTokenRequested && authenticationStore.isRefreshTokenSuccessfull && !IsNullOrWhiteSpace(authenticationStore.token);
+  }
+
+  public get logoutRouteName(): string {
+    return ROUTES_NAMES.LOGOUT_PAGE;
   }
 }
 </script>

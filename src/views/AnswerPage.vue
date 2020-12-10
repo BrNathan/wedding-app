@@ -19,7 +19,9 @@
           <template v-if="isInvitedToMairie(item)">
             <b-col>
               <b-form-group>
-                <template #label> A la <strong>mairie</strong>, je serais :  </template>
+                <template #label>
+                  A la <strong>mairie</strong>, je serais :
+                </template>
                 <b-form-radio-group v-model="item.answer">
                   <b-form-radio :value="true"> Présent(e) </b-form-radio>
                   <b-form-radio :value="false"> Absent(e) </b-form-radio>
@@ -30,7 +32,9 @@
           <template v-if="isInvitedToCeremonie(item)">
             <b-col>
               <b-form-group>
-                <template #label> A la <strong>cérémonie laïque</strong>, je serais : </template>
+                <template #label>
+                  A la <strong>cérémonie laïque</strong>, je serais :
+                </template>
                 <b-form-radio-group v-model="item.answer">
                   <b-form-radio :value="true"> Présent(e) </b-form-radio>
                   <b-form-radio :value="false"> Absent(e) </b-form-radio>
@@ -41,7 +45,9 @@
           <template v-if="isInvitedToRepas(item)">
             <b-col>
               <b-form-group>
-                <template #label> Au <strong>repas</strong>, je serais : </template>
+                <template #label>
+                  Au <strong>repas</strong>, je serais :
+                </template>
                 <b-form-radio-group v-model="item.answer">
                   <b-form-radio :value="true"> Présent(e) </b-form-radio>
                   <b-form-radio :value="false"> Absent(e) </b-form-radio>
@@ -52,7 +58,10 @@
         </b-form-row>
       </b-container>
       <!-- GUESTS -->
-      <b-container class="mt-5 mb-5" v-if="isAllInvitationAnswered && isUserPresentAtLeastOnce">
+      <b-container
+        class="mt-5 mb-5"
+        v-if="isAllInvitationAnswered && isUserPresentAtLeastOnce"
+      >
         <b-row>
           <b-col>
             <h2>Ma liste d'accompagnant</h2>
@@ -76,7 +85,7 @@
                       v-model="selfUserGuest.firstName"
                       :state="stateUserFirstName"
                       trim
-                    ></b-form-input>
+                    />
                   </b-form-group>
                   <b-form-group
                     label="Nom"
@@ -88,9 +97,10 @@
                       v-model="selfUserGuest.lastName"
                       :state="stateUserLastName"
                       trim
-                    ></b-form-input>
-                  </b-form-group> </b-card
-              ></b-col>
+                    />
+                  </b-form-group>
+                </b-card>
+              </b-col>
             </b-row>
           </b-col>
         </b-row>
@@ -122,7 +132,7 @@
                       v-model="spouseGuest.firstName"
                       :state="stateSpouseFirstName"
                       trim
-                    ></b-form-input>
+                    />
                   </b-form-group>
                   <b-form-group
                     label="Nom"
@@ -134,9 +144,10 @@
                       v-model="spouseGuest.lastName"
                       :state="stateSpouseLastName"
                       trim
-                    ></b-form-input>
-                  </b-form-group> </b-card
-              ></b-col>
+                    />
+                  </b-form-group>
+                </b-card>
+              </b-col>
             </b-row>
           </b-col>
         </b-row>
@@ -173,7 +184,7 @@
                     :id="'input-child-firstName' + index"
                     v-model="item.firstName"
                     trim
-                  ></b-form-input>
+                  />
                 </b-form-group>
                 <b-form-group
                   label="Nom"
@@ -183,17 +194,20 @@
                     :id="'input-child-lastName' + index"
                     v-model="item.lastName"
                     trim
-                  ></b-form-input> </b-form-group
-                ><b-form-group
+                  />
+                </b-form-group>
+                <b-form-group
                   label="Age"
                   :label-for="'input-child-age' + index"
                 >
-                  <b-form-input
-                    :id="'input-child-age' + index"
-                    v-model="item.age"
-                    type="number"
-                    trim
-                  ></b-form-input>
+                  <b-input-group append="ans">
+                    <b-form-input
+                      :id="'input-child-age' + index"
+                      v-model="item.age"
+                      type="number"
+                      trim
+                    />
+                  </b-input-group>
                 </b-form-group>
                 <b-button
                   @click="removeChild(index)"
@@ -204,7 +218,7 @@
                 </b-button>
               </b-card>
             </b-col>
-            <b-col cols="12" sm="6" md="4" lg="4" xl="4">
+            <b-col cols="12" sm="6" md="6" lg="4" xl="4">
               <b-card border-variant="primary" class="mt-3 mb-3 text-center">
                 <b-button variant="primary" @click="addChild">
                   Ajouter un autre enfant
@@ -216,13 +230,13 @@
         <b-form-row>
           <b-col>
             <b-form-group label="Autre(s) personne(s) ? ">
-            <b-form-checkbox
-              v-model="isOtherGuest"
-              name="check-button-other"
-              switch
-            >
-              Oui
-            </b-form-checkbox>
+              <b-form-checkbox
+                v-model="isOtherGuest"
+                name="check-button-other"
+                switch
+              >
+                Oui
+              </b-form-checkbox>
             </b-form-group>
           </b-col>
         </b-form-row>
@@ -246,7 +260,7 @@
                     :id="'input-other-firstName' + index"
                     v-model="item.firstName"
                     trim
-                  ></b-form-input>
+                  />
                 </b-form-group>
                 <b-form-group
                   label="Nom"
@@ -256,7 +270,7 @@
                     :id="'input-other-lastName' + index"
                     v-model="item.lastName"
                     trim
-                  ></b-form-input>
+                  />
                 </b-form-group>
                 <b-button
                   @click="removeOther(index)"
@@ -267,7 +281,7 @@
                 </b-button>
               </b-card>
             </b-col>
-            <b-col cols="12" sm="6" md="4" lg="4" xl="4">
+            <b-col cols="12" sm="6" md="6" lg="4" xl="4">
               <b-card border-variant="primary" class="mt-3 mb-3 text-center">
                 <b-button variant="primary" @click="addOther">
                   Ajouter un autre personne
