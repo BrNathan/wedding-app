@@ -7,7 +7,7 @@
             <div class="row d-flex">
               <div class="col-md-6 d-flex">
                 <div class="img d-flex align-self-stretch align-items-center"
-                  style="background-image:url(images/about.jpg);">
+                  style="background-image:url(/images/about.jpg);">
                 </div>
               </div>
               <div class="col-md-6 py-md-5 text">

@@ -40,6 +40,14 @@ const routes: Array<RouteConfig> = [
         meta: {
           isPublic: false
         }
+      },
+      {
+        path: 'contact',
+        name: ROUTES_NAMES.CONTACT_PAGE,
+        component: () => import('../views/ContactPage.vue'),
+        meta: {
+          isPublic: false
+        }
       }
     ]
   },

@@ -52,3 +52,11 @@ export interface UserInfo {
   firstName: string;
   lastName: string;
 }
+
+export interface AddressInformation {
+  placeNumber?: number;
+  placeNumberAdditionalInformation?: string;
+  streetName: string;
+  postalCode: number;
+  city: string;
+}

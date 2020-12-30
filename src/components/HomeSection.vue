@@ -18,7 +18,7 @@
             <div class="icon">
               <span class="flaticon-rose-outline-variant-with-vines-and-leaves"></span>
             </div>
-            <span class="subheading">The Wedding of</span>
+            <span class="subheading">Le Mariage de</span>
             <h1>Amélie &amp; Nathan</h1>
             <div id="timer" class="d-flex">
               <div class="time" id="days">
