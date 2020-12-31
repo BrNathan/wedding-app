@@ -75,7 +75,7 @@ export default class ContactPage extends Vue {
         postalCode: 77670,
         city: 'Saint Mammès'
       },
-      imageUrl: '/images/bride.jpg',
+      imageUrl: '/images/bride4.jpg',
       facebookUsername: 'amelie.andre.18',
       whatsappPhoneNumber: '33682419154'
     },

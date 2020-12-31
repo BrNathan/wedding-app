@@ -14,7 +14,7 @@
           <div class="row">
             <div class="col-md-6 text-center d-flex align-items-stretch">
               <div class="bride-groom">
-                <div class="img" style="background-image: url(/images/bride.jpg);"></div>
+                <div class="img" style="background-image: url(/images/bride4.jpg);"></div>
                 <div class="text mt-4 px-4">
                   <h2>Amélie André</h2>
                   <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there

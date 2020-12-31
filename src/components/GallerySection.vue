@@ -9,72 +9,72 @@
       </div>
       <div class="row">
         <div class="col-md-3">
-          <a href="images/gallery-1.jpg"
+          <a href="/images/gallery-1.jpg"
             class="gallery img image-popup d-flex align-items-center justify-content-center"
-            style="background-image: url(images/gallery-1.jpg);">
+            style="background-image: url(/images/gallery-1.jpg);">
             <div class="icon d-flex align-items-center justify-content-center">
               <b-icon-card-image></b-icon-card-image>
             </div>
           </a>
         </div>
         <div class="col-md-3">
-          <a href="images/gallery-2.jpg"
+          <a href="/images/gallery-2.jpg"
             class="gallery img image-popup d-flex align-items-center justify-content-center"
-            style="background-image: url(images/gallery-2.jpg);">
+            style="background-image: url(/images/gallery-2.jpg);">
             <div class="icon d-flex align-items-center justify-content-center">
               <b-icon-card-image></b-icon-card-image>
             </div>
           </a>
         </div>
         <div class="col-md-3">
-          <a href="images/gallery-3.jpg"
+          <a href="/images/gallery-3.jpg"
             class="gallery img image-popup d-flex align-items-center justify-content-center"
-            style="background-image: url(images/gallery-3.jpg);">
+            style="background-image: url(/images/gallery-3.jpg);">
             <div class="icon d-flex align-items-center justify-content-center">
               <b-icon-card-image></b-icon-card-image>
             </div>
           </a>
         </div>
         <div class="col-md-3">
-          <a href="images/gallery-4.jpg"
+          <a href="/images/gallery-4.jpg"
             class="gallery img image-popup d-flex align-items-center justify-content-center"
-            style="background-image: url(images/gallery-4.jpg);">
+            style="background-image: url(/images/gallery-4.jpg);">
             <div class="icon d-flex align-items-center justify-content-center">
               <b-icon-card-image></b-icon-card-image>
             </div>
           </a>
         </div>
         <div class="col-md-3">
-          <a href="images/gallery-5.jpg"
+          <a href="/images/gallery-5.jpg"
             class="gallery img image-popup d-flex align-items-center justify-content-center"
-            style="background-image: url(images/gallery-5.jpg);">
+            style="background-image: url(/images/gallery-5.jpg);">
             <div class="icon d-flex align-items-center justify-content-center">
               <b-icon-card-image></b-icon-card-image>
             </div>
           </a>
         </div>
         <div class="col-md-3">
-          <a href="images/gallery-6.jpg"
+          <a href="/images/gallery-6.jpg"
             class="gallery img image-popup d-flex align-items-center justify-content-center"
-            style="background-image: url(images/gallery-6.jpg);">
+            style="background-image: url(/images/gallery-6.jpg);">
             <div class="icon d-flex align-items-center justify-content-center">
               <b-icon-card-image></b-icon-card-image>
             </div>
           </a>
         </div>
         <div class="col-md-3">
-          <a href="images/gallery-7.jpg"
+          <a href="/images/gallery-7.jpg"
             class="gallery img image-popup d-flex align-items-center justify-content-center"
-            style="background-image: url(images/gallery-7.jpg);">
+            style="background-image: url(/images/gallery-7.jpg);">
             <div class="icon d-flex align-items-center justify-content-center">
               <b-icon-card-image></b-icon-card-image>
             </div>
           </a>
         </div>
         <div class="col-md-3">
-          <a href="images/gallery-8.jpg"
+          <a href="/images/gallery-8.jpg"
             class="gallery img image-popup d-flex align-items-center justify-content-center"
-            style="background-image: url(images/gallery-8.jpg);">
+            style="background-image: url(/images/gallery-8.jpg);">
             <div class="icon d-flex align-items-center justify-content-center">
               <b-icon-card-image></b-icon-card-image>
             </div>

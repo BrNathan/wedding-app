@@ -28,7 +28,7 @@
                       Consonantia,
                       there live the blind texts.</p>
                     <div class="d-flex align-items-center">
-                      <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
+                      <div class="user-img" style="background-image: url(/images/person_1.jpg)"></div>
                       <div class="pl-3">
                         <p class="name">Roger Scott</p>
                         <span class="position">Marketing Manager</span>
@@ -46,7 +46,7 @@
                       Consonantia,
                       there live the blind texts.</p>
                     <div class="d-flex align-items-center">
-                      <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
+                      <div class="user-img" style="background-image: url(/images/person_2.jpg)"></div>
                       <div class="pl-3">
                         <p class="name">Roger Scott</p>
                         <span class="position">Marketing Manager</span>
@@ -64,7 +64,7 @@
                       Consonantia,
                       there live the blind texts.</p>
                     <div class="d-flex align-items-center">
-                      <div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
+                      <div class="user-img" style="background-image: url(/images/person_3.jpg)"></div>
                       <div class="pl-3">
                         <p class="name">Roger Scott</p>
                         <span class="position">Marketing Manager</span>
@@ -82,7 +82,7 @@
                       Consonantia,
                       there live the blind texts.</p>
                     <div class="d-flex align-items-center">
-                      <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
+                      <div class="user-img" style="background-image: url(/images/person_1.jpg)"></div>
                       <div class="pl-3">
                         <p class="name">Roger Scott</p>
                         <span class="position">Marketing Manager</span>
@@ -100,7 +100,7 @@
                       Consonantia,
                       there live the blind texts.</p>
                     <div class="d-flex align-items-center">
-                      <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
+                      <div class="user-img" style="background-image: url(/images/person_2.jpg)"></div>
                       <div class="pl-3">
                         <p class="name">Roger Scott</p>
                         <span class="position">Marketing Manager</span>

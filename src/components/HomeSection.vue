@@ -2,39 +2,39 @@
   <section
     id="home"
     class="video-hero js-fullheight"
-    style="background-image: url(images/bg_1.jpg); background-size:cover; background-position: top center;"
+    style="background-image: url(/images/bg_2.jpg); background-size:cover; background-position: center center;"
     data-stellar-background-ratio="0.5"
   >
     <link rel="stylesheet" href="/css/flaticon.css" />
     <div class="overlay"></div>
-    <a
-      class="player"
-      data-property="{videoURL:'https://www.youtube.com/watch?v=Mjjw19B7rMk',containment:'#home', showControls:false, autoPlay:true, loop:true, mute:true, startAt:0, opacity:1, quality:'default',optimizeDisplay:true}"
-    ></a>
     <div class="container">
-      <div class="row js-fullheight justify-content-center d-flex align-items-center">
+      <div
+        class="row js-fullheight justify-content-center d-flex align-items-center"
+      >
         <div class="col-md-12">
           <div class="text text-center">
             <div class="icon">
-              <span class="flaticon-rose-outline-variant-with-vines-and-leaves"></span>
+              <span
+                class="flaticon-rose-outline-variant-with-vines-and-leaves"
+              ></span>
             </div>
             <span class="subheading">Le Mariage de</span>
             <h1>Amélie &amp; Nathan</h1>
             <div id="timer" class="d-flex">
               <div class="time" id="days">
-                {{displaydaysLeft}}
+                {{ displaydaysLeft }}
                 <span>Jours</span>
               </div>
               <div class="time pl-3" id="hours">
-                {{displayhoursLeft}}
+                {{ displayhoursLeft }}
                 <span>Heures</span>
               </div>
               <div class="time pl-3" id="minutes">
-                {{displayminutesLeft}}
+                {{ displayminutesLeft }}
                 <span>Minutes</span>
               </div>
               <div class="time pl-3" id="seconds">
-                {{displaysecondsLeft}}
+                {{ displaysecondsLeft }}
                 <span>Secondes</span>
               </div>
             </div>
@@ -47,11 +47,22 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Fade, AutoPlay } from '@egjs/flicking-plugins';
 
 @Component({
   components: {}
 })
 export default class HomeSection extends Vue {
+  public curentimg = '/images/bg_1.jpg';
+  public currentindeximg = 0;
+  private imglist = [
+    '/images/bg_1.jpg',
+    '/images/Engagement_AmlieNathan7sur45.jpg',
+    '/images/about2.jpg',
+    '/images/ret.jpeg'
+  ];
+
+  public plugins = [new Fade(), new AutoPlay({ duration: 2000 }, 'NEXT')];
   public timePassed = 0;
   public timerInterval: number | undefined = undefined;
   public weddingDate: Date = new Date(2021, 8, 21, 16, 30);
@@ -60,6 +71,16 @@ export default class HomeSection extends Vue {
   public hoursLeft: number | null = null;
   public minutesLeft: number | null = null;
   public secondsLeft: number | null = null;
+
+  public startCarousel() {
+    // setInterval(() => {
+    //   this.currentindeximg++;
+    //   if (this.currentindeximg >= this.imglist.length) {
+    //     this.currentindeximg = 0;
+    //   }
+    //   this.curentimg = this.imglist[this.currentindeximg];
+    // }, 5000);
+  }
 
   public get displaydaysLeft(): string {
     let text = '-';
@@ -130,6 +151,8 @@ export default class HomeSection extends Vue {
    */
   public mounted() {
     this.startTimer();
+
+    this.startCarousel();
   }
 
   /**

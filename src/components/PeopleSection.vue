@@ -23,7 +23,7 @@
             <slide>
               <div class="item">
                 <div class="people text-center">
-                  <div class="img" style="background-image: url(images/groom-men-1.jpg);"></div>
+                  <div class="img" style="background-image: url(/images/groom-men-1.jpg);"></div>
                   <div class="text">
                     <h3>Mark Tomy</h3>
                     <span>Groomsmen</span>
@@ -34,7 +34,7 @@
             <slide>
               <div class="item">
                 <div class="people text-center">
-                  <div class="img" style="background-image: url(images/groom-men-2.jpg);"></div>
+                  <div class="img" style="background-image: url(/images/groom-men-2.jpg);"></div>
                   <div class="text">
                     <h3>John Henceworth</h3>
                     <span>Groomsmen</span>
@@ -45,7 +45,7 @@
             <slide>
               <div class="item">
                 <div class="people text-center">
-                  <div class="img" style="background-image: url(images/groom-men-3.jpg);"></div>
+                  <div class="img" style="background-image: url(/images/groom-men-3.jpg);"></div>
                   <div class="text">
                     <h3>Rey Cooper</h3>
                     <span>Groomsmen</span>
@@ -56,7 +56,7 @@
             <slide>
               <div class="item">
                 <div class="people text-center">
-                  <div class="img" style="background-image: url(images/groom-men-4.jpg);"></div>
+                  <div class="img" style="background-image: url(/images/groom-men-4.jpg);"></div>
                   <div class="text">
                     <h3>Robert Chan</h3>
                     <span>Groomsmen</span>
@@ -67,7 +67,7 @@
             <slide>
               <div class="item">
                 <div class="people text-center">
-                  <div class="img" style="background-image: url(images/bridesmaid-1.jpg);"></div>
+                  <div class="img" style="background-image: url(/images/bridesmaid-1.jpg);"></div>
                   <div class="text">
                     <h3>Rose Jones</h3>
                     <span>Bridesmaid</span>
@@ -78,7 +78,7 @@
             <slide>
               <div class="item">
                 <div class="people text-center">
-                  <div class="img" style="background-image: url(images/bridesmaid-2.jpg);"></div>
+                  <div class="img" style="background-image: url(/images/bridesmaid-2.jpg);"></div>
                   <div class="text">
                     <h3>Mary Dell</h3>
                     <span>Bridesmaid</span>
@@ -89,7 +89,7 @@
             <slide>
               <div class="item">
                 <div class="people text-center">
-                  <div class="img" style="background-image: url(images/bridesmaid-3.jpg);"></div>
+                  <div class="img" style="background-image: url(/images/bridesmaid-3.jpg);"></div>
                   <div class="text">
                     <h3>Alicia Brean</h3>
                     <span>Bridesmaid</span>
@@ -100,7 +100,7 @@
             <slide>
               <div class="item">
                 <div class="people text-center">
-                  <div class="img" style="background-image: url(images/bridesmaid-4.jpg);"></div>
+                  <div class="img" style="background-image: url(/images/bridesmaid-4.jpg);"></div>
                   <div class="text">
                     <h3>Angel Worth</h3>
                     <span>Bridesmaid</span>
