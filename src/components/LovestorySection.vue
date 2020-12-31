@@ -13,7 +13,7 @@
             <li class="animate-box">
               <div
                 class="timeline-badge"
-                style="background-image: url(images/couple-1.jpg)"
+                style="background-image: url(/images/couple-1.jpg)"
               ></div>
               <div class="timeline-panel text-md-right">
                 <div class="overlay"></div>
@@ -33,7 +33,7 @@
             <li class="timeline-inverted animate-box">
               <div
                 class="timeline-badge"
-                style="background-image: url(images/couple-2.jpg)"
+                style="background-image: url(/images/couple-2.jpeg)"
               ></div>
               <div class="timeline-panel">
                 <div class="overlay overlay-2"></div>
@@ -53,7 +53,7 @@
             <li class="animate-box">
               <div
                 class="timeline-badge"
-                style="background-image: url(images/couple-3.jpg)"
+                style="background-image: url(/images/couple-3.jpg)"
               ></div>
               <div class="timeline-panel text-md-right">
                 <div class="overlay"></div>
@@ -73,7 +73,7 @@
             <li class="timeline-inverted animate-box">
               <div
                 class="timeline-badge"
-                style="background-image: url(images/couple-4.jpg)"
+                style="background-image: url(/images/couple-4.jpg)"
               ></div>
               <div class="timeline-panel">
                 <div class="overlay overlay-2"></div>
@@ -93,7 +93,7 @@
             <li class="animate-box">
               <div
                 class="timeline-badge"
-                style="background-image: url(images/couple-3.jpg)"
+                style="background-image: url(/images/couple-5.jpg)"
               ></div>
               <div class="timeline-panel text-md-right">
                 <div class="overlay"></div>

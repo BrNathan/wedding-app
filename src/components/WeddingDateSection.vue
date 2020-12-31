@@ -19,8 +19,8 @@
                       <span class="icon flaticon-rose-variant-outline-with-vines"></span>
                       <span class="subheading">Il aura lieu le</span>
                       <p class="time mb-4"><span>21 | Août | 2021</span></p>
-                      <span class="subheading mb-5">Starting at 2:00 <br> in the afternoon</span>
-                      <span class="subheading mb-5">Saint John Paul Church <br> in YorkNew.in</span>
+                      <span class="subheading mb-5">A {{beginningTime}}</span>
+                      <span class="subheading mb-5">{{beginningPlace}}<br></span>
                     </div>
                   </div>
                 </div>
@@ -35,11 +35,47 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { authenticationStore } from '@/store/authentication';
+
+declare interface BeginnigPlace {
+  hours: number;
+  minutes: number;
+  place: string;
+}
 
 @Component({
   components: {}
 })
 export default class WeddingDateSection extends Vue {
+  private mairieBeginningPlace: BeginnigPlace = {
+    hours: 15,
+    minutes: 30,
+    place: 'A la Mairie de Mergey'
+  }
+
+  private ceremonieBeginningPlace: BeginnigPlace = {
+    hours: 16,
+    minutes: 30,
+    place: 'Au Clos Belair'
+  }
+
+  public get beginningTime(): string {
+    const userInvitation: string[] = authenticationStore?.tokenData?.userInvitations ?? [];
+
+    if (userInvitation.some(i => i === 'MAI')) {
+      return this.mairieBeginningPlace.hours + 'h' + this.mairieBeginningPlace.minutes;
+    }
+    return this.ceremonieBeginningPlace.hours + 'h' + this.ceremonieBeginningPlace.minutes;
+  }
+
+  public get beginningPlace(): string {
+    const userInvitation: string[] = authenticationStore?.tokenData?.userInvitations ?? [];
+
+    if (userInvitation.some(i => i === 'MAI')) {
+      return this.mairieBeginningPlace.place;
+    }
+    return this.ceremonieBeginningPlace.place;
+  }
 }
 </script>
 

@@ -3,8 +3,8 @@
     <div class="container-fluid px-md-5">
       <div class="row justify-content-center pb-5">
         <div class="col-md-12 text-center heading-section">
-          <span class="clone">People</span>
-          <h2 class="mb-3">Family &amp; Friends</h2>
+          <span class="clone">Témoins &amp; Demoiselles d'honneur</span>
+          <h2 class="mb-3">Témoins &amp; Demoiselles d'honneur</h2>
         </div>
       </div>
       <div class="row">

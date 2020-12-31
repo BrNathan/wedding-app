@@ -1,11 +1,11 @@
 <template>
   <div id="wedding-info">
-    <template v-if="isLoading">
+    <!-- <template v-if="isLoading">
       <div class="d-flex justify-content-center mb-3">
         <spinner-component />
       </div>
-    </template>
-    <template v-else>
+    </template> -->
+    <div>
       <home-section />
 
       <wedding-date-section />
@@ -14,16 +14,16 @@
 
       <lovestory-section />
 
-      <greeting-section />
-
-      <people-section />
+      <!-- <greeting-section /> -->
 
       <when-where-section />
 
-      <rsvp-section />
+      <people-section />
 
-      <gallery-section />
-    </template>
+      <!-- <rsvp-section /> -->
+
+      <!-- <gallery-section /> -->
+    </div>
   </div>
 </template>
 

@@ -3,8 +3,8 @@
     <div class="container">
       <div class="row justify-content-center pb-5">
         <div class="col-md-12 text-center heading-section">
-          <span class="clone">Invitations</span>
-          <h2 class="mb-3">Invitations</h2>
+          <span class="clone">Horaires</span>
+          <h2 class="mb-3">Horaires</h2>
         </div>
       </div>
       <b-row align-h="center">
@@ -12,18 +12,17 @@
           cols="12"
           sm="12"
           md="6"
-          lg="4"
-          xl="4"
+          lg="3"
+          xl="3"
           class="mb-3"
           v-for="(item, index) in userInvitedPlaces"
           :key="'invitation-' + index">
           <div
-            class="place img"
+            class="place img h-100"
             :style="'background-image: url(' + item.imageSourceLink + ');'"
           >
-            <div class="text text-center">
-              <span class="icon flaticon-reception-bell"></span>
-              <h3>{{item.title}}</h3>
+            <div class="text text-center h-100 d-flex flex-column">
+              <h3 class="mb-auto">{{item.title}}</h3>
               <p>
                 <span>{{displayPlaceDate(item.beginningDate)}}</span>
                 <br />
@@ -31,7 +30,8 @@
               </p>
               <p>
                 <span>
-                  <template v-if="item.address.placeNumber !== undefined">{{item.address.placeNumber}} </template>{{item.address.streetName}}, {{item.address.postalCode}} {{item.address.city}}
+                  <template v-if="item.address.placeNumber !== undefined">{{item.address.placeNumber}} </template>{{item.address.streetName}}
+                  <br />{{item.address.postalCode}} {{item.address.city}}
                 </span>
               </p>
               <p><a target="_blank" :href="item.googleMapsLink" class="btn-custom">Voir le lieu</a></p>
@@ -75,11 +75,22 @@ export default class WhenWhereSection extends Vue {
     onlyViewBy: ['MAI'],
     googleMapsLink: 'https://goo.gl/maps/NfTU1FtggJVtS7ac8'
   }, {
-    title: 'La Cérémonie',
+    title: 'Cérémonie laïque',
     imageSourceLink: '/images/place-2.jpg',
     beginningDate: new Date(2021, 7, 21, 16, 30),
     address: {
-      streetName: 'Ferme de Belair',
+      streetName: 'Le Clos Belair',
+      postalCode: 10180,
+      city: 'Saint-Benoît-sur-Seine'
+    },
+    onlyViewBy: ['CER'],
+    googleMapsLink: 'https://goo.gl/maps/3qHvNVQhKJweCxb56'
+  }, {
+    title: 'Le vin d\'honneur',
+    imageSourceLink: '/images/place-3.jpg',
+    beginningDate: new Date(2021, 7, 21, 17, 30),
+    address: {
+      streetName: 'Le Clos Belair',
       postalCode: 10180,
       city: 'Saint-Benoît-sur-Seine'
     },
@@ -88,9 +99,9 @@ export default class WhenWhereSection extends Vue {
   }, {
     title: 'Le Repas',
     imageSourceLink: '/images/place-3.jpg',
-    beginningDate: new Date(2021, 7, 21, 20, 30),
+    beginningDate: new Date(2021, 7, 21, 20, 0),
     address: {
-      streetName: 'Ferme de Belair',
+      streetName: 'Le Clos Belair',
       postalCode: 10180,
       city: 'Saint-Benoît-sur-Seine'
     },

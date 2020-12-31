@@ -86,8 +86,12 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
   // eslint-disable-next-line
-  scrollBehavior(to, from, savedPosition) {
-    return { x: 0, y: 0 };
+  scrollBehavior: function(to, from, savedPosition) {
+    if (to.hash) {
+      return { selector: to.hash };
+    } else {
+      return { x: 0, y: 0 };
+    }
   }
 });
 

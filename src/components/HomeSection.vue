@@ -47,22 +47,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { Fade, AutoPlay } from '@egjs/flicking-plugins';
 
 @Component({
   components: {}
 })
 export default class HomeSection extends Vue {
-  public curentimg = '/images/bg_1.jpg';
-  public currentindeximg = 0;
-  private imglist = [
-    '/images/bg_1.jpg',
-    '/images/Engagement_AmlieNathan7sur45.jpg',
-    '/images/about2.jpg',
-    '/images/ret.jpeg'
-  ];
-
-  public plugins = [new Fade(), new AutoPlay({ duration: 2000 }, 'NEXT')];
   public timePassed = 0;
   public timerInterval: number | undefined = undefined;
   public weddingDate: Date = new Date(2021, 8, 21, 16, 30);
@@ -71,16 +60,6 @@ export default class HomeSection extends Vue {
   public hoursLeft: number | null = null;
   public minutesLeft: number | null = null;
   public secondsLeft: number | null = null;
-
-  public startCarousel() {
-    // setInterval(() => {
-    //   this.currentindeximg++;
-    //   if (this.currentindeximg >= this.imglist.length) {
-    //     this.currentindeximg = 0;
-    //   }
-    //   this.curentimg = this.imglist[this.currentindeximg];
-    // }, 5000);
-  }
 
   public get displaydaysLeft(): string {
     let text = '-';
@@ -151,8 +130,6 @@ export default class HomeSection extends Vue {
    */
   public mounted() {
     this.startTimer();
-
-    this.startCarousel();
   }
 
   /**

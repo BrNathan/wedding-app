@@ -6,7 +6,7 @@
 
     <router-view />
 
-    <footer-page />
+    <!-- <footer-page /> -->
 
     <!-- <global-loader /> -->
   </div>
