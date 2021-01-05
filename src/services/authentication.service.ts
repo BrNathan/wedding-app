@@ -23,7 +23,7 @@ class AuthenticationService {
    */
   public async login(credential: {username: string; password: string}): Promise<string> {
     const passwordHashed: string = passwordHasher.hash(credential.password);
-    const tokenResult = await apiService.doPostRequest<{ email: string; password: string }, {token: string}>(API_ENDPOINTS.login, { email: credential.username, password: passwordHashed });
+    const tokenResult = await apiService.doPostRequest<{ emailOrUsername: string; password: string }, {token: string}>(API_ENDPOINTS.login, { emailOrUsername: credential.username, password: passwordHashed });
     return tokenResult.token;
   }
 

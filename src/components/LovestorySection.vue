@@ -23,9 +23,7 @@
                 </div>
                 <div class="timeline-body">
                   <p>
-                    Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia, there live the blind
-                    texts. Separated they live in .
+                    Il y a quelques années, entre les plongeoirs et les lignes d'eau, sous le forcing de Pauline, Amélie est tombée sous le charme de Nathan et sa
                   </p>
                 </div>
               </div>
@@ -33,7 +31,7 @@
             <li class="timeline-inverted animate-box">
               <div
                 class="timeline-badge"
-                style="background-image: url(/images/couple-2.jpeg)"
+                style="background-image: url(/images/couple-2.jpg)"
               ></div>
               <div class="timeline-panel">
                 <div class="overlay overlay-2"></div>

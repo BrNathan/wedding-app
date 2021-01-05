@@ -2,7 +2,13 @@
   <div id="login-page">
     <b-container class="mb-5 mt-5">
       <b-row class="justify-content-center">
-        <b-col cols="6">
+        <b-col
+          cols="12"
+          sm="12"
+          md="9"
+          lg="6"
+          xl="6"
+        >
           <b-card>
             <b-card-text>
               <b-row>
@@ -314,6 +320,7 @@ export default class FirstConnectionPage extends Vue {
       this.stateEmail = false;
       this.feedbackEmail = this.FEEDBACK_EMPTY_FIELD;
       // TODO VALID EMAIL
+      // TODO UNIQUE EMAIL
     } else {
       this.stateEmail = null;
     }
