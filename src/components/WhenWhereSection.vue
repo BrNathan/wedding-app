@@ -63,7 +63,7 @@ declare interface Place {
 })
 export default class WhenWhereSection extends Vue {
   public placesInternal: Place[] = [{
-    title: 'La Mairie',
+    title: 'Mariage Civil',
     imageSourceLink: '/images/place-1.jpg',
     beginningDate: new Date(2021, 7, 21, 15, 30),
     address: {
@@ -97,7 +97,7 @@ export default class WhenWhereSection extends Vue {
     onlyViewBy: ['CER'],
     googleMapsLink: 'https://goo.gl/maps/3qHvNVQhKJweCxb56'
   }, {
-    title: 'Le Repas',
+    title: 'Le Diner',
     imageSourceLink: '/images/place-3.jpg',
     beginningDate: new Date(2021, 7, 21, 20, 0),
     address: {

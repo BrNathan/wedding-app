@@ -20,7 +20,7 @@
             <b-col>
               <b-form-group>
                 <template #label>
-                  A la <strong>mairie</strong>, je serais :
+                  Au <strong>mariage civil</strong>, je serais :
                 </template>
                 <b-form-radio-group v-model="item.answer">
                   <b-form-radio :value="true"> Présent(e) </b-form-radio>
@@ -46,7 +46,7 @@
             <b-col>
               <b-form-group>
                 <template #label>
-                  Au <strong>repas</strong>, je serais :
+                  Au <strong>diner</strong>, je serais :
                 </template>
                 <b-form-radio-group v-model="item.answer">
                   <b-form-radio :value="true"> Présent(e) </b-form-radio>
