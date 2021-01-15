@@ -6,7 +6,7 @@ class ApiService {
 
   constructor() {
     this.apiInstance = Axios.create({
-      baseURL: 'http://[::1]:3000/'
+      baseURL: process.env.VUE_APP_API_BASE_URL
     });
   }
 

@@ -45,22 +45,22 @@ class AnswerService {
 
     const result: boolean[] = [];
     if ((idAnswerTrueList?.length ?? 0) > 0) {
-      const orLogicAnswerTrue = {
-        or: [...idAnswerTrueList.map(i => { return { id: i }; })]
-      };
+      // const orLogicAnswerTrue = {
+      //   or: [...idAnswerTrueList.map(i => { return { id: i }; })]
+      // };
 
-      const trueUrl = url + '?where=' + encodeURIComponent(JSON.stringify(orLogicAnswerTrue));
-      const countTrueUpdated = await apiService.doPatchRequest<{answer: boolean}, {count: number}>(trueUrl, { answer: true });
+      // const trueUrl = url + '?where=' + encodeURIComponent(JSON.stringify(orLogicAnswerTrue));
+      const countTrueUpdated = await apiService.doPatchRequest<{userInvitationIds: number[]; answer: boolean}, {count: number}>(url, { answer: true, userInvitationIds: idAnswerTrueList });
 
       result.push((idAnswerTrueList?.length ?? 0) === countTrueUpdated.count);
     }
     if ((idAnswerFalseList?.length ?? 0) > 0) {
-      const orLogicAnswerFalse = {
-        or: [...idAnswerFalseList.map(i => { return { id: i }; })]
-      };
+      // const orLogicAnswerFalse = {
+      //   or: [...idAnswerFalseList.map(i => { return { id: i }; })]
+      // };
 
-      const falseUrl = url + '?where=' + encodeURIComponent(JSON.stringify(orLogicAnswerFalse));
-      const countFalseUpdated = await apiService.doPatchRequest<{answer: boolean}, {count: number}>(falseUrl, { answer: false });
+      // const falseUrl = url + '?where=' + encodeURIComponent(JSON.stringify(orLogicAnswerFalse));
+      const countFalseUpdated = await apiService.doPatchRequest<{userInvitationIds: number[]; answer: boolean}, {count: number}>(url, { answer: false, userInvitationIds: idAnswerFalseList });
 
       result.push((idAnswerFalseList?.length ?? 0) === countFalseUpdated.count);
     }

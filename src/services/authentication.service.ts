@@ -7,7 +7,7 @@ import localStorageService from './local-storage.service';
 export interface JWTTokenPayload {
   email: string;
   username: string;
-  userGroup: string;
+  userRole: string;
   id: number;
   exp: number;
   iat: number;
