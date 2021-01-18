@@ -3,13 +3,13 @@
     <div class="container">
       <div class="row justify-content-center pb-5">
         <div class="col-md-12 text-center heading-section">
-          <span class="clone">Testimony</span>
-          <h2 class="mb-3">Sweet Messages</h2>
+          <span class="clone">Bon à Savoir</span>
+          <h2 class="mb-3">Bon à Savoir</h2>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <carousel
+          <!-- <carousel
             :autoplay="true"
             :autoplayTimeout="5000"
             :autoplayHoverPause="false"
@@ -20,7 +20,7 @@
             :paginationColor="'#e6e6e6'"
             :paginationPadding="5"
             :centerMode="true">
-            <slide>
+            <slide> -->
               <div class="item">
                 <div class="testimony-wrap py-4">
                   <div class="text">
@@ -37,8 +37,8 @@
                   </div>
                 </div>
               </div>
-            </slide>
-            <slide>
+            <!-- </slide> -->
+            <!-- <slide> -->
               <div class="item">
                 <div class="testimony-wrap py-4">
                   <div class="text">
@@ -55,8 +55,8 @@
                   </div>
                 </div>
               </div>
-            </slide>
-            <slide>
+            <!-- </slide> -->
+            <!-- <slide> -->
               <div class="item">
                 <div class="testimony-wrap py-4">
                   <div class="text">
@@ -73,8 +73,8 @@
                   </div>
                 </div>
               </div>
-            </slide>
-            <slide>
+            <!-- </slide>
+            <slide> -->
               <div class="item">
                 <div class="testimony-wrap py-4">
                   <div class="text">
@@ -91,8 +91,8 @@
                   </div>
                 </div>
               </div>
-            </slide>
-            <slide>
+            <!-- </slide>
+            <slide> -->
               <div class="item">
                 <div class="testimony-wrap py-4">
                   <div class="text">
@@ -109,8 +109,8 @@
                   </div>
                 </div>
               </div>
-            </slide>
-          </carousel>
+            <!-- </slide>
+          </carousel> -->
         </div>
       </div>
     </div>
@@ -127,7 +127,7 @@ import { Carousel, Slide } from 'vue-carousel';
     Slide
   }
 })
-export default class GreetingSection extends Vue {
+export default class ASavoirSection extends Vue {
 }
 </script>
 

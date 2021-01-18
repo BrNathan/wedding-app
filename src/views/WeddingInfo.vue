@@ -14,11 +14,11 @@
 
       <lovestory-section />
 
-      <!-- <greeting-section /> -->
-
       <when-where-section />
 
       <people-section />
+
+      <a-savoir-section />
 
       <!-- <rsvp-section /> -->
 
@@ -33,7 +33,7 @@ import HomeSection from '@/components/HomeSection.vue';
 import BrideGroomSection from '@/components/BrideGroomSection.vue';
 import WeddingDateSection from '@/components/WeddingDateSection.vue';
 import LovestorySection from '@/components/LovestorySection.vue';
-import GreetingSection from '@/components/GreetingSection.vue';
+import ASavoirSection from '@/components/ASavoirSection.vue';
 import PeopleSection from '@/components/PeopleSection.vue';
 import WhenWhereSection from '@/components/WhenWhereSection.vue';
 import RsvpSection from '@/components/RsvpSection.vue';
@@ -46,7 +46,7 @@ import SpinnerComponent from '@/components/Spinner.vue';
     'wedding-date-section': WeddingDateSection,
     'bride-groom-section': BrideGroomSection,
     'lovestory-section': LovestorySection,
-    'greeting-section': GreetingSection,
+    'a-savoir-section': ASavoirSection,
     'people-section': PeopleSection,
     'when-where-section': WhenWhereSection,
     'rsvp-section': RsvpSection,

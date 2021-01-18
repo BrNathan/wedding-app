@@ -8,7 +8,7 @@
       </b-row>
       <b-row>
         <b-col>
-          <p>Vous êtes invité à célébrer notre mariage !</p>
+          <p>Vous êtes invité à célébrer le mariage d'<span class="amelie-and-nathan-wedding">Amélie et Nathan</span></p>
         </b-col>
       </b-row>
     </b-container>
@@ -64,7 +64,7 @@
       >
         <b-row>
           <b-col>
-            <h2>Ma liste d'accompagnant</h2>
+            <h2>Ma liste d'accompagnants</h2>
           </b-col>
         </b-row>
         <b-row>
@@ -605,6 +605,10 @@ export default class AnswerPage extends Vue {
   }
   .custom-control-inline {
     line-height: 1.4rem;
+  }
+  .amelie-and-nathan-wedding {
+    font-family: "Great Vibes", cursive;
+    color: #f67e7d !important;
   }
 }
 </style>
