@@ -1,29 +1,37 @@
 <template>
   <div id="wedding-info">
-    <!-- <template v-if="isLoading">
-      <div class="d-flex justify-content-center mb-3">
-        <spinner-component />
+    <b-overlay
+      :show="isLoading"
+      :opacity="overlayOpacity"
+      :variant="'white'"
+      :no-fade="true"
+      no-center
+    >
+      <div>
+        <home-section />
+
+        <wedding-date-section />
+
+        <bride-groom-section />
+
+        <lovestory-section />
+
+        <when-where-section />
+
+        <people-section />
+
+        <a-savoir-section />
+
+        <!-- <rsvp-section /> -->
+
+        <!-- <gallery-section /> -->
       </div>
-    </template> -->
-    <div>
-      <home-section />
-
-      <wedding-date-section />
-
-      <bride-groom-section />
-
-      <lovestory-section />
-
-      <when-where-section />
-
-      <people-section />
-
-      <a-savoir-section />
-
-      <!-- <rsvp-section /> -->
-
-      <!-- <gallery-section /> -->
-    </div>
+      <template #overlay>
+        <div class="d-flex justify-content-center mb-3 toto">
+          <spinner-component />
+        </div>
+      </template>
+    </b-overlay>
   </div>
 </template>
 
@@ -56,14 +64,24 @@ import SpinnerComponent from '@/components/Spinner.vue';
 })
 export default class WeddingInfo extends Vue {
   public isLoading = true;
+  public overlayOpacity = 1;
 
   public mounted() {
     setTimeout(() => {
       this.isLoading = false;
-    }, 500);
+    }, 1000);
   }
 }
 </script>
 
 <style lang="scss">
+#wedding-info {
+  .toto {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+  }
+}
 </style>
