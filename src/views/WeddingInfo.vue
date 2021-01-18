@@ -27,7 +27,7 @@
         <!-- <gallery-section /> -->
       </div>
       <template #overlay>
-        <div class="d-flex justify-content-center mb-3 toto">
+        <div class="d-flex justify-content-center mb-3 overlay-custom">
           <spinner-component />
         </div>
       </template>
@@ -76,11 +76,10 @@ export default class WeddingInfo extends Vue {
 
 <style lang="scss">
 #wedding-info {
-  .toto {
+  .overlay-custom {
     position: fixed;
     top: 50%;
     left: 50%;
-    /* bring your own prefixes */
     transform: translate(-50%, -50%);
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <b-spinner class="tata" type="grow" label="Loading..." v-show="isShow"></b-spinner>
+  <b-spinner class="spinner-custom" type="grow" label="Loading..." v-show="isShow"></b-spinner>
 </template>
 
 <script lang="ts">
@@ -14,7 +14,7 @@ export default class SpinnerComponent extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.tata {
+.spinner-custom {
   color: #f67e7d;
 }
 </style>
