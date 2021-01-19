@@ -9,12 +9,19 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 // Font-Awesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faCamera, faTshirt, faCircle, faCheck, faGift } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome';
 
-library.add(faUserSecret);
+library.add(
+  faCamera,
+  faTshirt,
+  faCircle,
+  faCheck,
+  faGift
+);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component('font-awesome-layers', FontAwesomeLayers);
 
 Vue.config.productionTip = false;
 // Install BootstrapVue
