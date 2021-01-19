@@ -1,19 +1,19 @@
 <template>
-  <div id="login-page">
+  <div id="first-connection-page">
     <b-container class="mb-5 mt-5">
       <b-row class="justify-content-center">
-        <b-col
-          cols="12"
-          sm="12"
-          md="9"
-          lg="6"
-          xl="6"
-        >
+        <b-col cols="12" sm="12" md="9" lg="6" xl="6">
           <b-card>
             <b-card-text>
               <b-row>
-                <b-col>
-                  <h2>Bienvenue !</h2>
+                <b-col cols="12" class="mb-3 text-center">
+                  <h2>
+                    Mariage
+                    <span class="spouse-bride-name">Amélie & Nathan</span>
+                  </h2>
+                </b-col>
+                <b-col cols="12" >
+                  <h3>Bienvenue !</h3>
                   <p>C'est votre première connection !</p>
                   <p>
                     Voici quelques informations à compléter/vérifier avant
@@ -178,7 +178,7 @@
                         <b-col class="text-right">
                           <b-button
                             variant="outline-secondary"
-                            :to="{name: logoutRouteName}"
+                            :to="{ name: logoutRouteName }"
                           >
                             Retour
                           </b-button>
@@ -368,4 +368,10 @@ export default class FirstConnectionPage extends Vue {
 </script>
 
 <style lang="scss">
+#first-connection-page {
+  .spouse-bride-name {
+    font-family: "Great Vibes", cursive;
+    color: #f67e7d !important;
+  }
+}
 </style>

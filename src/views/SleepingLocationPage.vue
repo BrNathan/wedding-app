@@ -10,7 +10,10 @@
     <b-container class="mb-3">
       <b-row>
         <b-col>
-          <p>Voici une liste non exhaustive de différents lieux où dormir, proches de la cérémonie</p>
+          <p>
+            Voici une liste non exhaustive de différents lieux où dormir,
+            proches de la cérémonie
+          </p>
         </b-col>
       </b-row>
     </b-container>
@@ -26,7 +29,7 @@
           :key="'location-' + index"
           class="mb-5"
         >
-          <b-card no-body class="h-100">
+          <b-card no-body class="h-100 custom-card-sleeping">
             <b-card-img-lazy
               offset="10"
               :src="item.imageSourceLink"
@@ -41,7 +44,6 @@
               <b-card-text
                 >{{ item.distance }} - {{ item.travelTime }}min</b-card-text
               >
-
             </b-card-body>
             <template #footer v-if="item.googleMapsLink">
               <template v-if="item.googleMapsLink">
@@ -141,6 +143,9 @@ export default class SleepingLocationPage extends Vue {
     height: 10vw;
     object-fit: cover;
     min-height: 200px;
+  }
+  .custom-card-sleeping:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
 }
 </style>

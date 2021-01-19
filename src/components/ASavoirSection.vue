@@ -18,7 +18,11 @@
           v-for="(item, index) in goodToKnowList"
           :key="'goodToKnow-' + index"
         >
-          <b-card no-body class="overflow-hidden custom-card" style="border-radius: 0.5rem">
+          <b-card
+            no-body
+            class="overflow-hidden custom-card"
+            style="border-radius: 0.5rem"
+          >
             <b-row no-gutters>
               <b-col cols="2" class="align-self-center icon-color">
                 <font-awesome-icon
@@ -91,7 +95,7 @@ export default class ASavoirSection extends Vue {
     border-radius: 0.5rem;
 
     &:hover {
-      box-shadow: 0 10px 16px rgba(0,0,0,.2);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     }
   }
 }

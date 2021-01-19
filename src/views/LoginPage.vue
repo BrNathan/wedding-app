@@ -8,7 +8,10 @@
               <b-form @submit="onSubmit">
                 <b-form-row>
                   <b-col cols="12" class="mb-3 text-center">
-                    <h2>Mariage <span class="spouse-bride-name">Amélie & Nathan</span></h2>
+                    <h2>
+                      Mariage
+                      <span class="spouse-bride-name">Amélie & Nathan</span>
+                    </h2>
                   </b-col>
                   <b-col cols="12">
                     <b-form-group
@@ -175,8 +178,10 @@ export default class LoginPage extends Vue {
 </script>
 
 <style lang="scss">
-.spouse-bride-name {
-  font-family: "Great Vibes", cursive;
-  color: #f67e7d !important;
+#login-page {
+  .spouse-bride-name {
+    font-family: "Great Vibes", cursive;
+    color: #f67e7d !important;
+  }
 }
 </style>
