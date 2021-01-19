@@ -2,17 +2,14 @@
   <div id="login-page">
     <b-container class="mb-5 mt-5">
       <b-row class="justify-content-center">
-        <b-col
-          cols="12"
-          sm="12"
-          md="9"
-          lg="6"
-          xl="6"
-        >
+        <b-col cols="12" sm="12" md="9" lg="6" xl="6">
           <b-card>
             <b-card-text>
               <b-form @submit="onSubmit">
                 <b-form-row>
+                  <b-col cols="12" class="mb-3 text-center">
+                    <h2>Mariage <span class="spouse-bride-name">Amélie & Nathan</span></h2>
+                  </b-col>
                   <b-col cols="12">
                     <b-form-group
                       description="Entre ton identifiant"
@@ -178,4 +175,8 @@ export default class LoginPage extends Vue {
 </script>
 
 <style lang="scss">
+.spouse-bride-name {
+  font-family: "Great Vibes", cursive;
+  color: #f67e7d !important;
+}
 </style>
