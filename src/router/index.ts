@@ -22,7 +22,7 @@ const routes: Array<RouteConfig> = [
         name: ROUTES_NAMES.WEDDING_INFO,
         component: WeddingInfo,
         meta: {
-          isPublic: false
+          isPublic: true
         }
       },
       {

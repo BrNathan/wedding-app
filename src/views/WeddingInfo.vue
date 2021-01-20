@@ -44,8 +44,6 @@ import LovestorySection from '@/components/LovestorySection.vue';
 import ASavoirSection from '@/components/ASavoirSection.vue';
 import PeopleSection from '@/components/PeopleSection.vue';
 import WhenWhereSection from '@/components/WhenWhereSection.vue';
-import RsvpSection from '@/components/RsvpSection.vue';
-import GallerySection from '@/components/GallerySection.vue';
 import SpinnerComponent from '@/components/Spinner.vue';
 
 @Component({
@@ -57,8 +55,6 @@ import SpinnerComponent from '@/components/Spinner.vue';
     'a-savoir-section': ASavoirSection,
     'people-section': PeopleSection,
     'when-where-section': WhenWhereSection,
-    'rsvp-section': RsvpSection,
-    'gallery-section': GallerySection,
     'spinner-component': SpinnerComponent
   }
 })
