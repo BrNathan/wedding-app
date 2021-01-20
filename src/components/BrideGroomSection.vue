@@ -1,7 +1,13 @@
 <template>
   <section class="ftco-section bg-section">
-    <div class="overlay-top" style="background-image: url(/images/top-bg.jpg);"></div>
-    <div class="overlay-bottom" style="background-image: url(/images/bottom-bg.jpg);"></div>
+    <div
+      class="overlay-top"
+      style="background-image: url(/images/top-bg.jpg);"
+    ></div>
+    <div
+      class="overlay-bottom"
+      style="background-image: url(/images/bottom-bg.jpg);"
+    ></div>
     <div class="container">
       <div class="row justify-content-center pb-5">
         <div class="col-md-12 text-center heading-section">
@@ -14,27 +20,33 @@
           <div class="row">
             <div class="col-md-6 text-center d-flex align-items-stretch">
               <div class="bride-groom">
-                <div class="img" style="background-image: url(/images/bride8.jpg);"></div>
+                <div class="img">
+                  <b-img-lazy fluid src="/images/bride8.jpg"> </b-img-lazy>
+                </div>
                 <div class="text mt-4 px-4">
                   <h2>Amélie André</h2>
-                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                    live
-                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a
-                    large
-                    language ocean.</p>
+                  <p>
+                    Far far away, behind the word mountains, far from the
+                    countries Vokalia and Consonantia, there live the blind
+                    texts. Separated they live in Bookmarksgrove right at the
+                    coast of the Semantics, a large language ocean.
+                  </p>
                 </div>
               </div>
             </div>
             <div class="col-md-6 text-center d-flex align-items-stretch">
               <div class="bride-groom">
-                <div class="img" style="background-image: url(/images/groom3.jpg);"></div>
+                <div class="img">
+                  <b-img-lazy fluid src="/images/groom3.jpg"> </b-img-lazy>
+                </div>
                 <div class="text mt-4 px-4">
                   <h2>Nathan Bruet</h2>
-                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                    live
-                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a
-                    large
-                    language ocean.</p>
+                  <p>
+                    Far far away, behind the word mountains, far from the
+                    countries Vokalia and Consonantia, there live the blind
+                    texts. Separated they live in Bookmarksgrove right at the
+                    coast of the Semantics, a large language ocean.
+                  </p>
                 </div>
               </div>
             </div>
@@ -56,5 +68,9 @@ export default class BrideGroomSection extends Vue {
 </script>
 
 <style lang="scss" scoped>
-
+.bride-groom {
+  .img {
+    overflow: hidden !important;
+  }
+}
 </style>

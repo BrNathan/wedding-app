@@ -1,3 +1,5 @@
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 module.exports = {
   chainWebpack: config => {
     config.module.rule('eslint').use('eslint-loader').options({
@@ -8,5 +10,6 @@ module.exports = {
         args[0].title = 'Amélie & Nathan';
         return args;
       });
+    // config.plugin('webpack-bundle-analyzer').use(BundleAnalyzerPlugin);
   }
 };

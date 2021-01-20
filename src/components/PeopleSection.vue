@@ -27,10 +27,9 @@
               <template v-slot:content>
                 <div class="item">
                   <div class="people text-center">
-                    <div
-                      class="img"
-                      :style="'background-image: url(' + item.imgPath + ');'"
-                    ></div>
+                    <div class="img">
+                      <b-img-lazy fluid :src="item.imgPath"> </b-img-lazy>
+                    </div>
                     <div class="text">
                       <h3>{{ item.firstName }}</h3>
                       <span>{{ item.placeName }}</span>
@@ -136,6 +135,11 @@ export default class PeopleSection extends Vue {
 
 <style lang="scss">
 #people-section {
+  .people {
+    .img {
+      overflow: hidden !important;
+    }
+  }
   .people-carousel {
     .vueperslide--active {
       .people .img {

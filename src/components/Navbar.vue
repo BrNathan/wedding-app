@@ -15,6 +15,7 @@
           <b-nav-item :to="{ name: homePageName, hash: '#when-where-section' }">Horaires</b-nav-item>
           <b-nav-item :to="{ name: answerPageName }">Mon Invitation</b-nav-item>
           <b-nav-item :to="{ name: sleepPageName }">Où dormir ?</b-nav-item>
+          <b-nav-item :to="{ name: homePageName, hash: '#a-savoir-section' }">Bon a savoir</b-nav-item>
           <b-nav-item :to="{ name: contactPageName }"
             >Nous contacter</b-nav-item
           >

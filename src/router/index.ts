@@ -3,7 +3,6 @@ import VueRouter, { RouteConfig } from 'vue-router';
 import { ROUTES_NAMES } from './router-names';
 import { authenticationStore } from '@/store/authentication';
 import WeddingLayout from '../layout/WeddingLayout.vue';
-import WeddingInfo from '../views/WeddingInfo.vue';
 
 import AuthenticationService from '@/services/authentication.service';
 
@@ -20,15 +19,15 @@ const routes: Array<RouteConfig> = [
       {
         path: '',
         name: ROUTES_NAMES.WEDDING_INFO,
-        component: WeddingInfo,
+        component: () => import(/* webpackChunkName: "wedding-info" */'../views/WeddingInfo.vue'),
         meta: {
-          isPublic: true
+          isPublic: false
         }
       },
       {
         path: 'answer',
         name: ROUTES_NAMES.WEDDING_ANSWER,
-        component: () => import('../views/AnswerPage.vue'),
+        component: () => import(/* webpackChunkName: "answer-page" */'../views/AnswerPage.vue'),
         meta: {
           isPublic: false
         }
@@ -36,7 +35,7 @@ const routes: Array<RouteConfig> = [
       {
         path: 'sleeping-location',
         name: ROUTES_NAMES.SLEEPING_LOCATION,
-        component: () => import('../views/SleepingLocationPage.vue'),
+        component: () => import(/* webpackChunkName: "sleeping-location-page" */'../views/SleepingLocationPage.vue'),
         meta: {
           isPublic: false
         }
@@ -44,7 +43,7 @@ const routes: Array<RouteConfig> = [
       {
         path: 'contact',
         name: ROUTES_NAMES.CONTACT_PAGE,
-        component: () => import('../views/ContactPage.vue'),
+        component: () => import(/* webpackChunkName: "contact-page" */'../views/ContactPage.vue'),
         meta: {
           isPublic: false
         }
@@ -54,7 +53,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/login',
     name: ROUTES_NAMES.LOGIN_PAGE,
-    component: () => import('../views/LoginPage.vue'),
+    component: () => import(/* webpackChunkName: "login-page" */'../views/LoginPage.vue'),
     meta: {
       isPublic: true
     }
@@ -62,7 +61,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/first-connection',
     name: ROUTES_NAMES.FIRST_CONNECTION_PAGE,
-    component: () => import('../views/FirstConnectionPage.vue'),
+    component: () => import(/* webpackChunkName: "first-connection-page" */'../views/FirstConnectionPage.vue'),
     meta: {
       isPublic: false
     }
@@ -70,7 +69,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/logout',
     name: ROUTES_NAMES.LOGOUT_PAGE,
-    component: () => import('../views/LogoutPage.vue'),
+    component: () => import(/* webpackChunkName: "logout-page" */'../views/LogoutPage.vue'),
     meta: {
       isPublic: true
     }

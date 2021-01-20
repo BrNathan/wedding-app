@@ -13,8 +13,10 @@
             <li class="animate-box">
               <div
                 class="timeline-badge"
-                style="background-image: url(/images/couple-1.jpg)"
-              ></div>
+              >
+              <b-img-lazy fluid src="/images/couple-1.jpg">
+              </b-img-lazy>
+              </div>
               <div class="timeline-panel text-md-right">
                 <div class="overlay"></div>
                 <div class="timeline-heading">
@@ -32,8 +34,9 @@
             <li class="timeline-inverted animate-box">
               <div
                 class="timeline-badge"
-                style="background-image: url(/images/couple-2.jpg)"
-              ></div>
+              >
+              <b-img-lazy fluid src="/images/couple-2.jpg">
+              </b-img-lazy></div>
               <div class="timeline-panel">
                 <div class="overlay overlay-2"></div>
                 <div class="timeline-heading">
@@ -51,8 +54,9 @@
             <li class="animate-box">
               <div
                 class="timeline-badge"
-                style="background-image: url(/images/couple-3.jpg)"
-              ></div>
+              >
+              <b-img-lazy fluid src="/images/couple-3.jpg">
+              </b-img-lazy></div>
               <div class="timeline-panel text-md-right">
                 <div class="overlay"></div>
                 <div class="timeline-heading">
@@ -70,8 +74,9 @@
             <li class="timeline-inverted animate-box">
               <div
                 class="timeline-badge"
-                style="background-image: url(/images/couple-4.jpg)"
-              ></div>
+              >
+              <b-img-lazy fluid src="/images/couple-4.jpg">
+              </b-img-lazy></div>
               <div class="timeline-panel">
                 <div class="overlay overlay-2"></div>
                 <div class="timeline-heading">
@@ -89,8 +94,9 @@
             <li class="animate-box">
               <div
                 class="timeline-badge"
-                style="background-image: url(/images/couple-5.jpg)"
-              ></div>
+              >
+              <b-img-lazy fluid src="/images/couple-5.jpg">
+              </b-img-lazy></div>
               <div class="timeline-panel text-md-right">
                 <div class="overlay"></div>
                 <div class="timeline-heading">
@@ -122,4 +128,9 @@ export default class LovestorySection extends Vue {
 </script>
 
 <style lang="scss" scoped>
+#lovestory-section {
+  .timeline-badge {
+    overflow: hidden!important;
+  }
+}
 </style>

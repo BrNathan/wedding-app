@@ -5,7 +5,6 @@
     style="background-image: url(/images/bg_2.jpg); background-size:cover; background-position: center center;"
     data-stellar-background-ratio="0.5"
   >
-    <!-- <link rel="stylesheet" href="/css/flaticon.css" /> -->
     <div class="overlay"></div>
     <div class="container">
       <div
