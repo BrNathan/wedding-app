@@ -4,9 +4,10 @@ import router from './router';
 import store from './store';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 // Webpack example
-// import 'bootstrap/dist/css/bootstrap.css';
-import '@/assets/css/styleModified.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+// Custom css
+import '@/assets/css/styleModified.min.css';
 // Font-Awesome
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCamera, faTshirt, faCircle, faCheck, faGift } from '@fortawesome/free-solid-svg-icons';
