@@ -26,10 +26,15 @@
                 <div class="text mt-4 px-4">
                   <h2>Amélie André</h2>
                   <p>
-                    Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia, there live the blind
-                    texts. Separated they live in Bookmarksgrove right at the
-                    coast of the Semantics, a large language ocean.
+                    "Mes proches me définissent comme une personne joyeuse et soucieuse du bonheur des autres,
+                    sans oublier de souligner mon caractère bien affirmé.
+                    <br />
+                    Gourmande, mes petits péchés mignons sont les Kinder Surprise et les bons macarons.
+                    <!-- J'apprécie les petits moments de complicités passés devant un bon match de hand ou de foot, accompagné d'une pizza et de la bière qui va bien. -->
+                    <br />
+                    J'aime me ressourcer pendant de belles balades champêtres, accompagnée de mon homme et de notre petit chien, Lancôme."
+                    <!-- <br /> -->
+                    <!-- Gentille mais chiante. -->
                   </p>
                 </div>
               </div>
@@ -42,10 +47,10 @@
                 <div class="text mt-4 px-4">
                   <h2>Nathan Bruet</h2>
                   <p>
-                    Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia, there live the blind
-                    texts. Separated they live in Bookmarksgrove right at the
-                    coast of the Semantics, a large language ocean.
+                    Depuis tout petit, je suis de nature calme et aimant
+                    Par rapport au reste de la fraterie, je suis plutôt organisé.
+                    De nature calme et aimant depuis tout petit,
+
                   </p>
                 </div>
               </div>

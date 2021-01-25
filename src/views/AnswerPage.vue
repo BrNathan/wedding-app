@@ -6,9 +6,24 @@
           <h1>Mon invitation</h1>
         </b-col>
       </b-row>
+      <b-row v-if="isDateAnswerOut">
+        <b-col>
+          <p class="text-warning">
+            <font-awesome-icon :icon="['fas', 'exclamation-circle']" />
+            La date limite de réponse est dépassée. S'il y a un quelconque
+            changement, contactez-nous
+            <router-link :to="{ name: contactPageName }"><b>ICI</b></router-link>
+          </p>
+        </b-col>
+      </b-row>
       <b-row>
         <b-col>
-          <p>Vous êtes invité à célébrer le mariage d'<span class="amelie-and-nathan-wedding">Amélie et Nathan</span></p>
+          <p>
+            Vous êtes invité à célébrer le mariage d'<span
+              class="amelie-and-nathan-wedding"
+              >Amélie et Nathan</span
+            >
+          </p>
         </b-col>
       </b-row>
     </b-container>
@@ -22,7 +37,10 @@
                 <template #label>
                   Au <strong>mariage civil</strong>, je serais :
                 </template>
-                <b-form-radio-group v-model="item.answer">
+                <b-form-radio-group
+                  v-model="item.answer"
+                  :disabled="isDateAnswerOut"
+                >
                   <b-form-radio :value="true"> Présent(e) </b-form-radio>
                   <b-form-radio :value="false"> Absent(e) </b-form-radio>
                 </b-form-radio-group>
@@ -35,7 +53,10 @@
                 <template #label>
                   A la <strong>cérémonie laïque</strong>, je serais :
                 </template>
-                <b-form-radio-group v-model="item.answer">
+                <b-form-radio-group
+                  v-model="item.answer"
+                  :disabled="isDateAnswerOut"
+                >
                   <b-form-radio :value="true"> Présent(e) </b-form-radio>
                   <b-form-radio :value="false"> Absent(e) </b-form-radio>
                 </b-form-radio-group>
@@ -48,7 +69,10 @@
                 <template #label>
                   Au <strong>diner</strong>, je serais :
                 </template>
-                <b-form-radio-group v-model="item.answer">
+                <b-form-radio-group
+                  v-model="item.answer"
+                  :disabled="isDateAnswerOut"
+                >
                   <b-form-radio :value="true"> Présent(e) </b-form-radio>
                   <b-form-radio :value="false"> Absent(e) </b-form-radio>
                 </b-form-radio-group>
@@ -85,6 +109,7 @@
                       v-model="selfUserGuest.firstName"
                       :state="stateUserFirstName"
                       trim
+                      :disabled="isDateAnswerOut"
                     />
                   </b-form-group>
                   <b-form-group
@@ -97,6 +122,7 @@
                       v-model="selfUserGuest.lastName"
                       :state="stateUserLastName"
                       trim
+                      :disabled="isDateAnswerOut"
                     />
                   </b-form-group>
                 </b-card>
@@ -113,6 +139,7 @@
                     v-model="isSpouseGuest"
                     name="check-button-spouse"
                     switch
+                    :disabled="isDateAnswerOut"
                   >
                     Oui
                   </b-form-checkbox>
@@ -132,6 +159,7 @@
                       v-model="spouseGuest.firstName"
                       :state="stateSpouseFirstName"
                       trim
+                      :disabled="isDateAnswerOut"
                     />
                   </b-form-group>
                   <b-form-group
@@ -144,6 +172,7 @@
                       v-model="spouseGuest.lastName"
                       :state="stateSpouseLastName"
                       trim
+                      :disabled="isDateAnswerOut"
                     />
                   </b-form-group>
                 </b-card>
@@ -158,6 +187,7 @@
                 v-model="isChildrenGuest"
                 name="check-button-spouse"
                 switch
+                :disabled="isDateAnswerOut"
               >
                 Oui
               </b-form-checkbox>
@@ -184,6 +214,7 @@
                     :id="'input-child-firstName' + index"
                     v-model="item.firstName"
                     trim
+                    :disabled="isDateAnswerOut"
                   />
                 </b-form-group>
                 <b-form-group
@@ -194,6 +225,7 @@
                     :id="'input-child-lastName' + index"
                     v-model="item.lastName"
                     trim
+                    :disabled="isDateAnswerOut"
                   />
                 </b-form-group>
                 <b-form-group
@@ -206,6 +238,7 @@
                       v-model="item.age"
                       type="number"
                       trim
+                      :disabled="isDateAnswerOut"
                     />
                   </b-input-group>
                 </b-form-group>
@@ -213,14 +246,27 @@
                   @click="removeChild(index)"
                   variant="primary"
                   class="mb-2"
+                  :disabled="isDateAnswerOut"
+                  v-if="!isDateAnswerOut"
                 >
                   <b-icon icon="trash" aria-label="Remove"></b-icon>
                 </b-button>
               </b-card>
             </b-col>
-            <b-col cols="12" sm="6" md="6" lg="4" xl="4">
+            <b-col
+              cols="12"
+              sm="6"
+              md="6"
+              lg="4"
+              xl="4"
+              v-if="!isDateAnswerOut"
+            >
               <b-card border-variant="primary" class="mt-3 mb-3 text-center">
-                <b-button variant="primary" @click="addChild">
+                <b-button
+                  variant="primary"
+                  @click="addChild"
+                  :disabled="isDateAnswerOut"
+                >
                   Ajouter un autre enfant
                 </b-button>
               </b-card>
@@ -234,6 +280,7 @@
                 v-model="isOtherGuest"
                 name="check-button-other"
                 switch
+                :disabled="isDateAnswerOut"
               >
                 Oui
               </b-form-checkbox>
@@ -260,6 +307,7 @@
                     :id="'input-other-firstName' + index"
                     v-model="item.firstName"
                     trim
+                    :disabled="isDateAnswerOut"
                   />
                 </b-form-group>
                 <b-form-group
@@ -270,20 +318,34 @@
                     :id="'input-other-lastName' + index"
                     v-model="item.lastName"
                     trim
+                    :disabled="isDateAnswerOut"
                   />
                 </b-form-group>
                 <b-button
                   @click="removeOther(index)"
                   variant="primary"
                   class="mb-2"
+                  :disabled="isDateAnswerOut"
+                  v-if="!isDateAnswerOut"
                 >
                   <b-icon icon="trash" aria-label="Remove"></b-icon>
                 </b-button>
               </b-card>
             </b-col>
-            <b-col cols="12" sm="6" md="6" lg="4" xl="4">
+            <b-col
+              cols="12"
+              sm="6"
+              md="6"
+              lg="4"
+              xl="4"
+              v-if="!isDateAnswerOut"
+            >
               <b-card border-variant="primary" class="mt-3 mb-3 text-center">
-                <b-button variant="primary" @click="addOther">
+                <b-button
+                  variant="primary"
+                  @click="addOther"
+                  :disabled="isDateAnswerOut"
+                >
                   Ajouter un autre personne
                 </b-button>
               </b-card>
@@ -296,8 +358,9 @@
           <b-col>
             <b-button
               variant="primary"
-              :disabled="isSaveButtonDisabled"
+              :disabled="isDateAnswerOut || isSaveButtonDisabled"
               @click="saveGuest"
+              v-if="!isDateAnswerOut"
             >
               Sauvegarder
               <template v-if="isSaveLoading">
@@ -325,11 +388,22 @@ import {
   UserGuest,
   UserInfo
 } from '../utils/types/index';
+import { ROUTES_NAMES } from '@/router/router-names';
 
 @Component({
   components: {}
 })
 export default class AnswerPage extends Vue {
+  public endDateToAnswer: Date = new Date(2021, 3, 1, 0, 1);
+
+  public get isDateAnswerOut(): boolean {
+    return (new Date()) > this.endDateToAnswer;
+  }
+
+  public get contactPageName(): string {
+    return ROUTES_NAMES.CONTACT_PAGE;
+  }
+
   public userInvitations: UserInvitation[] = [];
 
   public async mounted() {
@@ -609,6 +683,12 @@ export default class AnswerPage extends Vue {
   .amelie-and-nathan-wedding {
     font-family: "Great Vibes", cursive;
     color: #f67e7d !important;
+  }
+  input:disabled {
+    cursor: not-allowed;
+  }
+  .custom-control-input:disabled ~ .custom-control-label {
+    cursor: not-allowed;
   }
 }
 </style>

@@ -25,8 +25,8 @@
                 </div>
                 <div class="timeline-body">
                   <p>
-                    Un jour pas comme les autres, Amélie est venue encourager sa cousine Pauline, lors de sa compétition de natation.
-                    Sous les éloges de celle-ci, Amélie est tombée sous le charme de ce beau Nathan et de son slip de bain.
+                    Amélie est venue encourager sa cousine Pauline, lors d'une compétition de natation.
+                    Sous les éloges de celle-ci, Amélie est tombée sous le charme de ce beau Nathan.<!-- et de son slip de bain.-->
                   </p>
                 </div>
               </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="timeline-body">
                   <p>
-                    Après de longues conversations virtuelles, Nathan s'est déplacé à son tour au gymnase, pour venir voir sa belle.
+                    Après de longues conversations virtuelles, Nathan s'est déplacé à son tour au gymnase, pour venir voir la belle Amélie.
                     Mais sa présence au sein des tribunes n'est pas passée inaperçue...
                   </p>
                 </div>
@@ -66,7 +66,7 @@
                 <div class="timeline-body">
                   <p>
                     Entre les notes de musiques et les festivités de la fin du bac, Nathan a fait le premier pas...
-                    le premier baiser... le début d'une grande histoire d'amour.
+                    <!--le premier baiser...--> le début d'une grande histoire d'amour.
                   </p>
                 </div>
               </div>
@@ -105,7 +105,8 @@
                 </div>
                 <div class="timeline-body">
                   <p>
-                    En vadrouille sur le littoral de Cancale, à l'écart des regards indiscrèts, Nathan a pris la main de sa belle, mis genou à terre, et fait sa demande.
+                    En vadrouille sur le littoral de Cancale, à l'écart des regards indiscrèts, Nathan a pris la main d'Amélie,
+                    mis genou à terre et fait sa demande.
                   </p>
                 </div>
               </div>

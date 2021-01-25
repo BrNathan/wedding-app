@@ -53,7 +53,7 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class HomeSection extends Vue {
   public timePassed = 0;
   public timerInterval: number | undefined = undefined;
-  public weddingDate: Date = new Date(2021, 8, 21, 16, 30);
+  public weddingDate: Date = new Date(2021, 7, 21, 16, 30);
 
   public daysLeft: number | null = null;
   public hoursLeft: number | null = null;
@@ -129,6 +129,7 @@ export default class HomeSection extends Vue {
    */
   public mounted() {
     this.startTimer();
+    console.log(this.weddingDate);
   }
 
   /**

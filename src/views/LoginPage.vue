@@ -48,7 +48,7 @@
                           trim
                         ></b-form-input>
                         <b-input-group-append>
-                          <b-input-group-text
+                          <b-button
                             variant="outline-secondary"
                             @click="showPassword = !showPassword"
                           >
@@ -58,14 +58,14 @@
                             <template v-else>
                               <b-icon-eye-fill></b-icon-eye-fill>
                             </template>
-                          </b-input-group-text>
+                          </b-button>
                         </b-input-group-append>
                       </b-input-group>
                     </b-form-group>
                   </b-col>
                 </b-form-row>
                 <b-form-row>
-                  <b-col cols="12">
+                  <b-col cols="12" class="text-right">
                     <template v-if="!isLoggedIn">
                       <b-button
                         type="submit"

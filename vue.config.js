@@ -7,7 +7,7 @@ module.exports = {
     });
     config.plugin('html')
       .tap(args => {
-        args[0].title = 'Amélie & Nathan';
+        args[0].title = 'Mariage Amélie & Nathan';
         return args;
       });
     // config.plugin('webpack-bundle-analyzer').use(BundleAnalyzerPlugin);

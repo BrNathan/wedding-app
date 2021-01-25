@@ -50,7 +50,7 @@ class AnswerService {
       // };
 
       // const trueUrl = url + '?where=' + encodeURIComponent(JSON.stringify(orLogicAnswerTrue));
-      const countTrueUpdated = await apiService.doPatchRequest<{userInvitationIds: number[]; answer: boolean}, {count: number}>(url, { answer: true, userInvitationIds: idAnswerTrueList });
+      const countTrueUpdated = await apiService.doPutRequest<{userInvitationIds: number[]; answer: boolean}, {count: number}>(url, { answer: true, userInvitationIds: idAnswerTrueList });
 
       result.push((idAnswerTrueList?.length ?? 0) === countTrueUpdated.count);
     }
@@ -60,7 +60,7 @@ class AnswerService {
       // };
 
       // const falseUrl = url + '?where=' + encodeURIComponent(JSON.stringify(orLogicAnswerFalse));
-      const countFalseUpdated = await apiService.doPatchRequest<{userInvitationIds: number[]; answer: boolean}, {count: number}>(url, { answer: false, userInvitationIds: idAnswerFalseList });
+      const countFalseUpdated = await apiService.doPutRequest<{userInvitationIds: number[]; answer: boolean}, {count: number}>(url, { answer: false, userInvitationIds: idAnswerFalseList });
 
       result.push((idAnswerFalseList?.length ?? 0) === countFalseUpdated.count);
     }

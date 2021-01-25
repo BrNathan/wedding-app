@@ -161,6 +161,14 @@
                       <b-row>
                         <b-col>
                           <b-button
+                            variant="outline-secondary"
+                            :to="{ name: logoutRouteName }"
+                          >
+                            Retour
+                          </b-button>
+                        </b-col>
+                        <b-col class="text-right">
+                          <b-button
                             type="submit"
                             variant="primary"
                             :disabled="isButtonDisabled"
@@ -173,14 +181,6 @@
                                 label="Loading..."
                               ></b-spinner>
                             </template>
-                          </b-button>
-                        </b-col>
-                        <b-col class="text-right">
-                          <b-button
-                            variant="outline-secondary"
-                            :to="{ name: logoutRouteName }"
-                          >
-                            Retour
                           </b-button>
                         </b-col>
                       </b-row>
@@ -243,6 +243,8 @@ export default class FirstConnectionPage extends Vue {
   public isSubmitLoading = false;
 
   private FEEDBACK_EMPTY_FIELD = 'Ce champs ne doit pas être vide';
+  private FEEDBACK_EMAIL_ALREADY_USE = 'Cet email a déjà été utilisé';
+  private FEEDBACK_EMAIL_BAD_FORMAT = 'Ceci n\'est pas un email';
   private FEEDBACK_NOT_SAME_PASSWORD = 'Les deux mots de passe ne correspondent pas';
 
   public mounted() {
@@ -254,6 +256,13 @@ export default class FirstConnectionPage extends Vue {
     const userConnected = authenticationStore.tokenData;
     this.firstName = userConnected?.firstName ?? '';
     this.lastName = userConnected?.lastName ?? '';
+
+    if (this.firstName === '') {
+      this.editFirstName = true;
+    }
+    if (this.lastName === '') {
+      this.editLastName = true;
+    }
   }
 
   public get isButtonDisabled(): boolean {
@@ -275,7 +284,7 @@ export default class FirstConnectionPage extends Vue {
   public async onSubmit(e: Event) {
     e.preventDefault();
     try {
-      if (this.isFormValid()) {
+      if (await this.isFormValid()) {
         this.isSubmitLoading = true;
 
         await userService.updateUserProfile(
@@ -296,7 +305,7 @@ export default class FirstConnectionPage extends Vue {
     }
   }
 
-  public isFormValid(): boolean {
+  public async isFormValid(): Promise<boolean> {
     let isValid = true;
 
     if (IsNullOrWhiteSpace(this.firstName)) {
@@ -319,10 +328,21 @@ export default class FirstConnectionPage extends Vue {
       isValid = false;
       this.stateEmail = false;
       this.feedbackEmail = this.FEEDBACK_EMPTY_FIELD;
-      // TODO VALID EMAIL
-      // TODO UNIQUE EMAIL
     } else {
-      this.stateEmail = null;
+      const available = await userService.checkAvailabilityEmail(this.email);
+      if (available.isEmailWellFormed) {
+        if (!available.isEmailAvailable) {
+          isValid = false;
+          this.stateEmail = false;
+          this.feedbackEmail = this.FEEDBACK_EMAIL_ALREADY_USE;
+        } else {
+          this.stateEmail = null;
+        }
+      } else {
+        isValid = false;
+        this.stateEmail = false;
+        this.feedbackEmail = this.FEEDBACK_EMAIL_BAD_FORMAT;
+      }
     }
 
     if (IsNullOrWhiteSpace(this.password)) {

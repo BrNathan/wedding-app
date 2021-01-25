@@ -31,9 +31,19 @@ class ApiService {
   /**
    * doPatchRequest
    */
-  public async doPatchRequest<P, R>(url: string, data: P): Promise<R> {
+  // UNAVAILABLE IN O2SWITCH SERVER
+  // public async doPatchRequest<P, R>(url: string, data: P): Promise<R> {
+  //   this.setAuthToken();
+  //   const apiResponse = await this.apiInstance.patch<P, AxiosResponse<R>>(url, data);
+  //   return apiResponse.data;
+  // }
+
+  /**
+   * doPutRequest
+   */
+  public async doPutRequest<P, R>(url: string, data: P): Promise<R> {
     this.setAuthToken();
-    const apiResponse = await this.apiInstance.patch<P, AxiosResponse<R>>(url, data);
+    const apiResponse = await this.apiInstance.put<P, AxiosResponse<R>>(url, data);
     return apiResponse.data;
   }
 

@@ -17,9 +17,25 @@ class UserService {
     const url: string = API_ENDPOINTS.updateUserProfile.replace('{{userId}}', userId.toString());
 
     const hashedPassword = passwordHasherService.hash(newPassword);
-    const countTrueUpdated = await apiService.doPatchRequest<UpdateUserProfile, {count: number}>(url, { email: email, password: hashedPassword, firstName: firstName, lastName: lastName });
+    const countTrueUpdated = await apiService.doPutRequest<UpdateUserProfile, {count: number}>(url, { email: email, password: hashedPassword, firstName: firstName, lastName: lastName });
 
     return countTrueUpdated;
+  }
+
+  public async checkAvailabilityEmail(emailToCheck: string): Promise<{isEmailAvailable: boolean; isEmailWellFormed: boolean}> {
+    const url: string = API_ENDPOINTS.checkAvailabilityEmail;
+
+    const isAvailable = { isEmailAvailable: false, isEmailWellFormed: false };
+    try {
+      const result = await apiService.doPostRequest<{email: string}, {available: boolean}>(url, { email: emailToCheck });
+      isAvailable.isEmailAvailable = result.available;
+      isAvailable.isEmailWellFormed = true;
+    } catch (error) {
+      isAvailable.isEmailAvailable = false;
+      isAvailable.isEmailWellFormed = false;
+    }
+
+    return isAvailable;
   }
 
   // /**

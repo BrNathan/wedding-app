@@ -91,7 +91,7 @@ export default class SleepingLocationPage extends Vue {
     },
     {
       title: 'Golden Tulip Troyes',
-      description: 'L\'hôtel Golden Tulip Troyes se situe proche de la zone commercial de Barberey',
+      description: 'L\'hôtel Golden Tulip Troyes se situe proche de la zone commerciale de Barberey.',
       distance: '12km',
       travelTime: 13,
       googleMapsLink: 'https://goo.gl/maps/R3SdJ6uidsYXxwad7',
@@ -99,7 +99,7 @@ export default class SleepingLocationPage extends Vue {
     },
     {
       title: 'En tente',
-      description: 'Vous pouvez planter votre tente juste à côté du lieu de la cérémonie, pratique pour profiter de la soirée jusqu\'au bout',
+      description: 'Vous pouvez planter votre tente juste à côté du lieu de la cérémonie, pratique pour profiter de la soirée jusqu\'au bout de la nuit.',
       distance: '100m',
       travelTime: 1,
       imageSourceLink: '/images/sleeping-location/Tente.jpg',
@@ -107,7 +107,7 @@ export default class SleepingLocationPage extends Vue {
     },
     {
       title: 'Brit Hotel Essential',
-      description: 'L\'hôtel Brit Essential Troyes se situe proche de la zone commercial de Barberey',
+      description: 'L\'hôtel Brit Essential Troyes se situe proche de la zone commerciale de Barberey.',
       distance: '13km',
       travelTime: 13,
       imageSourceLink: '/images/sleeping-location/BritHotel.jpg',
@@ -115,7 +115,7 @@ export default class SleepingLocationPage extends Vue {
     },
     {
       title: 'Dans la salle',
-      description: 'Il sera possible de rester dormir dans la salle de réception, pratique pour profiter de la soirée jusqu\'au bout.',
+      description: 'Il sera possible de rester dormir dans la salle de réception, pratique pour profiter de la soirée jusqu\'au bout de la nuit.',
       distance: '10m',
       travelTime: 1,
       imageSourceLink: '/images/sleeping-location/MatelasSalle.jpg',
