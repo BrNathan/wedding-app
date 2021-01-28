@@ -129,7 +129,6 @@ export default class HomeSection extends Vue {
    */
   public mounted() {
     this.startTimer();
-    console.log(this.weddingDate);
   }
 
   /**

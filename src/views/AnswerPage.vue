@@ -500,7 +500,6 @@ export default class AnswerPage extends Vue {
     }
     try {
       const resultInvitation = await answerService.updateUserInvitationResponse(userId.toString(), this.userInvitations);
-      console.log(resultInvitation);
 
       if (this.isUserPresentAtLeastOnce) {
         const userGuestList: UserGuest[] = [];
@@ -557,10 +556,8 @@ export default class AnswerPage extends Vue {
         }
 
         const resultGuests = await answerService.updateUserGuest(userId.toString(), userGuestList);
-        console.log(resultGuests);
       } else {
         const resultGuests = await answerService.updateUserGuest(userId.toString(), []);
-        console.log(resultGuests);
       }
     } catch (error) {
       console.error(error);
