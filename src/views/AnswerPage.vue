@@ -12,7 +12,9 @@
             <font-awesome-icon :icon="['fas', 'exclamation-circle']" />
             La date limite de réponse est dépassée. S'il y a un quelconque
             changement, contactez-nous
-            <router-link :to="{ name: contactPageName }"><b>ICI</b></router-link>
+            <router-link :to="{ name: contactPageName }"
+              ><b>ICI</b></router-link
+            >
           </p>
         </b-col>
       </b-row>
@@ -30,55 +32,25 @@
     <b-form @submit="onSubmit">
       <!-- INVITATIONS -->
       <b-container class="mt-5 mb-5">
-        <b-form-row v-for="(item, index) in userInvitations" :key="index">
-          <template v-if="isInvitedToMairie(item)">
-            <b-col>
-              <b-form-group>
-                <template #label>
-                  Au <strong>mariage civil</strong>, je serais :
-                </template>
-                <b-form-radio-group
-                  v-model="item.answer"
-                  :disabled="isDateAnswerOut"
-                >
-                  <b-form-radio :value="true"> Présent(e) </b-form-radio>
-                  <b-form-radio :value="false"> Absent(e) </b-form-radio>
-                </b-form-radio-group>
-              </b-form-group>
-            </b-col>
-          </template>
-          <template v-if="isInvitedToCeremonie(item)">
-            <b-col>
-              <b-form-group>
-                <template #label>
-                  A la <strong>cérémonie laïque</strong>, je serais :
-                </template>
-                <b-form-radio-group
-                  v-model="item.answer"
-                  :disabled="isDateAnswerOut"
-                >
-                  <b-form-radio :value="true"> Présent(e) </b-form-radio>
-                  <b-form-radio :value="false"> Absent(e) </b-form-radio>
-                </b-form-radio-group>
-              </b-form-group>
-            </b-col>
-          </template>
-          <template v-if="isInvitedToRepas(item)">
-            <b-col>
-              <b-form-group>
-                <template #label>
-                  Au <strong>diner</strong>, je serais :
-                </template>
-                <b-form-radio-group
-                  v-model="item.answer"
-                  :disabled="isDateAnswerOut"
-                >
-                  <b-form-radio :value="true"> Présent(e) </b-form-radio>
-                  <b-form-radio :value="false"> Absent(e) </b-form-radio>
-                </b-form-radio-group>
-              </b-form-group>
-            </b-col>
-          </template>
+        <b-form-row v-for="(item, index) in userInvitationsUI" :key="index">
+          <b-col>
+            <b-form-group>
+              <template #label>
+                <span v-html="item.titleHtml"></span>, je serais :
+              </template>
+              <b-form-radio-group
+                v-model="item.answer"
+                :disabled="isDateAnswerOut"
+                :state="item.state"
+              >
+                <b-form-radio :value="true"> Présent(e) </b-form-radio>
+                <b-form-radio :value="false"> Absent(e) </b-form-radio>
+                <b-form-invalid-feedback :state="item.state">{{
+                  item.feedback
+                }}</b-form-invalid-feedback>
+              </b-form-radio-group>
+            </b-form-group>
+          </b-col>
         </b-form-row>
       </b-container>
       <!-- GUESTS -->
@@ -102,12 +74,13 @@
                   <b-form-group
                     label="Prénom"
                     label-for="input-user-firstName"
-                    :state="stateUserFirstName"
+                    :state="selfUserGuest.stateFirstName"
+                    :invalid-feedback="selfUserGuest.feedbackFirstName"
                   >
                     <b-form-input
                       id="input-user-firstName"
                       v-model="selfUserGuest.firstName"
-                      :state="stateUserFirstName"
+                      :state="selfUserGuest.stateFirstName"
                       trim
                       :disabled="isDateAnswerOut"
                     />
@@ -115,12 +88,13 @@
                   <b-form-group
                     label="Nom"
                     label-for="input-user-lastName"
-                    :state="stateUserLastName"
+                    :state="selfUserGuest.stateLastName"
+                    :invalid-feedback="selfUserGuest.feedbackLastName"
                   >
                     <b-form-input
                       id="input-user-lastName"
                       v-model="selfUserGuest.lastName"
-                      :state="stateUserLastName"
+                      :state="selfUserGuest.stateLastName"
                       trim
                       :disabled="isDateAnswerOut"
                     />
@@ -152,12 +126,13 @@
                   <b-form-group
                     label="Prénom"
                     label-for="input-spouse-firstName"
-                    :state="stateSpouseFirstName"
+                    :state="spouseGuest.stateFirstName"
+                    :invalid-feedback="spouseGuest.feedbackFirstName"
                   >
                     <b-form-input
                       id="input-spouse-firstName"
                       v-model="spouseGuest.firstName"
-                      :state="stateSpouseFirstName"
+                      :state="spouseGuest.stateFirstName"
                       trim
                       :disabled="isDateAnswerOut"
                     />
@@ -165,12 +140,13 @@
                   <b-form-group
                     label="Nom"
                     label-for="input-spouse-lastName"
-                    :state="stateSpouseLastName"
+                    :state="spouseGuest.stateLastName"
+                    :invalid-feedback="spouseGuest.feedbackLastName"
                   >
                     <b-form-input
                       id="input-spouse-lastName"
                       v-model="spouseGuest.lastName"
-                      :state="stateSpouseLastName"
+                      :state="spouseGuest.stateLastName"
                       trim
                       :disabled="isDateAnswerOut"
                     />
@@ -182,15 +158,19 @@
         </b-row>
         <b-form-row>
           <b-col>
-            <b-form-group label="Enfant(s) ? ">
+            <b-form-group label="Enfant(s) ? " :state="isChildrenGuestState">
               <b-form-checkbox
                 v-model="isChildrenGuest"
                 name="check-button-spouse"
                 switch
                 :disabled="isDateAnswerOut"
+                :state="isChildrenGuestState"
               >
                 Oui
               </b-form-checkbox>
+              <b-form-invalid-feedback :state="isChildrenGuestState">{{
+                isChildrenGuestFeedback
+              }}</b-form-invalid-feedback>
             </b-form-group>
           </b-col>
         </b-form-row>
@@ -209,10 +189,13 @@
                 <b-form-group
                   label="Prénom"
                   :label-for="'input-child-firstName' + index"
+                  :state="item.stateFirstName"
+                  :invalid-feedback="item.feedbackFirstName"
                 >
                   <b-form-input
                     :id="'input-child-firstName' + index"
                     v-model="item.firstName"
+                    :state="item.stateFirstName"
                     trim
                     :disabled="isDateAnswerOut"
                   />
@@ -220,10 +203,13 @@
                 <b-form-group
                   label="Nom"
                   :label-for="'input-child-lastName' + index"
+                  :state="item.stateLastName"
+                  :invalid-feedback="item.feedbackLastName"
                 >
                   <b-form-input
                     :id="'input-child-lastName' + index"
                     v-model="item.lastName"
+                    :state="item.stateLastName"
                     trim
                     :disabled="isDateAnswerOut"
                   />
@@ -231,11 +217,14 @@
                 <b-form-group
                   label="Age"
                   :label-for="'input-child-age' + index"
+                  :state="item.stateAge"
+                  :invalid-feedback="item.feedbackAge"
                 >
                   <b-input-group append="ans">
                     <b-form-input
                       :id="'input-child-age' + index"
                       v-model="item.age"
+                      :state="item.stateAge"
                       type="number"
                       trim
                       :disabled="isDateAnswerOut"
@@ -275,15 +264,19 @@
         </template>
         <b-form-row>
           <b-col>
-            <b-form-group label="Autre(s) personne(s) ? ">
+            <b-form-group label="Autre(s) personne(s) ? " :state="isOtherGuestState">
               <b-form-checkbox
                 v-model="isOtherGuest"
                 name="check-button-other"
                 switch
                 :disabled="isDateAnswerOut"
+                :state="isOtherGuestState"
               >
                 Oui
               </b-form-checkbox>
+              <b-form-invalid-feedback :state="isOtherGuestState">{{
+                isOtherGuestFeedback
+              }}</b-form-invalid-feedback>
             </b-form-group>
           </b-col>
         </b-form-row>
@@ -302,10 +295,13 @@
                 <b-form-group
                   label="Prénom"
                   :label-for="'input-other-firstName' + index"
+                  :state="item.stateFirstName"
+                  :invalid-feedback="item.feedbackFirstName"
                 >
                   <b-form-input
                     :id="'input-other-firstName' + index"
                     v-model="item.firstName"
+                    :state="item.stateFirstName"
                     trim
                     :disabled="isDateAnswerOut"
                   />
@@ -313,10 +309,13 @@
                 <b-form-group
                   label="Nom"
                   :label-for="'input-other-lastName' + index"
+                  :state="item.stateLastName"
+                  :invalid-feedback="item.feedbackLastName"
                 >
                   <b-form-input
                     :id="'input-other-lastName' + index"
                     v-model="item.lastName"
+                    :state="item.stateLastName"
                     trim
                     :disabled="isDateAnswerOut"
                   />
@@ -377,16 +376,17 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { authenticationStore } from '@/store/authentication';
-import { IsNullOrWhiteSpace } from '@/utils/extensions';
+import { IsNullOrWhiteSpace, IsNullOrUndefined } from '@/utils/extensions';
 import answerService from '@/services/answer.service';
 import {
-  SelfUserGuest,
-  SpouseGuest,
-  OtherGuest,
-  ChildGuest,
   UserInvitation,
   UserGuest,
-  UserInfo
+  UserInfo,
+  UserInvitationUI,
+  SelfUserGuestUI,
+  SpouseGuestUI,
+  ChildGuestUI,
+  OtherGuestUI
 } from '../utils/types/index';
 import { ROUTES_NAMES } from '@/router/router-names';
 
@@ -404,40 +404,60 @@ export default class AnswerPage extends Vue {
     return ROUTES_NAMES.CONTACT_PAGE;
   }
 
-  public userInvitations: UserInvitation[] = [];
+  public userInvitationsUI: UserInvitationUI[] = [];
+
+  public feedbackUserInvitations = '';
 
   public async mounted() {
     await this.initData();
   }
 
-  public stateUserLastName: boolean | null = null;
-  public stateUserFirstName: boolean | null = null;
-  public selfUserGuest: SelfUserGuest = {
+  public selfUserGuest: SelfUserGuestUI = {
     firstName: '',
-    lastName: ''
+    lastName: '',
+    stateFirstName: null,
+    feedbackFirstName: '',
+    stateLastName: null,
+    feedbackLastName: ''
   };
 
   public isSpouseGuest: boolean | null = null;
-  public stateSpouseFirstName: boolean | null = null;
-  public stateSpouseLastName: boolean | null = null;
-  public spouseGuest: SpouseGuest = {
+  public spouseGuest: SpouseGuestUI = {
     firstName: '',
-    lastName: ''
+    lastName: '',
+    stateFirstName: null,
+    feedbackFirstName: '',
+    stateLastName: null,
+    feedbackLastName: ''
   };
 
   public isChildrenGuest: boolean | null = null;
-  public childrenGuest: ChildGuest[] = [
+  public isChildrenGuestState: boolean | null = null;
+  public isChildrenGuestFeedback = '';
+  public childrenGuest: ChildGuestUI[] = [
     {
       firstName: '',
-      lastName: ''
+      lastName: '',
+      stateFirstName: null,
+      feedbackFirstName: '',
+      stateLastName: null,
+      feedbackLastName: '',
+      stateAge: null,
+      feedbackAge: ''
     }
   ];
 
   public isOtherGuest: boolean | null = null;
-  public otherGuest: OtherGuest[] = [
+  public isOtherGuestState: boolean | null = null;
+  public isOtherGuestFeedback = '';
+  public otherGuest: OtherGuestUI[] = [
     {
       firstName: '',
-      lastName: ''
+      lastName: '',
+      stateFirstName: null,
+      feedbackFirstName: '',
+      stateLastName: null,
+      feedbackLastName: ''
     }
   ];
 
@@ -445,11 +465,11 @@ export default class AnswerPage extends Vue {
   public isSaveLoading = false;
 
   public get isUserPresentAtLeastOnce(): boolean {
-    return this.userInvitations.some(i => i.answer);
+    return this.userInvitationsUI.some(i => i.answer);
   }
 
   public get isAllInvitationAnswered(): boolean {
-    return !this.userInvitations.some(i => i.answer === null);
+    return !this.userInvitationsUI.some(i => i.answer === null);
   }
 
   public isInvitedToMairie(userInvitation: UserInvitation): boolean {
@@ -471,7 +491,13 @@ export default class AnswerPage extends Vue {
   public addChild() {
     this.childrenGuest.push({
       firstName: '',
-      lastName: ''
+      lastName: '',
+      stateFirstName: null,
+      feedbackFirstName: '',
+      stateLastName: null,
+      feedbackLastName: '',
+      stateAge: null,
+      feedbackAge: ''
     });
   }
 
@@ -482,7 +508,11 @@ export default class AnswerPage extends Vue {
   public addOther() {
     this.otherGuest.push({
       firstName: '',
-      lastName: ''
+      lastName: '',
+      stateFirstName: null,
+      feedbackFirstName: '',
+      stateLastName: null,
+      feedbackLastName: ''
     });
   }
 
@@ -498,73 +528,224 @@ export default class AnswerPage extends Vue {
     if (userId === 0) {
       throw Error('User not found');
     }
-    try {
-      const resultInvitation = await answerService.updateUserInvitationResponse(userId.toString(), this.userInvitations);
+    if (await this.isFormValid()) {
+      try {
+        const resultInvitation = await answerService.updateUserInvitationResponse(userId.toString(), this.userInvitationsUI);
 
-      if (this.isUserPresentAtLeastOnce) {
-        const userGuestList: UserGuest[] = [];
+        console.log(resultInvitation);
+        if (this.isUserPresentAtLeastOnce) {
+          const userGuestList: UserGuest[] = [];
 
-        userGuestList.push({
-          firstName: this.selfUserGuest.firstName,
-          lastName: this.selfUserGuest.lastName,
-          isSpouse: false,
-          isOther: false,
-          isUser: true,
-          isChildren: false,
-          userId: userId
-        });
-
-        if (this.isSpouseGuest) {
           userGuestList.push({
-            firstName: this.spouseGuest.firstName,
-            lastName: this.spouseGuest.lastName,
-            isSpouse: true,
+            firstName: this.selfUserGuest.firstName,
+            lastName: this.selfUserGuest.lastName,
+            isSpouse: false,
             isOther: false,
-            isUser: false,
+            isUser: true,
             isChildren: false,
             userId: userId
           });
-        }
 
-        if (this.isChildrenGuest) {
-          this.childrenGuest.forEach((value) => {
+          if (this.isSpouseGuest) {
             userGuestList.push({
-              firstName: value.firstName,
-              lastName: value.lastName,
-              isSpouse: false,
+              firstName: this.spouseGuest.firstName,
+              lastName: this.spouseGuest.lastName,
+              isSpouse: true,
               isOther: false,
-              isUser: false,
-              isChildren: true,
-              age: +(value.age ?? '0'),
-              userId: userId
-            });
-          });
-        }
-
-        if (this.isOtherGuest) {
-          this.otherGuest.forEach((value) => {
-            userGuestList.push({
-              firstName: value.firstName,
-              lastName: value.lastName,
-              isSpouse: false,
-              isOther: true,
               isUser: false,
               isChildren: false,
               userId: userId
             });
-          });
-        }
+          }
 
-        const resultGuests = await answerService.updateUserGuest(userId.toString(), userGuestList);
-      } else {
-        const resultGuests = await answerService.updateUserGuest(userId.toString(), []);
+          if (this.isChildrenGuest) {
+            this.childrenGuest.forEach((value) => {
+              userGuestList.push({
+                firstName: value.firstName,
+                lastName: value.lastName,
+                isSpouse: false,
+                isOther: false,
+                isUser: false,
+                isChildren: true,
+                age: +(value.age ?? '0'),
+                userId: userId
+              });
+            });
+          }
+
+          if (this.isOtherGuest) {
+            this.otherGuest.forEach((value) => {
+              userGuestList.push({
+                firstName: value.firstName,
+                lastName: value.lastName,
+                isSpouse: false,
+                isOther: true,
+                isUser: false,
+                isChildren: false,
+                userId: userId
+              });
+            });
+          }
+
+          const resultGuests = await answerService.updateUserGuest(userId.toString(), userGuestList);
+          console.log(resultGuests);
+        } else {
+          const resultGuests = await answerService.updateUserGuest(userId.toString(), []);
+          console.log(resultGuests);
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
+      await this.initData();
     }
-    await this.initData();
     this.isSaveButtonDisabled = false;
     this.isSaveLoading = false;
+  }
+
+  private FEEDBACK_NOT_ANWSER = 'Tu dois choisir une des deux réponses';
+  private FEEDBACK_EMPTY_FIELD = 'Ce champs ne doit pas être vide';
+  private FEEDBACK_AGE_TOO_LOW = 'Il est aussi jeune ! Cela m\'étonnerait..';
+  private FEEDBACK_AGE_TOO_HIGH = 'Il est aussi âgé ! Cela m\'étonnerait..';
+  private FEEDBACK_MUST_HAVE_ONE_CHILD = 'Si ce champs est coché, Il doit y avoir au moins un enfant';
+  private FEEDBACK_MUST_HAVE_ONE_OTHER = 'Si ce champs est coché, Il doit y avoir au moins une personne';
+
+  private async isFormValid(): Promise<boolean> {
+    let isValid = true;
+
+    this.userInvitationsUI.forEach(ui => {
+      if (ui.answer === null) {
+        isValid = false;
+        ui.state = false;
+        ui.feedback = this.FEEDBACK_NOT_ANWSER;
+      } else {
+        ui.state = null;
+        ui.feedback = '';
+      }
+    });
+
+    if (this.isUserPresentAtLeastOnce) {
+      // SELF USER
+      if (IsNullOrWhiteSpace(this.selfUserGuest.firstName)) {
+        isValid = false;
+        this.selfUserGuest.stateFirstName = false;
+        this.selfUserGuest.feedbackFirstName = this.FEEDBACK_EMPTY_FIELD;
+      } else {
+        this.selfUserGuest.stateFirstName = null;
+        this.selfUserGuest.feedbackFirstName = '';
+      }
+      if (IsNullOrWhiteSpace(this.selfUserGuest.lastName)) {
+        isValid = false;
+        this.selfUserGuest.stateLastName = false;
+        this.selfUserGuest.feedbackLastName = this.FEEDBACK_EMPTY_FIELD;
+      } else {
+        this.selfUserGuest.stateLastName = null;
+        this.selfUserGuest.feedbackLastName = '';
+      }
+
+      // SPOUSE GUEST
+      if (this.isSpouseGuest) {
+        if (IsNullOrWhiteSpace(this.spouseGuest.firstName)) {
+          isValid = false;
+          this.spouseGuest.stateFirstName = false;
+          this.spouseGuest.feedbackFirstName = this.FEEDBACK_EMPTY_FIELD;
+        } else {
+          this.spouseGuest.stateFirstName = null;
+          this.spouseGuest.feedbackFirstName = '';
+        }
+        if (IsNullOrWhiteSpace(this.spouseGuest.lastName)) {
+          isValid = false;
+          this.spouseGuest.stateLastName = false;
+          this.spouseGuest.feedbackLastName = this.FEEDBACK_EMPTY_FIELD;
+        } else {
+          this.spouseGuest.stateLastName = null;
+          this.spouseGuest.feedbackLastName = '';
+        }
+      }
+
+      // CHILDRENS GUEST
+      if (this.isChildrenGuest) {
+        if (this.childrenGuest.length === 0) {
+          isValid = false;
+          this.isChildrenGuestState = false;
+          this.isChildrenGuestFeedback = this.FEEDBACK_MUST_HAVE_ONE_CHILD;
+        } else {
+          this.isChildrenGuestState = null;
+          this.isChildrenGuestFeedback = '';
+
+          this.childrenGuest.forEach((value) => {
+            if (IsNullOrWhiteSpace(value.firstName)) {
+              isValid = false;
+              value.stateFirstName = false;
+              value.feedbackFirstName = this.FEEDBACK_EMPTY_FIELD;
+            } else {
+              value.stateFirstName = null;
+              value.feedbackFirstName = '';
+            }
+            if (IsNullOrWhiteSpace(value.lastName)) {
+              isValid = false;
+              value.stateLastName = false;
+              value.feedbackLastName = this.FEEDBACK_EMPTY_FIELD;
+            } else {
+              value.stateLastName = null;
+              value.feedbackLastName = '';
+            }
+            if (IsNullOrUndefined(value.age)) {
+              isValid = false;
+              value.stateAge = false;
+              value.feedbackAge = this.FEEDBACK_EMPTY_FIELD;
+            } else {
+              if (value.age as number < 0 || value.age as number > 150) {
+                isValid = false;
+                value.stateAge = false;
+                value.feedbackAge = value.age as number < 0 ? this.FEEDBACK_AGE_TOO_LOW : this.FEEDBACK_AGE_TOO_HIGH;
+              } else {
+                value.stateAge = null;
+                value.feedbackAge = '';
+              }
+            }
+          });
+        }
+      } else {
+        this.isChildrenGuestState = null;
+        this.isChildrenGuestFeedback = '';
+      }
+
+      // OTHERS GUEST
+      if (this.isOtherGuest) {
+        if (this.otherGuest.length === 0) {
+          isValid = false;
+          this.isOtherGuestState = false;
+          this.isOtherGuestFeedback = this.FEEDBACK_MUST_HAVE_ONE_OTHER;
+        } else {
+          this.isOtherGuestState = null;
+          this.isOtherGuestFeedback = '';
+
+          this.otherGuest.forEach((value) => {
+            if (IsNullOrWhiteSpace(value.firstName)) {
+              isValid = false;
+              value.stateFirstName = false;
+              value.feedbackFirstName = this.FEEDBACK_EMPTY_FIELD;
+            } else {
+              value.stateFirstName = null;
+              value.feedbackFirstName = '';
+            }
+            if (IsNullOrWhiteSpace(value.lastName)) {
+              isValid = false;
+              value.stateLastName = false;
+              value.feedbackLastName = this.FEEDBACK_EMPTY_FIELD;
+            } else {
+              value.stateLastName = null;
+              value.feedbackLastName = '';
+            }
+          });
+        }
+      } else {
+        this.isOtherGuestState = null;
+        this.isOtherGuestFeedback = '';
+      }
+    }
+
+    return isValid;
   }
 
   public async initData() {
@@ -572,7 +753,7 @@ export default class AnswerPage extends Vue {
       authenticationStore?.tokenData?.id.toString() ?? ''
     );
     if (userInvitations != null && userInvitations.length > 0) {
-      this.userInvitations = [...userInvitations.sort((a, b) => {
+      this.userInvitationsUI = [...userInvitations.sort((a, b) => {
         let result = 0;
 
         if (a.invitation.code === 'MAI') {
@@ -587,7 +768,28 @@ export default class AnswerPage extends Vue {
           result = 0;
         }
         return result;
-      })];
+      })].map(ui => {
+        let titleHtml = '';
+        if (ui.invitation.code === 'MAI') {
+          titleHtml = 'Au <strong>mariage civil</strong>';
+        } else if (ui.invitation.code === 'CER') {
+          titleHtml = 'A la <strong>cérémonie laïque</strong>';
+        } else if (ui.invitation.code === 'REP') {
+          titleHtml = 'Au <strong>diner</strong>';
+        } else {
+          titleHtml = '';
+        }
+        return {
+          id: ui.id,
+          userId: ui.userId,
+          answer: ui.answer,
+          invitationId: ui.invitationId,
+          invitation: ui.invitation,
+          state: null,
+          feedback: '',
+          titleHtml: titleHtml
+        };
+      });
     }
 
     const guests: UserGuest[] = await answerService.getUserGuests(
@@ -636,7 +838,13 @@ export default class AnswerPage extends Vue {
             id: g.id?.toString(),
             firstName: g.firstName,
             lastName: g.lastName,
-            age: g.age ?? undefined
+            age: g.age ?? undefined,
+            stateFirstName: null,
+            feedbackFirstName: '',
+            stateLastName: null,
+            feedbackLastName: '',
+            stateAge: null,
+            feedbackAge: ''
           };
         })
       ];
@@ -650,7 +858,11 @@ export default class AnswerPage extends Vue {
           return {
             id: g.id?.toString(),
             firstName: g.firstName,
-            lastName: g.lastName
+            lastName: g.lastName,
+            stateFirstName: null,
+            feedbackFirstName: '',
+            stateLastName: null,
+            feedbackLastName: ''
           };
         })
       ];

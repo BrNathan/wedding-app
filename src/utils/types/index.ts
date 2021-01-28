@@ -1,25 +1,29 @@
-
-export interface ChildGuest {
+export interface DefaultGuest {
   id?: string;
   firstName: string;
   lastName: string;
+}
+
+export interface ChildGuest extends DefaultGuest{
   age?: number;
 }
-export interface OtherGuest {
-  id?: string;
-  firstName: string;
-  lastName: string;
+export type OtherGuest = DefaultGuest
+export type SpouseGuest = DefaultGuest
+export type SelfUserGuest = DefaultGuest
+
+export interface DefaultGuestUI extends DefaultGuest {
+  stateFirstName: boolean | null;
+  feedbackFirstName: string;
+  stateLastName: boolean | null;
+  feedbackLastName: string;
 }
-export interface SpouseGuest {
-  id?: string;
-  firstName: string;
-  lastName: string;
+export interface ChildGuestUI extends DefaultGuestUI, ChildGuest {
+  stateAge: boolean | null;
+  feedbackAge: string;
 }
-export interface SelfUserGuest {
-  id?: string;
-  firstName: string;
-  lastName: string;
-}
+export type OtherGuestUI = DefaultGuestUI
+export type SpouseGuestUI = DefaultGuestUI
+export type SelfUserGuestUI = DefaultGuestUI
 
 export interface UserGuest {
   id?: number;
@@ -39,6 +43,12 @@ export interface UserInvitation {
   answer: boolean | null;
   invitationId: number;
   invitation: Invitation;
+}
+
+export interface UserInvitationUI extends UserInvitation {
+  state: boolean | null;
+  feedback: string;
+  titleHtml: string;
 }
 
 export interface Invitation {
