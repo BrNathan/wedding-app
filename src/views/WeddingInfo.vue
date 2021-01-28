@@ -25,6 +25,12 @@
         <!-- <rsvp-section /> -->
 
         <!-- <gallery-section /> -->
+        <b-toast id="my-toast" solid toaster="b-toaster-bottom-right">
+          <template #toast-title>
+            Date limite de réponse 31/03/2021
+          </template>
+          Noublie pas de répondre à l'invitation <router-link :to="{ name: answerPageName}"><b>ICI</b></router-link>
+        </b-toast>
       </div>
       <template #overlay>
         <div class="d-flex justify-content-center mb-3 overlay-custom">
@@ -45,6 +51,10 @@ import ASavoirSection from '@/components/ASavoirSection.vue';
 import PeopleSection from '@/components/PeopleSection.vue';
 import WhenWhereSection from '@/components/WhenWhereSection.vue';
 import SpinnerComponent from '@/components/Spinner.vue';
+import { ROUTES_NAMES } from '@/router/router-names';
+import { authenticationStore } from '@/store/authentication';
+import answerService from '@/services/answer.service';
+import { UserInvitation } from '@/utils/types';
 
 @Component({
   components: {
@@ -62,9 +72,21 @@ export default class WeddingInfo extends Vue {
   public isLoading = true;
   public overlayOpacity = 1;
 
+  public get answerPageName(): string {
+    return ROUTES_NAMES.WEDDING_ANSWER;
+  }
+
   public mounted() {
-    setTimeout(() => {
+    setTimeout(async() => {
       this.isLoading = false;
+      const userInvitations: UserInvitation[] = await answerService.getUserInvitations(
+        authenticationStore?.tokenData?.id.toString() ?? ''
+      );
+      if (userInvitations?.some(ui => ui.answer === null)) {
+        setTimeout(() => {
+          this.$bvToast.show('my-toast');
+        }, 3000);
+      }
     }, 1000);
   }
 }
