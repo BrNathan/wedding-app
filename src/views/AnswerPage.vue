@@ -264,7 +264,10 @@
         </template>
         <b-form-row>
           <b-col>
-            <b-form-group label="Autre(s) personne(s) ? " :state="isOtherGuestState">
+            <b-form-group
+              label="Autre(s) personne(s) ? "
+              :state="isOtherGuestState"
+            >
               <b-form-checkbox
                 v-model="isOtherGuest"
                 name="check-button-other"
@@ -357,15 +360,35 @@
           <b-col>
             <b-button
               variant="primary"
+              type="submit"
               :disabled="isDateAnswerOut || isSaveButtonDisabled"
               @click="saveGuest"
               v-if="!isDateAnswerOut"
             >
-              Sauvegarder
+              Envoyer
               <template v-if="isSaveLoading">
                 <b-spinner small type="grow" label="Loading..."></b-spinner>
               </template>
             </b-button>
+            <span
+              :class="{
+                'ml-4': true,
+                'text-success': isSubmitSuccess,
+                'text-danger': isSubmitError
+              }"
+            >
+              <template v-if="isSubmitError">
+                <font-awesome-icon :icon="['fas', 'exclamation-circle']" />
+                Erreur lors de l'envoi de la réponse, contactez nous
+                <router-link :to="{ name: contactPageName}" target="_blank"
+                  ><b>ICI</b></router-link
+                >
+              </template>
+              <template v-if="isSubmitSuccess">
+                <font-awesome-icon :icon="['fas', 'thumbs-up']" />
+                L'envoi de la réponse est réussi
+              </template>
+            </span>
           </b-col>
         </b-form-row>
       </b-container>
@@ -395,6 +418,10 @@ import { ROUTES_NAMES } from '@/router/router-names';
 })
 export default class AnswerPage extends Vue {
   public endDateToAnswer: Date = new Date(2021, 3, 1, 0, 1);
+
+  public submitState: boolean | null = null;
+  public get isSubmitError() { return this.submitState === false; }
+  public get isSubmitSuccess() { return this.submitState === true; }
 
   public get isDateAnswerOut(): boolean {
     return (new Date()) > this.endDateToAnswer;
@@ -484,8 +511,9 @@ export default class AnswerPage extends Vue {
     return userInvitation.invitation.code === 'REP';
   }
 
-  public onSubmit(e: Event): void {
+  public async onSubmit(e: Event): Promise<void> {
     e.preventDefault();
+    await this.saveGuest();
   }
 
   public addChild() {
@@ -521,7 +549,7 @@ export default class AnswerPage extends Vue {
   }
 
   public async saveGuest() {
-    // TODO : Check if all data are correct
+    this.submitState = null;
     this.isSaveButtonDisabled = true;
     this.isSaveLoading = true;
     const userId: number = authenticationStore?.tokenData?.id ?? 0;
@@ -532,7 +560,7 @@ export default class AnswerPage extends Vue {
       try {
         const resultInvitation = await answerService.updateUserInvitationResponse(userId.toString(), this.userInvitationsUI);
 
-        console.log(resultInvitation);
+        let resultGuests = false;
         if (this.isUserPresentAtLeastOnce) {
           const userGuestList: UserGuest[] = [];
 
@@ -587,14 +615,14 @@ export default class AnswerPage extends Vue {
             });
           }
 
-          const resultGuests = await answerService.updateUserGuest(userId.toString(), userGuestList);
-          console.log(resultGuests);
+          resultGuests = await answerService.updateUserGuest(userId.toString(), userGuestList);
         } else {
-          const resultGuests = await answerService.updateUserGuest(userId.toString(), []);
-          console.log(resultGuests);
+          resultGuests = await answerService.updateUserGuest(userId.toString(), []);
         }
+        this.submitState = resultGuests && resultInvitation;
       } catch (error) {
         console.error(error);
+        this.submitState = false;
       }
       await this.initData();
     }

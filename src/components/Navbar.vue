@@ -13,7 +13,7 @@
         <b-navbar-nav>
           <b-nav-item :to="{ name: homePageName }">Informations</b-nav-item>
           <b-nav-item :to="{ name: homePageName, hash: '#when-where-section' }">Horaires</b-nav-item>
-          <b-nav-item :to="{ name: answerPageName }">Mon Invitation</b-nav-item>
+          <b-nav-item :to="{ name: answerPageName }">Répondre à l'invitation</b-nav-item>
           <b-nav-item :to="{ name: sleepPageName }">Où dormir ?</b-nav-item>
           <b-nav-item :to="{ name: homePageName, hash: '#a-savoir-section' }">Bon a savoir</b-nav-item>
           <b-nav-item :to="{ name: contactPageName }"
