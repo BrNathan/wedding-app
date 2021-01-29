@@ -5,6 +5,8 @@
         <div class="col-md-12 text-center heading-section">
           <!-- <span class="clone">Témoins &amp; Demoiselles d'honneur</span> -->
           <h2 class="mb-3">Témoins &amp; Demoiselles d'honneur</h2>
+          <!-- <span class="clone">Témoins</span> -->
+          <!-- <h2 class="mb-3">Témoins</h2> -->
         </div>
       </div>
       <div class="row">
@@ -69,38 +71,38 @@ export default class PeopleSection extends Vue {
     {
       firstName: 'Baptiste',
       lastName: 'Bruet',
-      placeName: 'Témoin',
-      imgPath: '/images/groom-men-1.jpg'
+      placeName: 'Témoin du marié',
+      imgPath: '/images/baptiste4.jpg'
     },
     {
       firstName: 'Loréane',
       lastName: 'Bruet',
-      placeName: 'Témoin',
-      imgPath: '/images/groom-men-1.jpg'
+      placeName: 'Témoin du marié',
+      imgPath: '/images/loreane.jpg'
     },
     {
       firstName: 'Pierre',
       lastName: 'André',
-      placeName: 'Témoin',
-      imgPath: '/images/groom-men-1.jpg'
+      placeName: 'Témoin de la mariée',
+      imgPath: '/images/pierre.jpg'
     },
     {
       firstName: 'Michelle',
       lastName: 'Ermolenko',
-      placeName: 'Témoin',
-      imgPath: '/images/groom-men-1.jpg'
+      placeName: 'Témoin de la mariée',
+      imgPath: '/images/michelle.jpg'
     },
     {
       firstName: 'Clémence',
       lastName: 'André',
       placeName: 'Demoiselle d\'honneur',
-      imgPath: '/images/groom-men-1.jpg'
+      imgPath: '/images/clemence.jpg'
     },
     {
       firstName: 'Julia',
       lastName: 'Marquès',
       placeName: 'Demoiselle d\'honneur',
-      imgPath: '/images/groom-men-1.jpg'
+      imgPath: '/images/julia2.jpg'
     }
   ];
 

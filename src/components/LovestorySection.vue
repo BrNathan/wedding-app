@@ -3,8 +3,8 @@
     <div class="container">
       <div class="row justify-content-center pb-5">
         <div class="col-md-12 text-center heading-section">
-          <span class="clone">Leur Histoire</span>
-          <h2 class="mb-3">Leur Histoire</h2>
+          <span class="clone">Notre Histoire</span>
+          <h2 class="mb-3">Notre Histoire</h2>
         </div>
       </div>
       <div class="row">
@@ -105,7 +105,7 @@
                 </div>
                 <div class="timeline-body">
                   <p>
-                    En vadrouille sur le littoral de Cancale, à l'écart des regards indiscrèts, Nathan a pris la main d'Amélie,
+                    En vadrouille sur le littoral de Cancale, à l'écart des regards indiscrets, Nathan a pris la main d'Amélie,
                     mis genou à terre et fait sa demande.
                   </p>
                 </div>

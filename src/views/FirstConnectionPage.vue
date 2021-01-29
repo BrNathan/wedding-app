@@ -14,9 +14,9 @@
                 </b-col>
                 <b-col cols="12" >
                   <h3>Bienvenue !</h3>
-                  <p>C'est votre première connection !</p>
+                  <p>C'est votre première connexion !</p>
                   <p>
-                    Voici quelques informations à compléter/vérifier avant
+                    Voici quelques informations à compléter avant
                     d'accéder au site
                   </p>
                 </b-col>

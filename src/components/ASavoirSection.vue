@@ -78,7 +78,7 @@ export default class ASavoirSection extends Vue {
     },
     {
       title: 'Liste de mariage',
-      description: 'Pour ceux qui se posent la question, il n\'y aura malheureusement pas de liste de mariage, mais un beau voyage de noces au pays des girafes et les lions est prévu.',
+      description: 'Pour ceux qui se posent la question, il n\'y aura malheureusement pas de liste de mariage. Mais un beau voyage de noces au pays des girafes et les lions est prévu.',
       iconName: 'gift',
       iconSize: 7
     }

@@ -7,13 +7,13 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="mb-3">
+    <!-- <b-container class="mb-3">
       <b-row>
         <b-col>
           <p>Voici les différents moyens pour nous contacter</p>
         </b-col>
       </b-row>
-    </b-container>
+    </b-container> -->
     <b-container class="mb-5">
       <b-row>
         <b-col cols="12" sm="6" md="6" lg="6" xl="6" class="mb-5 d-flex align-items-stretch"
