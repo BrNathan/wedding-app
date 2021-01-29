@@ -64,6 +64,15 @@
                     </b-form-group>
                   </b-col>
                 </b-form-row>
+                <b-row v-if="displayHelpMessage">
+                  <b-col class="mb-3">
+                    Il semble que vous ayez un problème pour vous connecter...
+                    vous pouvez me contacter via mon mail
+                    <a href="mailto:nathan.bruet@gmail.com">
+                      nathan.bruet@gmail.com
+                    </a>
+                  </b-col>
+                </b-row>
                 <b-form-row>
                   <b-col cols="12" class="text-right">
                     <template v-if="!isLoggedIn">
@@ -117,6 +126,9 @@ export default class LoginPage extends Vue {
   public timerInterval: number | undefined = undefined;
   public isLoginLoading = false;
 
+  private firstConnectionTry = false;
+  public countTryConnection = 0;
+
   @Watch('isLoggedIn')
   private onIsLoggedInChange(): void {
     if (this.isLoggedIn) {
@@ -149,6 +161,9 @@ export default class LoginPage extends Vue {
    */
   public async onSubmit(e: Event) {
     this.isLoginLoading = true;
+    if (!this.firstConnectionTry) {
+      this.firstConnectionTry = true;
+    }
     e.preventDefault();
     await authenticationStore.login({
       email: this.username,
@@ -173,6 +188,21 @@ export default class LoginPage extends Vue {
 
   public get isLoggedIn(): boolean {
     return authenticationStore.isLoginRequested && authenticationStore.isAuthenticate && !IsNullOrWhiteSpace(authenticationStore.token);
+  }
+
+  public get isRequestError(): boolean {
+    return this.firstConnectionTry && authenticationStore.isLoginRequested && !authenticationStore.isAuthenticate;
+  }
+
+  @Watch('isRequestError')
+  public onIsRequestError() {
+    if (this.isRequestError) {
+      this.countTryConnection++;
+    }
+  }
+
+  public get displayHelpMessage(): boolean {
+    return this.countTryConnection >= 3;
   }
 }
 </script>
