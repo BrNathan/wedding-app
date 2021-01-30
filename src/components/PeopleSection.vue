@@ -78,7 +78,7 @@ export default class PeopleSection extends Vue {
       firstName: 'Loréane',
       lastName: 'Bruet',
       placeName: 'Témoin du marié',
-      imgPath: '/images/loreane2.png'
+      imgPath: '/images/loreane2.jpg'
     },
     {
       firstName: 'Pierre',
