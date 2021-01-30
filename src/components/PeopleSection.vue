@@ -18,7 +18,7 @@
             :dragging-distance="70"
             :arrows="false"
             :duration="5000"
-            :pauseOnHover="false"
+            :pauseOnHover="true"
             :breakpoints="breakpoints"
             autoplay
           >
@@ -78,7 +78,7 @@ export default class PeopleSection extends Vue {
       firstName: 'Loréane',
       lastName: 'Bruet',
       placeName: 'Témoin du marié',
-      imgPath: '/images/loreane.jpg'
+      imgPath: '/images/loreane2.png'
     },
     {
       firstName: 'Pierre',
@@ -96,13 +96,13 @@ export default class PeopleSection extends Vue {
       firstName: 'Clémence',
       lastName: 'André',
       placeName: 'Demoiselle d\'honneur',
-      imgPath: '/images/clemence.jpg'
+      imgPath: '/images/clemence2.jpg'
     },
     {
       firstName: 'Julia',
       lastName: 'Marquès',
       placeName: 'Demoiselle d\'honneur',
-      imgPath: '/images/julia2.jpg'
+      imgPath: '/images/julia4.jpg'
     }
   ];
 
