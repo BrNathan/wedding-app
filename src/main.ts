@@ -10,7 +10,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import '@/assets/css/styleModified.min.css';
 // Font-Awesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCamera, faTshirt, faCircle, faCheck, faGift, faExclamationCircle, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faCamera, faTshirt, faCircle, faCheck, faGift, faExclamationCircle, faThumbsUp, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome';
 
 library.add(
@@ -20,7 +20,8 @@ library.add(
   faCheck,
   faGift,
   faExclamationCircle,
-  faThumbsUp
+  faThumbsUp,
+  faQuestionCircle
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

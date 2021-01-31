@@ -15,8 +15,8 @@
                   </b-col>
                   <b-col cols="12">
                     <b-form-group
-                      description="Entre ton identifiant"
-                      label="Identifiant"
+                      description="Entre ton identifiant ou ton email"
+                      label="Identifiant ou email"
                       label-for="input-username"
                       :state="stateUsername"
                     >
@@ -66,30 +66,45 @@
                 </b-form-row>
                 <b-row v-if="displayHelpMessage">
                   <b-col class="mb-3">
-                    Il semble que vous ayez un problème pour vous connecter...
-                    vous pouvez me contacter via mon mail
+                    Besoin d'aide pour vous connecter... vous pouvez me
+                    contacter via mon mail :
                     <a href="mailto:nathan.bruet@gmail.com">
                       nathan.bruet@gmail.com
                     </a>
                   </b-col>
                 </b-row>
                 <b-form-row>
-                  <b-col cols="12" class="text-right">
+                  <b-col cols="12">
                     <template v-if="!isLoggedIn">
-                      <b-button
-                        type="submit"
-                        variant="primary"
-                        :disabled="isButtonDisabled"
-                      >
-                        Connexion
-                        <template v-if="isLoginLoading">
-                          <b-spinner
-                            small
-                            type="grow"
-                            label="Loading..."
-                          ></b-spinner>
-                        </template>
-                      </b-button>
+                      <b-row>
+                        <b-col cols="6" class="text-left">
+                          <b-button
+                            variant="info"
+                            @click="needHelp = !needHelp"
+                          >
+                            <font-awesome-icon
+                              :icon="['fas', 'question-circle']"
+                            />
+                            Aide
+                          </b-button>
+                        </b-col>
+                        <b-col cols="6" class="text-right">
+                          <b-button
+                            type="submit"
+                            variant="primary"
+                            :disabled="isButtonDisabled"
+                          >
+                            Connexion
+                            <template v-if="isLoginLoading">
+                              <b-spinner
+                                small
+                                type="grow"
+                                label="Loading..."
+                              ></b-spinner>
+                            </template>
+                          </b-button>
+                        </b-col>
+                      </b-row>
                     </template>
                     <template v-else>
                       <div class="d-flex justify-content-center mb-3">
@@ -128,6 +143,7 @@ export default class LoginPage extends Vue {
 
   private firstConnectionTry = false;
   public countTryConnection = 0;
+  public needHelp = false;
 
   @Watch('isLoggedIn')
   private onIsLoggedInChange(): void {
@@ -202,7 +218,7 @@ export default class LoginPage extends Vue {
   }
 
   public get displayHelpMessage(): boolean {
-    return this.countTryConnection >= 3;
+    return this.needHelp || this.countTryConnection >= 3;
   }
 }
 </script>
