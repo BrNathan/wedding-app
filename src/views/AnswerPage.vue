@@ -1,6 +1,6 @@
 <template>
   <div id="answer-page">
-    <b-container class="mb-5">
+    <b-container class="mb-2">
       <b-row>
         <b-col>
           <h1>Mon invitation</h1>
@@ -21,7 +21,7 @@
       <b-row>
         <b-col>
           <p>
-            Vous êtes invité à célébrer le mariage d'<span
+            Vous êtes invités à célébrer le mariage d'<span
               class="amelie-and-nathan-wedding"
               >Amélie et Nathan</span
             >
@@ -31,23 +31,23 @@
     </b-container>
     <b-form @submit="onSubmit">
       <!-- INVITATIONS -->
-      <b-container class="mt-5 mb-5">
+      <b-container class="mb-2">
         <b-form-row v-for="(item, index) in userInvitationsUI" :key="index">
           <b-col>
             <b-form-group>
               <template #label>
-                <span v-html="item.titleHtml"></span>, je serais :
+                <span v-html="item.titleHtml"></span>, nous serons :
               </template>
               <b-form-radio-group
                 v-model="item.answer"
                 :disabled="isDateAnswerOut"
                 :state="item.state"
               >
-                <b-form-radio :value="true"> Présent(e) </b-form-radio>
-                <b-form-radio :value="false"> Absent(e) </b-form-radio>
-                <b-form-invalid-feedback :state="item.state">{{
-                  item.feedback
-                }}</b-form-invalid-feedback>
+                <b-form-radio :value="true"> Présent(es) </b-form-radio>
+                <b-form-radio :value="false"> Absent(es) </b-form-radio>
+                <b-form-invalid-feedback :state="item.state">
+                  {{item.feedback}}
+                </b-form-invalid-feedback>
               </b-form-radio-group>
             </b-form-group>
           </b-col>
@@ -55,9 +55,10 @@
       </b-container>
       <!-- GUESTS -->
       <b-container
-        class="mt-5 mb-5"
-        v-if="isAllInvitationAnswered && isUserPresentAtLeastOnce"
+        class="mb-2"
+        v-if="!isUserAllAbsent"
       >
+      <!-- isAllInvitationAnswered && isUserPresentAtLeastOnce" -->
         <b-row>
           <b-col>
             <h2>Ma liste d'accompagnants</h2>
@@ -70,7 +71,7 @@
             </b-row>
             <b-row>
               <b-col>
-                <b-card border-variant="primary" class="mt-3 mb-3">
+                <b-card border-variant="primary" class="mb-2">
                   <b-form-group
                     label="Prénom"
                     label-for="input-user-firstName"
@@ -122,7 +123,7 @@
             </b-form-row>
             <b-row v-if="isSpouseGuest">
               <b-col>
-                <b-card border-variant="primary" class="mt-3 mb-3">
+                <b-card border-variant="primary" class="mb-2">
                   <b-form-group
                     label="Prénom"
                     label-for="input-spouse-firstName"
@@ -185,7 +186,7 @@
               v-for="(item, index) in childrenGuest"
               :key="'child-' + index"
             >
-              <b-card border-variant="primary" class="mt-3 mb-3">
+              <b-card border-variant="primary" class="mb-2">
                 <b-form-group
                   label="Prénom"
                   :label-for="'input-child-firstName' + index"
@@ -250,7 +251,7 @@
               xl="4"
               v-if="!isDateAnswerOut"
             >
-              <b-card border-variant="primary" class="mt-3 mb-3 text-center">
+              <b-card border-variant="primary" class="mb-2 text-center">
                 <b-button
                   variant="primary"
                   @click="addChild"
@@ -294,7 +295,7 @@
               v-for="(item, index) in otherGuest"
               :key="'other-' + index"
             >
-              <b-card border-variant="primary" class="mt-3 mb-3">
+              <b-card border-variant="primary" class="mb-2">
                 <b-form-group
                   label="Prénom"
                   :label-for="'input-other-firstName' + index"
@@ -342,7 +343,7 @@
               xl="4"
               v-if="!isDateAnswerOut"
             >
-              <b-card border-variant="primary" class="mt-3 mb-3 text-center">
+              <b-card border-variant="primary" class="mb-2 text-center">
                 <b-button
                   variant="primary"
                   @click="addOther"
@@ -355,7 +356,7 @@
           </b-row>
         </template>
       </b-container>
-      <b-container class="mt-5 mb-5">
+      <b-container class="mb-2">
         <b-form-row>
           <b-col>
             <b-button
@@ -365,7 +366,7 @@
               @click="saveGuest"
               v-if="!isDateAnswerOut"
             >
-              Envoyer
+              Répondre
               <template v-if="isSaveLoading">
                 <b-spinner small type="grow" label="Loading..."></b-spinner>
               </template>
@@ -497,6 +498,10 @@ export default class AnswerPage extends Vue {
 
   public get isAllInvitationAnswered(): boolean {
     return !this.userInvitationsUI.some(i => i.answer === null);
+  }
+
+  public get isUserAllAbsent(): boolean {
+    return this.userInvitationsUI.every(i => i.answer === false);
   }
 
   public isInvitedToMairie(userInvitation: UserInvitation): boolean {

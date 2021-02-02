@@ -25,11 +25,18 @@
         <!-- <rsvp-section /> -->
 
         <!-- <gallery-section /> -->
-        <b-toast id="my-toast" solid toaster="b-toaster-bottom-right">
+        <b-toast
+          toast-class="custom-toast"
+          id="my-toast"
+          solid
+          toaster="b-toaster-top-center"
+          no-auto-hide
+        >
           <template #toast-title>
             Date limite de réponse 31/03/2021
           </template>
-          Noublie pas de répondre à l'invitation <router-link :to="{ name: answerPageName}"><b>ICI</b></router-link>
+          Noublie pas de répondre à l'invitation
+          <router-link :to="{ name: answerPageName }"><b>ICI</b></router-link>
         </b-toast>
       </div>
       <template #overlay>
@@ -85,7 +92,7 @@ export default class WeddingInfo extends Vue {
       if (userInvitations?.some(ui => ui.answer === null)) {
         setTimeout(() => {
           this.$bvToast.show('my-toast');
-        }, 3000);
+        }, 1000);
       }
     }, 1000);
   }
@@ -100,5 +107,8 @@ export default class WeddingInfo extends Vue {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+}
+.custom-toast {
+  border-color: #f67e7d !important;
 }
 </style>
