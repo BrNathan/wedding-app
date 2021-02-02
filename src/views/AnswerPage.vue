@@ -21,10 +21,10 @@
       <b-row>
         <b-col>
           <p>
-            Vous êtes invités à célébrer le mariage d'<span
-              class="amelie-and-nathan-wedding"
-              >Amélie et Nathan</span
-            >
+            Vous êtes invités à célébrer le mariage d'
+            <span class="amelie-and-nathan-wedding">
+              Amélie et Nathan
+            </span>
           </p>
         </b-col>
       </b-row>
