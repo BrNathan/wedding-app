@@ -418,7 +418,7 @@ import { ROUTES_NAMES } from '@/router/router-names';
   components: {}
 })
 export default class AnswerPage extends Vue {
-  public endDateToAnswer: Date = new Date(2021, 3, 1, 0, 1);
+  public endDateToAnswer: Date = new Date(2021, 4, 1, 0, 1);
 
   public submitState: boolean | null = null;
   public get isSubmitError() { return this.submitState === false; }
