@@ -35,6 +35,11 @@ class AuthenticationService {
     return tokenResult.token;
   }
 
+  public async changePassword(newCredentials: {username: string; newPassword: string}): Promise<{ username: string; result: boolean }> {
+    const result = await apiService.doPostRequest<{username: string; newPassword: string}, { username: string; result: boolean }>(API_ENDPOINTS.forgetPassword, newCredentials);
+    return result;
+  }
+
   /**
    * logout
    */

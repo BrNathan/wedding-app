@@ -64,6 +64,13 @@
                     </b-form-group>
                   </b-col>
                 </b-form-row>
+                <b-row v-if="displayForgetPassword">
+                  <b-col class="mb-3">
+                    <router-link :to="{name: forgetPasswordRouteName}">
+                      Mot de passe oublié ?
+                    </router-link>
+                  </b-col>
+                </b-row>
                 <b-row v-if="displayHelpMessage">
                   <b-col class="mb-3">
                     Besoin d'aide pour vous connecter... vous pouvez me
@@ -215,6 +222,14 @@ export default class LoginPage extends Vue {
     if (this.isRequestError) {
       this.countTryConnection++;
     }
+  }
+
+  public get displayForgetPassword(): boolean {
+    return this.needHelp || this.countTryConnection >= 1;
+  }
+
+  public get forgetPasswordRouteName(): string {
+    return ROUTES_NAMES.FORGET_PASSWORD_PAGE;
   }
 
   public get displayHelpMessage(): boolean {

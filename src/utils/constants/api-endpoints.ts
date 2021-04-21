@@ -8,6 +8,7 @@ const updateUserInvitationResponse = 'user-invitation/answer/user/{{userId}}';
 const refreshUserGuestByUserId = 'guest/refresh/user/{{userId}}';
 const updateUserProfile = 'user/complete/{{userId}}';
 const checkAvailabilityEmail = 'user/available-email';
+const forgetPassword = 'auth/forget-password';
 
 const API_ENDPOINTS = {
   login,
@@ -18,7 +19,8 @@ const API_ENDPOINTS = {
   updateUserInvitationResponse,
   refreshUserGuestByUserId,
   updateUserProfile,
-  checkAvailabilityEmail
+  checkAvailabilityEmail,
+  forgetPassword
 };
 
 export default API_ENDPOINTS;

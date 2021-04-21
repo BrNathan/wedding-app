@@ -59,6 +59,14 @@ const routes: Array<RouteConfig> = [
     }
   },
   {
+    path: '/forget-password',
+    name: ROUTES_NAMES.FORGET_PASSWORD_PAGE,
+    component: () => import(/* webpackChunkName: "login-page" */'../views/ForgetPasswordPage.vue'),
+    meta: {
+      isPublic: true
+    }
+  },
+  {
     path: '/first-connection',
     name: ROUTES_NAMES.FIRST_CONNECTION_PAGE,
     component: () => import(/* webpackChunkName: "first-connection-page" */'../views/FirstConnectionPage.vue'),
@@ -111,7 +119,7 @@ router.beforeResolve((to, from, next) => {
     }
   } else if (isUserLogged) {
     if (isUserAlreadyConnected) {
-      if ([ROUTES_NAMES.LOGIN_PAGE, ROUTES_NAMES.FIRST_CONNECTION_PAGE].includes(to.name ?? '')) {
+      if ([ROUTES_NAMES.LOGIN_PAGE, ROUTES_NAMES.FIRST_CONNECTION_PAGE, ROUTES_NAMES.FORGET_PASSWORD_PAGE].includes(to.name ?? '')) {
         next({ name: ROUTES_NAMES.WEDDING_INFO });
       } else {
         next();
