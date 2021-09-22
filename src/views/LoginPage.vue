@@ -225,7 +225,7 @@ export default class LoginPage extends Vue {
   }
 
   public get displayForgetPassword(): boolean {
-    return this.needHelp || this.countTryConnection >= 1;
+    return true || this.needHelp || this.countTryConnection >= 1;
   }
 
   public get forgetPasswordRouteName(): string {
