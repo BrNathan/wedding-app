@@ -48,6 +48,14 @@ const routes: Array<RouteConfig> = [
         meta: {
           isPublic: false
         }
+      },
+      {
+        path: 'photobooth',
+        name: ROUTES_NAMES.PHOTOBOOTH_GALLERY_PAGE,
+        component: () => import(/* webpackChunkName: "photobooth-gallery" */'../views/PhotoboothGalleryPage.vue'),
+        meta: {
+          isPublic: false
+        }
       }
     ]
   },

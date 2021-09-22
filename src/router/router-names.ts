@@ -6,5 +6,6 @@ export const ROUTES_NAMES = {
   CONTACT_PAGE: 'ContactPage',
   FIRST_CONNECTION_PAGE: 'FirstConnectionPage',
   LOGOUT_PAGE: 'LogoutPage',
-  FORGET_PASSWORD_PAGE: 'ForgetPasswordPage'
+  FORGET_PASSWORD_PAGE: 'ForgetPasswordPage',
+  PHOTOBOOTH_GALLERY_PAGE: 'PhotoboothGalleryPage'
 };

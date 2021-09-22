@@ -13,7 +13,7 @@
         <b-navbar-nav>
           <b-nav-item :to="{ name: homePageName }">Informations</b-nav-item>
           <b-nav-item :to="{ name: homePageName, hash: '#when-where-section' }">Horaires</b-nav-item>
-          <b-nav-item :to="{ name: answerPageName }">Répondre à l'invitation</b-nav-item>
+          <b-nav-item :to="{ name: photoboothGalleryPageName }">Photobooth galerie</b-nav-item>
           <b-nav-item :to="{ name: sleepPageName }">Où dormir ?</b-nav-item>
           <b-nav-item :to="{ name: homePageName, hash: '#a-savoir-section' }">Bon à savoir</b-nav-item>
           <b-nav-item :to="{ name: contactPageName }"
@@ -37,10 +37,10 @@ import { Component, Vue } from 'vue-property-decorator';
 })
 export default class Navbar extends Vue {
   public readonly homePageName: string = ROUTES_NAMES.WEDDING_INFO;
-  public readonly answerPageName: string = ROUTES_NAMES.WEDDING_ANSWER;
   public readonly sleepPageName: string = ROUTES_NAMES.SLEEPING_LOCATION;
   public readonly logoutPageName: string = ROUTES_NAMES.LOGOUT_PAGE;
   public readonly contactPageName: string = ROUTES_NAMES.CONTACT_PAGE;
+  public readonly photoboothGalleryPageName: string = ROUTES_NAMES.PHOTOBOOTH_GALLERY_PAGE;
 
   public logout() {
     this.$router.push({ name: this.logoutPageName });
