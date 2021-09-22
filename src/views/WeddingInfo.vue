@@ -79,6 +79,8 @@ export default class WeddingInfo extends Vue {
   public isLoading = true;
   public overlayOpacity = 1;
 
+  private showPopUpAnswer = false;
+
   public get answerPageName(): string {
     return ROUTES_NAMES.WEDDING_ANSWER;
   }
@@ -89,7 +91,7 @@ export default class WeddingInfo extends Vue {
       const userInvitations: UserInvitation[] = await answerService.getUserInvitations(
         authenticationStore?.tokenData?.id.toString() ?? ''
       );
-      if (userInvitations?.some(ui => ui.answer === null)) {
+      if (userInvitations?.some(ui => ui.answer === null) && this.showPopUpAnswer) {
         setTimeout(() => {
           this.$bvToast.show('my-toast');
         }, 1000);
