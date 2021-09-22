@@ -19,7 +19,7 @@
             </div>
             <span class="subheading">Le Mariage de</span>
             <h1>Amélie &amp; Nathan</h1>
-            <div id="timer" class="d-flex">
+            <div id="timer" class="d-flex" v-if="!weddingOccured">
               <div class="time" id="days">
                 {{ displaydaysLeft }}
                 <span>Jours</span>
@@ -63,7 +63,11 @@ export default class HomeSection extends Vue {
   public get displaydaysLeft(): string {
     let text = '-';
     if (this.daysLeft != null) {
-      text = HomeSection.displayNumber(this.daysLeft);
+      if (this.daysLeft <= 0) {
+        text = '00';
+      } else {
+        text = HomeSection.displayNumber(this.daysLeft);
+      }
     }
     return text;
   }
@@ -71,7 +75,11 @@ export default class HomeSection extends Vue {
   public get displayhoursLeft(): string {
     let text = '-';
     if (this.hoursLeft != null) {
-      text = HomeSection.displayNumber(this.hoursLeft);
+      if (this.hoursLeft <= 0) {
+        text = '00';
+      } else {
+        text = HomeSection.displayNumber(this.hoursLeft);
+      }
     }
     return text;
   }
@@ -79,7 +87,11 @@ export default class HomeSection extends Vue {
   public get displayminutesLeft(): string {
     let text = '-';
     if (this.minutesLeft != null) {
-      text = HomeSection.displayNumber(this.minutesLeft);
+      if (this.minutesLeft <= 0) {
+        text = '00';
+      } else {
+        text = HomeSection.displayNumber(this.minutesLeft);
+      }
     }
     return text;
   }
@@ -87,7 +99,11 @@ export default class HomeSection extends Vue {
   public get displaysecondsLeft(): string {
     let text = '-';
     if (this.secondsLeft != null) {
-      text = HomeSection.displayNumber(this.secondsLeft);
+      if (this.secondsLeft <= 0) {
+        text = '00';
+      } else {
+        text = HomeSection.displayNumber(this.secondsLeft);
+      }
     }
     return text;
   }
@@ -122,6 +138,14 @@ export default class HomeSection extends Vue {
     diff.day = tmp;
 
     return diff;
+  }
+
+  /**
+   * weddingOccured
+   */
+  public get weddingOccured(): boolean {
+    const dateDiff = this.dateDiff(new Date(), this.weddingDate);
+    return dateDiff.day <= 0 && dateDiff.hour <= 0 && dateDiff.min <= 0 && dateDiff.sec <= 0;
   }
 
   /**
