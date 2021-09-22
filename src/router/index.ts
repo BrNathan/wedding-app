@@ -5,6 +5,7 @@ import { authenticationStore } from '@/store/authentication';
 import WeddingLayout from '../layout/WeddingLayout.vue';
 
 import AuthenticationService from '@/services/authentication.service';
+import localStorageService from '@/services/local-storage.service';
 
 Vue.use(VueRouter);
 
@@ -115,14 +116,23 @@ router.beforeResolve((to, from, next) => {
     if (to.meta.isPublic) {
       next();
     } else {
+      if (to.name) {
+        localStorageService.setWantedPageName(to.name);
+      }
       next({ name: ROUTES_NAMES.LOGIN_PAGE });
     }
   } else if (isUserLogged) {
     if (isUserAlreadyConnected) {
-      if ([ROUTES_NAMES.LOGIN_PAGE, ROUTES_NAMES.FIRST_CONNECTION_PAGE, ROUTES_NAMES.FORGET_PASSWORD_PAGE].includes(to.name ?? '')) {
-        next({ name: ROUTES_NAMES.WEDDING_INFO });
+      const wantedPageName = localStorageService.getWantedPageName();
+      if (wantedPageName !== null) {
+        localStorageService.resetWantedPage();
+        next({ name: wantedPageName });
       } else {
-        next();
+        if ([ROUTES_NAMES.LOGIN_PAGE, ROUTES_NAMES.FIRST_CONNECTION_PAGE, ROUTES_NAMES.FORGET_PASSWORD_PAGE].includes(to.name ?? '')) {
+          next({ name: ROUTES_NAMES.WEDDING_INFO });
+        } else {
+          next();
+        }
       }
     } else {
       if (to.name === ROUTES_NAMES.FIRST_CONNECTION_PAGE) {
